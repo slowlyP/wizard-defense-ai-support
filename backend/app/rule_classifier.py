@@ -12,11 +12,12 @@ KEYWORDS = {
     "gameplay_guide": [
         "길", "경로", "배치", "타일", "성", "라운드", "초반", "초보자", "배치 규칙",
     ],
+    "wizard_acquisition": [
+        "획득", "얻", "뽑기", "뽑", "소환", "티켓", "뽑기권", "등급", "등장 확률",
+        "확률", "중복", "같은 마법사", "보유", "목록",
+    ],
     "wizard_growth": [
         "전설", "레조넌스", "합쳐", "합성", "성장", "레벨업", "재능", "타렌트",
-    ],
-    "equipment_inventory": [
-        "장비", "인벤토리", "가방", "드래그", "장착", "강화", "분해", "슬롯",
     ],
     "tower_progress": [
         "층", "타워", "언락", "잠금", "스테이지", "보스", "몬스터", "스폰",
@@ -42,8 +43,12 @@ SUBCATEGORY_RULES = {
     "bug_report": [
         ("freeze_or_crash", ["멈추", "멈춰", "멈춤", "멈춥니다", "프리징", "튕김", "튕겨", "먹통"]),
     ],
-    "equipment_inventory": [
-        ("equip_failure", ["드래그", "장착", "가방", "안 들어가", "돌아가"]),
+    "wizard_acquisition": [
+        ("draw_ticket", ["티켓", "뽑기권"]),
+        ("duplicate_acquisition", ["중복", "같은 마법사", "또 뽑"]),
+        ("acquisition_probability", ["확률", "등장 확률"]),
+        ("rarity_draw", ["전설", "등급"]),
+        ("acquisition_guide", ["획득", "얻", "뽑기", "뽑", "소환"]),
     ],
     "tower_progress": [
         ("floor_selection_issue", ["층", "다시", "돌아가"]),
@@ -106,11 +111,18 @@ def classify_inquiry(text: str) -> Dict:
 
     issue_count, issue_matches = _score_text(text, ISSUE_PATTERNS)
     bug_count, bug_matches = _score_text(text, KEYWORDS["bug_report"])
+    acquisition_count, acquisition_matches = _score_text(text, KEYWORDS["wizard_acquisition"])
 
     # 최고 점수 카테고리 선택
     best_cat = max(scores.items(), key=lambda x: x[1])[0]
     best_score = scores[best_cat]
     best_matches = matches[best_cat]
+
+    # 획득/뽑기 단서가 있으면 성장 문의와 구분해 마법사 획득으로 우선 분류합니다.
+    if acquisition_count > 0:
+        best_cat = "wizard_acquisition"
+        best_score = max(best_score, acquisition_count)
+        best_matches = acquisition_matches
 
     # 버그 키워드는 사람 검토가 필요한 오류로 우선 분류합니다.
     if bug_count > 0:
@@ -125,7 +137,7 @@ def classify_inquiry(text: str) -> Dict:
         needs_human = True
         urgency = "high"
 
-    if issue_count > 0 and best_cat in {"equipment_inventory", "tower_progress", "skill_combat"}:
+    if issue_count > 0 and best_cat in {"wizard_acquisition", "tower_progress", "skill_combat"}:
         needs_human = True
         urgency = "medium"
         best_matches = list(dict.fromkeys(best_matches + issue_matches))
@@ -175,7 +187,7 @@ if __name__ == "__main__":
     samples = [
         "마법사는 길 위에 설치할 수 없나요?",
         "전설 마법사 두 명이 나오면 합쳐지나요?",
-        "장비를 드래그했는데 계속 가방으로 돌아가요.",
+        "특수 뽑기권은 어디에 사용하나요?",
         "1층으로 가려고 했는데 다시 6층으로 돌아가요.",
         "번개 비 스킬이 몬스터한테 안 맞는 것 같아요.",
         "게임을 켜면 화면이 멈춰요.",

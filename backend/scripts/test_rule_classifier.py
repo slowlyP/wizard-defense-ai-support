@@ -37,12 +37,30 @@ def run_tests():
             "expected": {"category": "wizard_growth"},
         },
         {
-            "text": "장비를 드래그했는데 계속 가방으로 돌아가요.",
+            "text": "마법사는 어떻게 획득하나요?",
             "expected": {
-                "category": "equipment_inventory",
-                "subcategory": "equip_failure",
-                "urgency": "medium",
-                "needs_human": True,
+                "category": "wizard_acquisition",
+                "subcategory": "acquisition_guide",
+                "urgency": "low",
+                "needs_human": False,
+            },
+        },
+        {
+            "text": "특수 뽑기권은 어디에 사용하나요?",
+            "expected": {
+                "category": "wizard_acquisition",
+                "subcategory": "draw_ticket",
+                "urgency": "low",
+                "needs_human": False,
+            },
+        },
+        {
+            "text": "같은 마법사를 또 뽑으면 어떻게 되나요?",
+            "expected": {
+                "category": "wizard_acquisition",
+                "subcategory": "duplicate_acquisition",
+                "urgency": "low",
+                "needs_human": False,
             },
         },
         {

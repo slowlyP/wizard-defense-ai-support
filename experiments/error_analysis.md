@@ -31,9 +31,9 @@
 - Root cause: `멈춰` 표현이 버그 키워드에 없어서 fallback 분류가 적용됨
 - Fix: `멈춰`, `멈춤`, `멈춥니다`, `튕김`, `튕겨`, `먹통`, `진행이 안` 등 버그 키워드를 확장하고 버그 매칭 시 `needs_human=true`로 처리
 
-- Sample: "장비를 드래그했는데 계속 가방으로 돌아가요."
-- Expected: `equipment_inventory` / `equip_failure` / medium / true
-- Fix: 장비 카테고리에서 실패 패턴 `돌아가`가 함께 매칭되면 `equip_failure`로 처리
+- Sample: "마법사는 어떻게 획득하나요?"
+- Expected: `wizard_acquisition` / `acquisition_guide` / low / false
+- Fix: 현재 게임에 없는 이전 지원 카테고리를 제거하고, 마법사 획득·뽑기·티켓·등급·중복 획득 문의를 `wizard_acquisition`으로 분류
 
 - Sample: "1층으로 가려고 했는데 다시 6층으로 돌아가요."
 - Expected: `tower_progress` / `floor_selection_issue` / medium / true

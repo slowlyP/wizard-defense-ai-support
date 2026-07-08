@@ -11,14 +11,20 @@
 - 게임 디자인 문서를 기반으로 합성된 문의(실사용자 데이터 포함하지 않음). 샘플 문장은 게임 맥락을 반영하여 작성되었습니다.
 
 라벨 스키마:
-- `category`: `gameplay_guide`, `wizard_growth`, `equipment_inventory`, `tower_progress`, `skill_combat`, `bug_report`, `feedback_balance`
-- `subcategory`: 각 카테고리에 대한 상세 영어 키워드(예: `placement`, `resonance`, `equip_slots` 등)
+- `category`: `gameplay_guide`, `wizard_acquisition`, `wizard_growth`, `tower_progress`, `skill_combat`, `bug_report`, `feedback_balance`
+- `subcategory`: 각 카테고리에 대한 상세 영어 키워드(예: `placement`, `acquisition_guide`, `resonance` 등)
 - `urgency`: `low` / `medium` / `high`
 - `needs_human`: `true` / `false`
 
 카테고리 분포:
 - 총 샘플 수: 100
-- 카테고리별로 대략 균형 있게 배치(섹션별 13~15개 내외)
+- `gameplay_guide`: 16
+- `wizard_acquisition`: 18
+- `wizard_growth`: 15
+- `tower_progress`: 12
+- `skill_combat`: 14
+- `bug_report`: 14
+- `feedback_balance`: 11
 
 제한 사항(Limitations):
 - 합성 데이터이므로 실제 사용자 표현의 다양성이 제한될 수 있습니다.

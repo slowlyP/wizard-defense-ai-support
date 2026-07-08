@@ -15,6 +15,6 @@
 - Goal: 키워드 기반 룰 분류기 초기 후보 구현 및 간단한 테스트
 - Config: Python script `backend/app/rule_classifier.py`, dataset `data/raw/wizard_defense_inquiries_raw.csv`
 - Results: 기본 키워드 규칙으로 샘플 테스트 통과(7/7 사례 출력)
-- Notes: 2026-07-08 로컬 테스트에서 발견된 `freeze_or_crash`, `equip_failure`, `floor_selection_issue`, `skill_targeting` 오분류를 보정했습니다. 버그 키워드는 높은 긴급도와 사람 검토 필요로 처리하고, 장비/층/스킬 실패 패턴은 중간 긴급도와 사람 검토 필요로 처리합니다. 향후 전체 데이터셋 기준 정밀도/재현율 검증이 필요합니다.
+- Notes: 2026-07-08 로컬 테스트에서 발견된 `freeze_or_crash`, `floor_selection_issue`, `skill_targeting` 오분류를 보정했습니다. 이후 현재 게임에 없는 이전 지원 카테고리를 제거하고 `wizard_acquisition`으로 전환했습니다. 마법사 획득, 뽑기권, 중복 획득 문의는 낮은 긴급도의 자동 응답 대상으로 처리합니다. 향후 전체 데이터셋 기준 정밀도/재현율 검증이 필요합니다.
 
 

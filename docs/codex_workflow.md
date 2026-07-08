@@ -11,12 +11,16 @@
 - 모든 문서 내용은 한국어로 작성해야 합니다.
 - 다음 파일/문서는 한국어로 유지됩니다: README, labeling guide, dataset card, experiment log, error analysis, architecture, portfolio summary, knowledge documents.
 - 파일명, 폴더명, CSV 컬럼명, 카테고리 라벨, 서브카테고리 라벨, 코드 식별자는 영어로 유지합니다.
-- 다음 라벨은 번역하거나 변경하지 않습니다: gameplay_guide, wizard_growth, equipment_inventory, tower_progress, skill_combat, bug_report, feedback_balance.
+- 다음 라벨은 번역하거나 변경하지 않습니다: gameplay_guide, wizard_acquisition, wizard_growth, tower_progress, skill_combat, bug_report, feedback_balance.
 
 3. Codex 작업 전 체크리스트
 - 현재 브랜치를 확인한다.
 - `docs/codex_workflow.md`를 먼저 읽는다.
 - `docs/codex_task_checklist.md`를 함께 읽는다.
+- 데이터셋, 라벨, `knowledge` 문서, classifier, backend, frontend 관련 작업 전에는 `docs/game_repo_validation_checklist.md`를 함께 읽는다.
+- 요청된 AI 지원 기능이 Random Wizard Defense 게임 레포에서 실제 구현되어 있는지 또는 명확히 계획되어 있는지 확인한다.
+- 게임에서 지원되지 않는 시스템은 현재 지원 category로 추가하지 않는다.
+- 게임 레포에 접근할 수 없으면 추측으로 진행하지 않고 작업을 멈춘 뒤 사용자에게 확인을 요청한다.
 - 파일을 수정하기 전에 작업 목표, 수정 파일, 생성 파일, 검증 방법을 포함한 작업 계획을 먼저 제공한다.
 - 요청 범위를 벗어난 작업을 하지 않는다.
 - 외부 API를 호출하지 않는다 unless explicitly requested.
@@ -37,8 +41,8 @@
 - 현재 목표 크기: 100 rows
 - Categories (라벨):
   - gameplay_guide
+  - wizard_acquisition
   - wizard_growth
-  - equipment_inventory
   - tower_progress
   - skill_combat
   - bug_report
