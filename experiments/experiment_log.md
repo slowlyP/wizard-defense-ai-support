@@ -27,3 +27,14 @@
 - Category results: `wizard_acquisition` 88.89%, `gameplay_guide` 81.25%, `tower_progress` 75.00%, `skill_combat` 71.43%, `wizard_growth` 53.33%, `bug_report` 21.43%, `feedback_balance` 9.09%
 - Notes: classifier logic, dataset label, category label은 변경하지 않았습니다. 이번 실험은 TF-IDF 이전의 비교 기준으로 사용하며, 주요 오분류 원인은 공유 키워드와 오류 문맥 우선순위 충돌입니다.
 
+## EXP-003 TF-IDF Baseline (v0.5.0-tfidf-baseline)
+
+- Date: 2026-07-08
+- Goal: 전체 dataset에 대해 TF-IDF + LogisticRegression baseline을 평가하고 rule-based baseline과 비교할 기준을 기록
+- Config: Python script `backend/scripts/evaluate_tfidf_classifier.py`, dataset `data/raw/wizard_defense_inquiries_raw.csv`, `TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4))`, `LogisticRegression(class_weight="balanced", random_state=42)`, `StratifiedKFold(n_splits=5, random_state=42)`
+- Dependency: `scikit-learn`
+- Output: `experiments/tfidf_predictions.csv`
+- Results: 100개 샘플 기준 accuracy 58.00%, mismatched examples 42개
+- Category results: `skill_combat` F1 0.7273, `wizard_acquisition` F1 0.7317, `wizard_growth` F1 0.6000, `tower_progress` F1 0.5385, `gameplay_guide` F1 0.5000, `feedback_balance` F1 0.5000, `bug_report` F1 0.2727
+- Notes: dataset label, rule-based classifier logic, knowledge 문서는 변경하지 않았습니다. TF-IDF baseline은 rule-based v0.4.0 accuracy 60.00%보다 낮은 58.00%를 기록했으며, 이후 feature 조정 또는 데이터 확충 실험의 비교 기준으로 사용합니다.
+

@@ -104,3 +104,54 @@ Category별 결과:
 - `bug_report`는 기능 단어와 함께 나오는 오류 표현을 별도 subcategory로 추적합니다.
 - `feedback_balance`는 `너무`, `약한`, `강한`, `불공평`, `조정` 같은 평가 표현을 더 강하게 반영합니다.
 - 다음 단계인 TF-IDF baseline 전에 rule-based baseline의 한계를 그대로 보존해 비교 기준으로 사용합니다.
+
+## TF-IDF Baseline Error Analysis (v0.5.0-tfidf-baseline)
+
+평가 기준:
+- Dataset: `data/raw/wizard_defense_inquiries_raw.csv`
+- Script: `backend/scripts/evaluate_tfidf_classifier.py`
+- Output: `experiments/tfidf_predictions.csv`
+- Method: `TfidfVectorizer` + `LogisticRegression`
+- Evaluation: `StratifiedKFold(n_splits=5, random_state=42)`
+- Total samples: 100
+- Accuracy: 58.00%
+- Mismatched examples: 42
+
+Category별 결과:
+- `bug_report`: precision 0.3750, recall 0.2143, F1 0.2727
+- `feedback_balance`: precision 0.5556, recall 0.4545, F1 0.5000
+- `gameplay_guide`: precision 0.5833, recall 0.4375, F1 0.5000
+- `skill_combat`: precision 0.6316, recall 0.8571, F1 0.7273
+- `tower_progress`: precision 0.5000, recall 0.5833, F1 0.5385
+- `wizard_acquisition`: precision 0.6522, recall 0.8333, F1 0.7317
+- `wizard_growth`: precision 0.6000, recall 0.6000, F1 0.6000
+
+주요 오분류 패턴:
+- `gameplay_guide` -> `wizard_acquisition`: 마법사, 속성, 배치 문맥이 함께 있는 일반 가이드 문의가 획득 category로 이동했습니다.
+- `gameplay_guide` -> `wizard_growth`: 전설 마법사, 레조넌스, 조합 같은 단어가 가이드 문맥보다 성장 문맥으로 강하게 반영되었습니다.
+- `bug_report` -> `skill_combat` 또는 `tower_progress`: 오류 문의가 스킬, 몬스터, 층 같은 기능 단어와 함께 나타나면 기능 category로 분류되었습니다.
+- `feedback_balance` -> `skill_combat` 또는 `tower_progress`: 밸런스 문의에 스킬, 층, 스폰 같은 기능 단어가 포함되면 balance 의도가 약해졌습니다.
+
+대표 오분류 예시:
+- Sample: "경로 타일에 마법사를 놓을 수 없다고 표시되는데 정확히 어디에 놓아야 하나요?"
+- Predicted: `wizard_acquisition`
+- Expected: `gameplay_guide`
+- Root cause: `마법사`와 배치 표현이 짧은 문장 안에서 획득/보유 계열 표현과 충분히 분리되지 않았습니다.
+- Fix 후보: 한국어 형태소 분석 없이 char n-gram만 쓰는 baseline의 한계로 기록하고, category별 데이터 확충 또는 feature 조정을 검토합니다.
+
+- Sample: "전략적으로 바람 마법사를 어떤 위치에 두는 게 좋나요?"
+- Predicted: `wizard_acquisition`
+- Expected: `gameplay_guide`
+- Root cause: 위치/전략 가이드보다 마법사 표현이 더 넓은 획득 category와 연결되었습니다.
+- Fix 후보: `위치`, `두는`, `전략`이 포함된 gameplay 예시를 늘립니다.
+
+- Sample: "스킬 레벨업 시 데미지 증가량 계산법 알려주세요."
+- Predicted: `wizard_growth`
+- Expected: `skill_combat`
+- Root cause: `레벨업` 표현이 성장 category와 강하게 연결되었습니다.
+- Fix 후보: 스킬 성장/스킬 피해 계산 문의의 label policy를 명확히 하고, `skill_combat` 학습 예시를 늘립니다.
+
+비교 메모:
+- TF-IDF v0.5.0 accuracy는 58.00%로 rule-based v0.4.0 accuracy 60.00%보다 낮습니다.
+- TF-IDF는 `feedback_balance`와 `wizard_growth`에서 rule-based보다 개선 가능성을 보였지만, `gameplay_guide`와 `bug_report` recall이 낮았습니다.
+- 이 결과는 rule-based classifier를 제거하기 위한 근거가 아니라, 다음 실험에서 feature engineering 또는 데이터 확충 효과를 비교하기 위한 baseline입니다.

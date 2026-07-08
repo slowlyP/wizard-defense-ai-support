@@ -32,3 +32,20 @@ python backend/scripts/evaluate_rule_classifier.py
 3. 콘솔에는 전체 정확도, category별 정확도, 오분류 예시가 출력됩니다.
 4. 상세 예측 결과는 `experiments/rule_classifier_predictions.csv`에 저장됩니다.
 
+TF-IDF baseline 평가 실행 방법:
+1. 필요한 dependency를 설치합니다:
+
+```powershell
+pip install -r requirements.txt
+```
+
+2. 리포지토리 루트에서 다음 명령으로 TF-IDF baseline 평가를 실행합니다:
+
+```powershell
+python backend/scripts/evaluate_tfidf_classifier.py
+```
+
+3. 이 스크립트는 `data/raw/wizard_defense_inquiries_raw.csv`를 읽고 `text`를 입력, `category`를 target으로 사용합니다.
+4. `TfidfVectorizer`와 `LogisticRegression`을 `StratifiedKFold`로 평가하며, 콘솔에 accuracy, category별 precision/recall/F1, confusion-style summary, 오분류 예시를 출력합니다.
+5. 상세 예측 결과는 `experiments/tfidf_predictions.csv`에 저장됩니다.
+
