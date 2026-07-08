@@ -4,8 +4,8 @@
 
 1) 카테고리 정의
 - `gameplay_guide`: 플레이어가 게임 플레이 방법, 배치, 전략, 상성 등 게임 플레이 자체에 대해 묻는 질문.
+- `wizard_acquisition`: 마법사 랜덤 획득, 뽑기, 티켓, 등급, 중복 획득, 획득 확률 관련 문의.
 - `wizard_growth`: 마법사 성장, 레벨업, 재능(타렌트), 레조넌스(Resonance) 시스템 등 성장 관련 문의.
-- `equipment_inventory`: 장비 획득, 장착, 인벤토리, 장비 강화/분해 관련 문의.
 - `tower_progress`: 타워(또는 던전) 층 진행, 보상, 보스, 층 관련 진척도 및 잠금 해제 문의.
 - `skill_combat`: 스킬 사용, 쿨타임, 상호작용, 데미지 계산 등 전투·스킬 관련 문의.
 - `bug_report`: 게임 이상 동작, 크래시, 저장 손실, UI 오류 등 명백한 버그 리포트.
@@ -13,8 +13,8 @@
 
 2) 서브카테고리 예시
 - `placement`, `path_rules`, `strategy`, `elemental_synergy`, `mechanics`, `beginner_guide` 등은 `gameplay_guide`의 서브카테고리 예시입니다.
+- `acquisition_guide`, `random_draw`, `draw_ticket`, `duplicate_acquisition`, `acquisition_probability` 등은 `wizard_acquisition`의 서브카테고리 예시입니다.
 - `resonance`, `leveling`, `talent`, `level_cap` 등은 `wizard_growth`의 서브카테고리 예시입니다.
-- `equip_slots`, `item_stats`, `upgrade_costs`, `filter_bug` 등은 `equipment_inventory`의 서브카테고리 예시입니다.
 - `floor_difficulty`, `unlock_conditions`, `boss_tactics`, `reward_bug` 등은 `tower_progress`의 서브카테고리 예시입니다.
 - `cooldown_display`, `skill_synergy`, `damage_formula`, `hitbox_issue` 등은 `skill_combat`의 서브카테고리 예시입니다.
 - `crash`, `save_loss`, `visual_glitch`, `input_issue` 등은 `bug_report`의 서브카테고리 예시입니다.
@@ -27,7 +27,7 @@
 
 4) `needs_human` (사람 검토 필요 여부) 규칙
 - `true`: 문제 재현이 필요하거나 보상/환불/데이터 복구 등 사람이 개입해야 하는 경우(예: 저장 손실, 보상 중복, 크래시 재현 요청, 치팅/악용 의심, 민감한 경제 보상 이슈).
-- `false`: 단순 정보 제공이나 자동 응답으로 처리 가능한 문의(게임플레이 팁, 일반 가이드, 장비 사용법 등).
+- `false`: 단순 정보 제공이나 자동 응답으로 처리 가능한 문의(게임플레이 팁, 일반 가이드, 마법사 획득 방법 등).
 
 5) 애매한 경우 처리
 - 메시지가 버그 리포트와 게임플레이 질문을 동시에 포함하면 우선 `bug_report`로 표시합니다(버그가 사용자 경험에 중대한 영향을 미칠 가능성이 높음).
