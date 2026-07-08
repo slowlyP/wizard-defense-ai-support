@@ -1,0 +1,101 @@
+id,text,expected_category,predicted_category,expected_subcategory,predicted_subcategory,correct,confidence,matched_keywords
+1,경로 타일에 마법사를 놓을 수 없다고 표시되는데 정확히 어디에 놓아야 하나요?,gameplay_guide,gameplay_guide,placement,경로,true,0.5,경로|타일
+2,적들이 성으로 가는 경로를 우회해서 가는 경우가 있어요. 이건 의도된 건가요?,gameplay_guide,gameplay_guide,path_rules,경로,true,0.5,경로|성
+3,초반 라운드에서 효과적인 배치 전략 추천 부탁드려요.,gameplay_guide,gameplay_guide,strategy,배치,true,0.65,배치|라운드|초반
+4,불 속성 마법사는 물 속성 적에게 약한가요? 상성 표 같은 거 있나요?,gameplay_guide,gameplay_guide,elemental_synergy,성,true,0.35,성
+5,마법사는 길에 올려놓을 수 없다고 하는데 어느 타일이 길인지 잘 모르겠어요.,gameplay_guide,gameplay_guide,placement,길,true,0.5,길|타일
+6,적들이 몰려올 때 어느 타워부터 업그레이드해야 할까요?,gameplay_guide,tower_progress,upgrade_priority,타워,false,0.35,타워
+7,전략적으로 바람 마법사를 어떤 위치에 두는 게 좋나요?,gameplay_guide,gameplay_guide,strategy,unknown,true,0.05,
+8,웨이브 10에서 막히는데 추천 덱(조합) 알려주실 수 있나요?,gameplay_guide,gameplay_guide,strategy,unknown,true,0.05,
+9,전설 마법사 없이도 즐길 수 있는 빌드 예시가 있나요?,gameplay_guide,gameplay_guide,build_examples,길,true,0.35,길
+10,마법사 소환 시 반응(레조넌스) 시스템이 어떻게 작동하는지 쉽게 설명해 주세요.,gameplay_guide,wizard_acquisition,mechanics,acquisition_guide,false,0.35,소환
+11,돌 속성 마법사는 어떤 조합에서 우선 배치해야 할까요?,gameplay_guide,gameplay_guide,placement_strategy,배치,true,0.5,배치|성
+12,적 HP가 보이지 않을 때 공격 타이밍을 어떻게 파악하나요?,gameplay_guide,gameplay_guide,info_display,unknown,true,0.05,
+13,맵에서 특정 타일이 손상되어 보이는데 플레이에 영향을 주나요?,gameplay_guide,gameplay_guide,map_features,타일,true,0.35,타일
+14,번개 마법사와 불 마법사 조합이 효과적인 상황을 알려주세요.,gameplay_guide,skill_combat,elemental_synergy,번개,false,0.35,번개
+15,적의 이동 경로를 막을 수 있는 팁이 있을까요?,gameplay_guide,gameplay_guide,blocking_tactics,경로,true,0.35,경로
+16,마법사 레벨업에 필요한 경험치는 어떻게 얻나요?,wizard_growth,wizard_acquisition,leveling,acquisition_guide,false,0.35,얻
+17,레조넌스 시스템으로 전설 마법사를 만드는 방법을 자세히 알려주세요.,wizard_growth,wizard_growth,resonance,전설,true,0.5,전설|레조넌스
+18,재능 트리에서 어떤 선택이 광역 딜에 유리한가요?,wizard_growth,wizard_growth,talent,재능,true,0.35,재능
+19,전설 마법사 성장 한계가 있나요? 레벨 캡이 궁금합니다.,wizard_growth,wizard_growth,level_cap,전설,true,0.5,전설|성장
+20,성장 단계가 오르면 어떤 보너스를 받나요?,wizard_growth,gameplay_guide,growth_bonus,성,false,0.35,성
+21,마법사 합성 대신 레조넌스를 사용하는 이유가 뭐죠?,wizard_growth,wizard_growth,resonance,레조넌스,true,0.5,레조넌스|합성
+22,물 마법사의 추천 스탯 분배 알려주세요.,wizard_growth,gameplay_guide,stat_priority,unknown,false,0.05,
+23,레벨업 시 스킬 포인트를 자동 분배할 수 있나요?,wizard_growth,wizard_growth,auto_alloc,레벨업,true,0.35,레벨업
+24,전설 마법사 전용 성장 경로 예시를 보여주세요.,wizard_growth,gameplay_guide,legendary_path,경로,false,0.5,경로|성
+25,레조넌스 실패 시 재화나 재료가 소비되나요?,wizard_growth,wizard_growth,resonance_fail,레조넌스,true,0.35,레조넌스
+26,마법사 전용 퀘스트로 얻는 보상이 무엇인가요?,wizard_growth,wizard_acquisition,quests,acquisition_guide,false,0.35,얻
+27,레벨업 보너스가 팀 전체에 적용되나요 아니면 개별 마법사만 적용되나요?,wizard_growth,wizard_growth,team_effects,레벨업,true,0.35,레벨업
+28,전설 마법사의 경험치 획득량이 일반 마법사와 다른가요?,wizard_growth,wizard_acquisition,experience_rates,rarity_draw,false,0.35,획득
+29,초보자용 성장 가이드를 추천해 주세요.,wizard_growth,gameplay_guide,beginner_guide,성,false,0.5,성|초보자
+30,레조넌스 관련 설명에서 예시가 더 필요해요.,wizard_growth,wizard_growth,documentation,레조넌스,true,0.35,레조넌스
+31,마법사는 어떻게 획득하나요?,wizard_acquisition,wizard_acquisition,acquisition_guide,acquisition_guide,true,0.35,획득
+32,랜덤 마법사 뽑기는 어떻게 진행되나요?,wizard_acquisition,wizard_acquisition,random_draw,acquisition_guide,true,0.5,뽑기|뽑
+33,전설 마법사는 뽑기에서 나오나요?,wizard_acquisition,wizard_acquisition,rarity_draw,rarity_draw,true,0.5,뽑기|뽑
+34,같은 마법사를 또 뽑으면 어떻게 되나요?,wizard_acquisition,wizard_acquisition,duplicate_acquisition,duplicate_acquisition,true,0.5,뽑|같은 마법사
+35,특수 뽑기권은 어디에 사용하나요?,wizard_acquisition,wizard_acquisition,draw_ticket,draw_ticket,true,0.65,뽑기|뽑|뽑기권
+36,마법사 등급별 등장 확률이 있나요?,wizard_acquisition,wizard_acquisition,acquisition_probability,acquisition_probability,true,0.65,등급|등장 확률|확률
+37,원하는 속성 마법사를 선택해서 얻을 수 있나요?,wizard_acquisition,wizard_acquisition,element_selection,acquisition_guide,true,0.35,얻
+38,무료 뽑기 기회는 하루에 몇 번 제공되나요?,wizard_acquisition,wizard_acquisition,free_draw,acquisition_guide,true,0.5,뽑기|뽑
+39,뽑기 결과에서 이미 보유한 마법사가 표시되지 않아요.,wizard_acquisition,wizard_acquisition,draw_result_bug,acquisition_guide,true,0.65,뽑기|뽑|보유
+40,마법사 획득 연출이 끝나지 않고 화면이 멈춰요.,wizard_acquisition,bug_report,acquisition_freeze,freeze_or_crash,false,0.35,멈춰
+41,타워 층 수가 올라가면 적이 강해지나요?,tower_progress,tower_progress,floor_difficulty,floor_selection_issue,true,0.5,층|타워
+42,다음 층 잠금 해제 조건이 뭐예요? 일정 점수인가요?,tower_progress,tower_progress,unlock_conditions,floor_selection_issue,true,0.5,층|잠금
+43,층 업그레이드 비용이 과도하다고 생각하는데 조정 계획 있나요?,tower_progress,tower_progress,upgrade_costs,floor_selection_issue,true,0.35,층
+44,타워 진행 시 보상이 초기화되나요? 리셋 규칙이 궁금합니다.,tower_progress,tower_progress,reset_rules,타워,true,0.35,타워
+45,특정 층에서 버그로 적이 멈춰있어요.,tower_progress,bug_report,progress_bug,freeze_or_crash,false,0.5,멈춰|버그
+46,층 보스의 공격 패턴 예측 팁이 있나요?,tower_progress,tower_progress,boss_tactics,floor_selection_issue,true,0.5,층|보스
+47,타워 층 수가 표시와 실제가 다릅니다.,tower_progress,tower_progress,ui_bug,floor_selection_issue,true,0.5,층|타워
+48,진행 보상으로 얻는 경험치가 균형이 맞지 않는 것 같아요.,tower_progress,wizard_acquisition,reward_balance,acquisition_guide,false,0.35,얻
+49,일부 층에서 몬스터 스폰이 너무 많아요. 밸런스 조정 가능한가요?,tower_progress,tower_progress,spawn_rates,floor_selection_issue,true,0.65,층|몬스터|스폰
+50,타워 난이도별 공략 추천을 받을 수 있을까요?,tower_progress,tower_progress,strategy,타워,true,0.35,타워
+51,스킬 쿨타임이 아이콘에 표시가 안 돼요. 버그인가요?,skill_combat,bug_report,cooldown_display,버그,false,0.5,버그|안 돼요
+52,스킬 연계로 불과 번개가 시너지를 내는 조합 예시가 궁금합니다.,skill_combat,skill_combat,skill_synergy,skill_targeting,true,0.65,스킬|연계|번개
+53,스킬에 관통 효과가 있나요? 몬스터 군중 제어 관련해서요.,skill_combat,tower_progress,mechanics,몬스터,false,0.35,몬스터
+54,스킬 레벨업 시 데미지 증가량 계산법 알려주세요.,skill_combat,skill_combat,damage_formula,skill_targeting,true,0.5,스킬|데미지
+55,특정 스킬 사용 시 게임이 멈추는 현상이 있어요.,skill_combat,bug_report,crash,freeze_or_crash,false,0.35,멈추
+56,스킬 우선순위 설정 기능이 있나요? 자동 사용 관련.,skill_combat,skill_combat,auto_use,skill_targeting,true,0.35,스킬
+57,스킬 상호작용으로 의도치 않은 연쇄 효과가 발생합니다.,skill_combat,skill_combat,interaction_bug,skill_targeting,true,0.35,스킬
+58,스킬 데미지가 표시된 값과 실제 효과가 달라요.,skill_combat,skill_combat,display_mismatch,skill_targeting,true,0.5,스킬|데미지
+59,범위형 스킬 범위가 좁아진 것 같은데 패치 영향인가요?,skill_combat,skill_combat,range_change,skill_targeting,true,0.5,스킬|범위
+60,스킬 설명에 오타가 있어요. 수정 요청합니다.,skill_combat,skill_combat,documentation,skill_targeting,true,0.35,스킬
+61,게임이 특정 상황에서 크래시가 납니다. 재현 방법 필요하시면 알려드릴게요.,bug_report,bug_report,crash,크래시,true,0.35,크래시
+62,마법사 배치 후 간헐적으로 클릭 입력을 인식하지 못합니다.,bug_report,gameplay_guide,input_issue,배치,false,0.35,배치
+63,저장된 진행도가 사라졌어요. 이건 버그인가요?,bug_report,bug_report,save_loss,버그,true,0.65,버그|저장|사라졌
+64,그래픽이 깨져 보이는 현상이 자주 발생합니다.,bug_report,gameplay_guide,visual_glitch,unknown,false,0.05,
+65,레조넌스 작동 후 전설 마법사가 생성되지 않아요.,bug_report,wizard_growth,resonance_bug,전설,false,0.5,전설|레조넌스
+66,마법사 목록 필터가 동작하지 않습니다. 정렬이 안 돼요.,bug_report,bug_report,ui_bug,안 돼요,true,0.35,안 돼요
+67,적 경로에 갑자기 소환 포인트가 생겨서 막히거나 이상하게 움직여요.,bug_report,wizard_acquisition,path_spawn_bug,acquisition_guide,false,0.35,소환
+68,프레임 드랍이 심한데 특정 상황에서만 발생해요.,bug_report,gameplay_guide,performance,unknown,false,0.05,
+69,업데이트 후 일부 능력치 계산이 바뀌었는데 공지에 안 나왔어요.,bug_report,gameplay_guide,balancing_change,unknown,false,0.05,
+70,튜토리얼이 끝난 뒤 다음 단계로 넘어가지 않습니다.,bug_report,gameplay_guide,tutorial_block,unknown,false,0.05,
+71,번개 마법사가 너무 강한 것 같아요. 특정 조합만 쓰면 게임이 쉽습니다.,feedback_balance,feedback_balance,overpowered,너무,true,0.5,너무|강한
+72,초반 골드 획득량이 적어 게임이 지루해요. 경제 개선 부탁드립니다.,feedback_balance,wizard_acquisition,economy,acquisition_guide,false,0.35,획득
+73,일부 희귀 마법사가 성능에 비해 너무 자주 나옵니다. 등장 확률 조정 제안합니다.,feedback_balance,wizard_acquisition,draw_rate,acquisition_probability,false,0.5,등장 확률|확률
+74,타워 업그레이드 비용 대비 효율이 낮은 것 같습니다.,feedback_balance,tower_progress,upgrade_efficiency,타워,false,0.35,타워
+75,전설 마법사 등장 확률이 낮아 너무 운 요소가 큽니다.,feedback_balance,wizard_acquisition,rarity,acquisition_probability,false,0.5,등장 확률|확률
+76,특정 스킬 조합이 지나치게 강력해요. 밸런스 패치 필요합니다.,feedback_balance,skill_combat,skill_combo,skill_targeting,false,0.35,스킬
+77,경험치 획득량이 레벨에 비해 너무 적습니다. 성장 속도 조정 가능할까요?,feedback_balance,wizard_acquisition,experience_rates,acquisition_guide,false,0.35,획득
+78,일부 덱이 메타적으로 너무 우세해 다양성이 떨어집니다.,feedback_balance,gameplay_guide,meta_diversity,성,false,0.35,성
+79,마법사 성장 비용이 게임플레이에 비해 과도하다고 느껴집니다.,feedback_balance,gameplay_guide,growth_costs,성,false,0.35,성
+80,레조넌스 보너스가 체감되지 않아요. 수치 확인 부탁드립니다.,feedback_balance,wizard_growth,resonance_effects,레조넌스,false,0.35,레조넌스
+81,이벤트 보상으로 주는 뽑기권이 지급되지 않았어요.,wizard_acquisition,wizard_acquisition,ticket_reward_bug,draw_ticket,true,0.65,뽑기|뽑|뽑기권
+82,뽑기 진행 중 UI가 멈추고 진행이 안 됩니다.,wizard_acquisition,bug_report,draw_ui_bug,freeze_or_crash,false,0.5,멈추|진행이 안
+83,보유 마법사 목록에서 새로 얻은 마법사를 찾기 어렵습니다.,wizard_acquisition,wizard_acquisition,wizard_list,acquisition_guide,true,0.65,얻|보유|목록
+84,전설 마법사를 뽑았는데 보유 목록에 추가되지 않았습니다.,wizard_acquisition,wizard_acquisition,acquisition_missing,rarity_draw,true,0.65,뽑|보유|목록
+85,뽑기 확률 표기와 실제 결과가 다른 것 같아요.,wizard_acquisition,wizard_acquisition,probability_mismatch,acquisition_probability,true,0.65,뽑기|뽑|확률
+86,마법사 획득 이벤트가 잘못 작동하는 것 같아요. 보상을 못 받았습니다.,wizard_acquisition,wizard_acquisition,event_bug,acquisition_guide,true,0.35,획득
+87,스테이지 보상으로 주는 뽑기권 수가 과하게 많은 편이에요. 밸런스 확인 바랍니다.,wizard_acquisition,wizard_acquisition,reward_balance,draw_ticket,true,0.65,뽑기|뽑|뽑기권
+88,마법사 목록 필터에서 등급 기준이 작동하지 않습니다.,wizard_acquisition,wizard_acquisition,filter_bug,rarity_draw,true,0.5,등급|목록
+89,타워 진행 중 보상이 특정 상황에서 지급되지 않습니다.,tower_progress,tower_progress,reward_bug,타워,true,0.35,타워
+90,층 보스 패턴이 한 번 깨면 다시는 등장하지 않는 버그가 있어요.,tower_progress,bug_report,boss_spawn_bug,버그,false,0.35,버그
+91,스킬 시전 시 사운드가 출력되지 않습니다.,skill_combat,skill_combat,sound_bug,skill_targeting,true,0.35,스킬
+92,스킬 트리 중 특정 분기가 적용되지 않는 것 같아요.,skill_combat,skill_combat,skill_tree_bug,skill_targeting,true,0.35,스킬
+93,광역 스킬이 특정 몬스터에 먹히지 않습니다. 판정 문제인가요?,skill_combat,tower_progress,hitbox_issue,몬스터,false,0.35,몬스터
+94,스킬 파티클이 화면에 남아 프레임을 잡아먹습니다.,skill_combat,skill_combat,performance,skill_targeting,true,0.35,스킬
+95,게임 내 채팅창에서 특수문자 입력 시 강제 종료됩니다.,bug_report,gameplay_guide,chat_crash,unknown,false,0.05,
+96,레벨 보상이 중복 지급되는 경우가 있습니다. 확인 부탁드립니다.,bug_report,wizard_acquisition,reward_duplication,duplicate_acquisition,false,0.35,중복
+97,전설 마법사 합성 시 재료가 소모되었는데 아무 일도 일어나지 않았어요.,bug_report,wizard_growth,resonance_fail,전설,false,0.5,전설|합성
+98,밸런스 패치 후 일부 스킬이 설명과 다르게 작동해요.,feedback_balance,skill_combat,patch_effects,skill_targeting,false,0.35,스킬
+99,초보자용 추천 빌드가 업데이트되지 않았습니다. 가이드 반영 부탁드려요.,gameplay_guide,gameplay_guide,beginner_guide,초보자,true,0.35,초보자
+100,플레이 중 간헐적으로 소리가 끊깁니다. 사운드 재생 문제인 듯합니다.,bug_report,gameplay_guide,sound_glitch,unknown,false,0.05,
