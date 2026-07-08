@@ -1,20 +1,34 @@
-# Dataset Card
+﻿# 데이터셋 카드
 
-Short description:
-Small support dataset for "Random Wizard Defense" combining player tickets, FAQs, and crafted examples for classification and retrieval.
+데이터셋 이름: Wizard Defense Inquiries (v0.2.0-dataset-v1)
 
-언어: 영어 (primary), 일부 한글 예시 포함 가능
+요약 목적:
+이 데이터셋은 Unity 게임 "Random Wizard Defense"를 위한 플레이어 문의(지원 티켓) 샘플을 합성한 것으로, 의도 분류(intent classification) 및 검색 기반 응답(grounded response) 시스템의 개발과 평가에 사용됩니다.
 
-Purpose: Training and evaluating intent classification and retrieval grounding for support responses.
+버전: v0.2.0-dataset-v1
 
-Composition:
-- `raw/` contains original text dumps and transcripts.
-- `processed/` contains cleaned, split, and labeled examples used for model training.
+데이터 출처:
+- 게임 디자인 문서를 기반으로 합성된 문의(실사용자 데이터 포함하지 않음). 샘플 문장은 게임 맥락을 반영하여 작성되었습니다.
 
-Recommended splits:
-- Train: 80%
-- Dev: 10%
-- Test: 10%
+라벨 스키마:
+- `category`: `gameplay_guide`, `wizard_growth`, `equipment_inventory`, `tower_progress`, `skill_combat`, `bug_report`, `feedback_balance`
+- `subcategory`: 각 카테고리에 대한 상세 영어 키워드(예: `placement`, `resonance`, `equip_slots` 등)
+- `urgency`: `low` / `medium` / `high`
+- `needs_human`: `true` / `false`
 
-Privacy & Safety:
-- Ensure no real player PII is included. Use synthetic or anonymized tickets.
+카테고리 분포:
+- 총 샘플 수: 100
+- 카테고리별로 대략 균형 있게 배치(섹션별 13~15개 내외)
+
+제한 사항(Limitations):
+- 합성 데이터이므로 실제 사용자 표현의 다양성이 제한될 수 있습니다.
+- 문화적/언어적 표현 패턴이 한정되어 있으며, 실제 티켓에서는 더 다양한 방언·약어·오타가 나타날 수 있습니다.
+- 현재 버전은 한국어 문의 중심이며 다른 언어는 포함되어 있지 않습니다.
+
+프라이버시 고지:
+- 이 데이터셋은 실사용자 PII(개인식별정보)를 포함하지 않으며, 모두 합성된 예시로 구성되어 있습니다.
+
+향후 개선 계획:
+- 실제 플레이어 로그(익명화 및 적법한 동의 후)를 추가하여 다양성을 높임.
+- 더 많은 엣지케이스(복합 문의, 멀티턴 대화) 샘플 추가.
+- 추가 메타데이터(플랫폼, 클라이언트 버전, 재현 단계 등) 포함.

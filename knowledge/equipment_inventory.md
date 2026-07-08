@@ -1,6 +1,13 @@
-# Equipment Inventory
+﻿# Equipment Inventory
 
-Catalog of towers, equipment, and consumables with short descriptions and stats for retrieval.
+개요:
+장비, 타워 보조 아이템, 소모품의 카탈로그와 기본 통계 정보를 수록합니다. 검색 시스템이 관련 문장을 인용할 수 있도록 장비 설명의 표준 문구를 포함해야 합니다.
 
-TODOs:
-- Populate with stats and example use-cases.
+포함 항목:
+- 장비 종류별 기본 효과 및 스탯
+- 장비 장착 슬롯 규칙과 장비 전환 규칙
+- 장비 획득처 및 드랍 확률(추후 업데이트)
+
+TODO:
+- 수치 테이블 및 사용 예시 추가
+

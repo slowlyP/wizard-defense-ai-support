@@ -1,6 +1,13 @@
-# Skill & Combat
+﻿# Skill & Combat
 
-Explanations for active skills, cooldowns, and combat interactions.
+개요:
+액티브/패시브 스킬, 쿨타임, 판정(히트박스), 상호작용 규칙 등 전투 관련 핵심 규칙을 정리합니다. 특히 스킬 간 상호작용과 예외 처리(예: 우선권, 판정 누락)에 대한 사례를 기술합니다.
 
-TODOs:
-- Add examples and edge-case behaviors for skill interactions.
+포함 예정 항목:
+- 스킬 설명 표준 문구
+- 데미지 계산식과 범위 판정 규칙
+- 스킬 연계 시나리오 및 알려진 문제점
+
+TODO:
+- 스킬 상호작용의 엣지 케이스 예시 추가
+
