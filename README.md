@@ -24,7 +24,7 @@
 - `data/`의 샘플을 이용한 벤치마크용 간단한 파이프라인 구성.
 - 포트폴리오 문서 작성 및 데모 시나리오 정리.
 
-주의: 프로젝트의 Codex 작업 워크플로우 및 핸드오프 문서는 `docs/codex_workflow.md`에 있습니다. Codex(또는 자동화 에이전트)는 해당 문서를 먼저 읽고 체크리스트를 준수해야 합니다.
+주의: 프로젝트의 Codex 작업 워크플로우 및 핸드오프 문서는 `docs/codex_workflow.md`에 있고, 필수 작업 체크리스트는 `docs/codex_task_checklist.md`에 있습니다. Codex(또는 자동화 에이전트)는 두 문서를 먼저 읽고 체크리스트를 준수해야 합니다.
 
 # wizard-defense-ai-support
 AI support system for Random Wizard Defense player inquiries
