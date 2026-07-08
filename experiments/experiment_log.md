@@ -17,4 +17,13 @@
 - Results: 기본 키워드 규칙으로 샘플 테스트 통과(7/7 사례 출력)
 - Notes: 2026-07-08 로컬 테스트에서 발견된 `freeze_or_crash`, `floor_selection_issue`, `skill_targeting` 오분류를 보정했습니다. 이후 현재 게임에 없는 이전 지원 카테고리를 제거하고 `wizard_acquisition`으로 전환했습니다. 마법사 획득, 뽑기권, 중복 획득 문의는 낮은 긴급도의 자동 응답 대상으로 처리합니다. 향후 전체 데이터셋 기준 정밀도/재현율 검증이 필요합니다.
 
+## EXP-002 Rule-based Classifier Evaluation (v0.4.0-evaluation-baseline)
+
+- Date: 2026-07-08
+- Goal: 전체 dataset을 기존 rule-based classifier로 평가하여 v0.4.0 baseline을 기록
+- Config: Python script `backend/scripts/evaluate_rule_classifier.py`, classifier `backend/app/rule_classifier.py`, dataset `data/raw/wizard_defense_inquiries_raw.csv`
+- Output: `experiments/rule_classifier_predictions.csv`
+- Results: 100개 샘플 중 60개 category 예측 일치, accuracy 60.00%
+- Category results: `wizard_acquisition` 88.89%, `gameplay_guide` 81.25%, `tower_progress` 75.00%, `skill_combat` 71.43%, `wizard_growth` 53.33%, `bug_report` 21.43%, `feedback_balance` 9.09%
+- Notes: classifier logic, dataset label, category label은 변경하지 않았습니다. 이번 실험은 TF-IDF 이전의 비교 기준으로 사용하며, 주요 오분류 원인은 공유 키워드와 오류 문맥 우선순위 충돌입니다.
 

@@ -21,4 +21,14 @@ python backend/scripts/test_rule_classifier.py
 
 2. 출력은 한국어로 된 요약을 표시합니다. 이 스크립트는 v0.3.0-rule-baseline 후보의 룰 기반 분류기를 테스트합니다.
 
+평가 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 전체 데이터셋 평가를 실행합니다:
+
+```powershell
+python backend/scripts/evaluate_rule_classifier.py
+```
+
+2. 이 스크립트는 `data/raw/wizard_defense_inquiries_raw.csv`를 읽고 `classify_inquiry(text)` 결과를 dataset label과 비교합니다.
+3. 콘솔에는 전체 정확도, category별 정확도, 오분류 예시가 출력됩니다.
+4. 상세 예측 결과는 `experiments/rule_classifier_predictions.csv`에 저장됩니다.
 
