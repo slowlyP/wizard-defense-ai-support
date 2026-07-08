@@ -12,3 +12,13 @@ TODO:
 - 구현 시 가상환경 설정 및 `requirements.txt` 추가
 - 간단한 실행 지침과 테스트 케이스 제공
 
+간단한 테스트 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 분류기 테스트를 실행합니다:
+
+```powershell
+python backend/scripts/test_rule_classifier.py
+```
+
+2. 출력은 한국어로 된 요약을 표시합니다. 이 스크립트는 v0.3.0-rule-baseline 후보의 룰 기반 분류기를 테스트합니다.
+
+

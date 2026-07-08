@@ -16,6 +16,8 @@
 3. Codex 작업 전 체크리스트
 - 현재 브랜치를 확인한다.
 - `docs/codex_workflow.md`를 먼저 읽는다.
+- `docs/codex_task_checklist.md`를 함께 읽는다.
+- 파일을 수정하기 전에 작업 목표, 수정 파일, 생성 파일, 검증 방법을 포함한 작업 계획을 먼저 제공한다.
 - 요청 범위를 벗어난 작업을 하지 않는다.
 - 외부 API를 호출하지 않는다 unless explicitly requested.
 - `.env` 또는 실제 API 키를 생성하거나 커밋하지 않는다.
@@ -23,6 +25,7 @@
 - 모든 문서는 한국어로 작성한다(예외: 파일/코드 식별자는 영어).
 - 코드, 파일명, 라벨명은 영어 규칙을 유지한다.
 - 작업 후 변경된 파일 목록과 요약을 문서화해서 보고한다.
+- 파일을 수정한 작업은 완료 후 `docs/codex_task_checklist.md`의 완료 후 체크리스트 형식에 따라 검증 결과와 주의사항을 보고한다.
 - 다음 단계 제안은 가능하나, 사용자 승인 없이 구현하지 않는다.
 
 4. 데이터셋 규칙
@@ -66,7 +69,7 @@
 
 7. Codex에게 요청할 때 사용해야 하는 기본 문장(템플릿)
 
-"Before making changes, read docs/codex_workflow.md and follow the project rules and checklist.
+"Before making changes, read docs/codex_workflow.md and docs/codex_task_checklist.md.
 Task:
 [작업 내용]
 Scope:
@@ -76,7 +79,13 @@ Do not:
 Completion criteria:
 [완료 기준]"
 
-8. 하지 말아야 할 것 (요약)
+8. 필수 작업 체크리스트 문서
+- Codex는 모든 작업을 시작하기 전에 `docs/codex_task_checklist.md`를 반드시 읽어야 한다.
+- Codex는 파일을 편집하기 전에 작업 계획을 먼저 제공해야 한다.
+- Codex는 파일 편집을 완료한 뒤 완료 체크리스트, 변경 파일, 검증 명령어, 검증 결과를 보고해야 한다.
+- Codex는 다음 작업을 제안할 수 있지만, 사용자 승인 없이 다음 작업을 구현하면 안 된다.
+
+9. 하지 말아야 할 것 (요약)
 - 요청받지 않은 경우 백엔드/프론트엔드를 구현하지 않는다.
 - 요청받지 않은 경우 인제스트(ingestion) 스크립트를 생성하지 않는다.
 - 외부 API를 호출하지 않는다.
