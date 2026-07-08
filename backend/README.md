@@ -1,12 +1,14 @@
-# Backend (placeholder)
+﻿# Backend (플레이스홀더)
 
-This folder will contain the API and retrieval logic for classification, retrieval, and response generation.
+설명:
+이 폴더는 분류기, 검색 인덱스 연동, 응답 생성 파이프라인을 제공하는 백엔드 구성요소를 포함할 예정입니다. 초기 단계에서는 구조와 예정된 컴포넌트를 문서로 정리합니다.
 
-Planned components:
-- `api/` — REST or FastAPI endpoints for chat and admin tasks.
-- `ingest/` — scripts to build retrieval indices from `knowledge/` and `data/`.
-- `models/` — lightweight wrappers for classifier and generator (local-first, no external calls by default).
+예정 구성 요소:
+- `api/`: 채팅 및 관리용 REST 또는 FastAPI 엔드포인트
+- `ingest/`: `knowledge/`와 `data/`를 파싱하여 색인(인덱스)을 생성하는 스크립트
+- `models/`: 분류기 및 응답 생성기 래퍼(로컬 우선 구성)
 
-TODOs:
-- Add virtual environment and `requirements.txt` when implementing.
-- Provide simple run instructions and tests.
+TODO:
+- 구현 시 가상환경 설정 및 `requirements.txt` 추가
+- 간단한 실행 지침과 테스트 케이스 제공
+

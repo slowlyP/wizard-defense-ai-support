@@ -1,6 +1,14 @@
-# Wizard Growth
+﻿# Wizard Growth
 
-Notes on progression, leveling, talent trees, and recommended growth paths for archetypes.
+개요:
+마법사의 성장 시스템(레벨업, 재능 트리, 레조넌스 시스템, 전설 마법사 성장 경로 등)에 대한 설명과 추천 빌드 원칙을 정리합니다.
 
-TODOs:
-- Add per-wizard builds and recommended stat priorities.
+포함 예정 항목:
+- 레벨업 요구치와 경험치 획득 경로
+- 재능 트리 예시와 권장 선택지
+- 레조넌스(Resonance) 시스템 작동 방식 및 실패 처리 규칙
+- 전설 마법사의 특수 성장 경로
+
+TODO:
+- 마법사별 추천 빌드 및 스탯 우선순위 추가
+

@@ -1,8 +1,10 @@
-# Frontend (placeholder)
+﻿# Frontend (플레이스홀더)
 
-This folder will contain the UI for the support system: a simple chat client and dashboard to review logs and flagged tickets.
+설명:
+이 폴더는 플레이어와 상호작용하는 UI(간단한 채팅 클라이언트, 로그/플래그된 티켓 대시보드 등)를 포함할 예정입니다. 현재는 구조 설명용 README만 포함되어 있습니다.
 
-TODOs:
-- Choose framework: React / Vue / Svelte.
-- Implement chat UI and message history.
-- Add developer instructions for running locally.
+작업 항목 예시:
+- 프레임워크 선택: React / Vue / Svelte 중 선택
+- 채팅 UI 및 메시지 히스토리 구현
+- 로컬 개발 및 빌드 명령 문서화
+

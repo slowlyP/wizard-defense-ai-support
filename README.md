@@ -1,28 +1,30 @@
-# Wizard Defense AI Support
+﻿# Wizard Defense AI Support
 
-AI support system for the Unity game "Random Wizard Defense" — a small portfolio project showing classification, retrieval, and grounded response generation for player support.
+설명:
+이 저장소는 Unity 게임 "Random Wizard Defense"를 위한 AI 지원 시스템의 초기 구조입니다. 이 프로젝트는 인턴십용 포트폴리오로 활용하기 적합하도록 의도 분류, 문서 검색, 근거 기반 응답 설계를 중심으로 한 스캐폴딩을 제공합니다.
 
-프로젝트 목표 (Korean):
-- 플레이어 문의를 분류하고, 게임 가이드 문서에서 관련 정보를 검색하여 근거 있는 답변을 생성합니다.
-- AI 엔지니어 포트폴리오용으로 설계된 깔끔한 스타터 레포 구조를 제공합니다.
+프로젝트 목표:
+- 플레이어 문의를 자동 분류하고 관련 게임 문서에서 근거를 찾아 응답을 생성할 수 있는 시스템을 구축하는 것.
+- 데이터셋 설계, 라벨링 가이드, 문서 기반 검색 파이프라인 설계 등 AI 엔지니어링 역량을 보여주기 위한 자료 제공.
 
-What this repo contains:
-- `frontend/` — placeholder for UI (chat client, dashboard).
-- `backend/` — placeholder for API, retrieval, and model glue code.
-- `data/` — raw & processed datasets, labeling guide, dataset card.
-- `knowledge/` — authored game guides and troubleshooting docs.
-- `experiments/` — logs, analysis, and generated outputs (ignored by git).
-- `docs/` — architecture and portfolio summary.
+구성 요약:
+- `frontend/`: 사용자 채팅 UI와 대시보드를 위한 공간(초기에는 README만 포함).
+- `backend/`: 분류기·검색·응답 파이프라인을 둘 예정(초기에는 README만 포함).
+- `data/`: 원시 및 처리된 데이터, 라벨링 가이드, 데이터셋 카드 포함.
+- `knowledge/`: 게임플레이 가이드, 성장 가이드, 장비·스킬 문서 등 근거 문서.
+- `experiments/`: 실험 로그와 에러 분석 템플릿.
+- `docs/`: 아키텍처 다이어그램 및 포트폴리오 요약.
 
-Getting started:
-1. Copy `.env.example` to `.env` and fill values.
-2. Implement backend and frontend components (not included).
+빠른 시작:
+1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.
+2. 먼저 데이터셋과 라벨링 가이드를 검토한 뒤 백엔드/프론트엔드 작업을 진행하세요.
 
-Next steps / TODOs:
-- Define data schema and labeling tasks in `data/labeling_guide.md`.
-- Implement retrieval indexer and small dataset pipeline.
-- Add system integration and example prompts for the portfolio write-up.
+향후 작업 추천:
+- 소규모 백엔드 스켈레톤(FastAPI)으로 분류 및 검색 엔드포인트 제작.
+- `data/`의 샘플을 이용한 벤치마크용 간단한 파이프라인 구성.
+- 포트폴리오 문서 작성 및 데모 시나리오 정리.
 
-This repository is intentionally a scaffold for an internship-friendly portfolio project.
+주의: 프로젝트의 Codex 작업 워크플로우 및 핸드오프 문서는 `docs/codex_workflow.md`에 있습니다. Codex(또는 자동화 에이전트)는 해당 문서를 먼저 읽고 체크리스트를 준수해야 합니다.
+
 # wizard-defense-ai-support
 AI support system for Random Wizard Defense player inquiries

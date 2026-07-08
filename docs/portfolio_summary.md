@@ -1,13 +1,15 @@
-# Portfolio Summary (포트폴리오 요약)
 
-간단 소개:
-이 프로젝트는 Unity 게임 "Random Wizard Defense"를 위한 AI 지원 시스템을 설계하고 부분적으로 구현하는 포트폴리오 사례입니다. 목표는 다음과 같습니다:
+﻿# 포트폴리오 요약
 
-- 사용자 문의 분류 (intent classification)
-- 게임 가이드에서 관련 문서 검색 (knowledge retrieval)
-- 근거 있는 답변 생성 (grounded response generation)
+프로젝트 개요:
+이 프로젝트는 "Random Wizard Defense"의 플레이어 지원을 위해 설계된 AI 시스템의 초기 단계입니다. 목적은 사용자 문의를 분류하고, 게임 내 문서에서 관련 정보를 찾아 근거 있는 응답을 생성하는 파이프라인을 설계·문서화하는 것입니다.
 
-What to highlight in interviews:
-- dataset design and labeling strategy
-- retrieval grounding and citation
-- evaluation: accuracy for intents, MRR/Recall for retrieval, and human evaluation for responses
+인터뷰에서 강조할 포인트:
+- 데이터셋 설계 및 라벨링 전략(라벨 품질 관리, 애매 사례 처리 방식)
+- 검색 기반 응답(grounded response) 설계와 근거(citation) 제공 방법
+- 평가 지표: 의도 분류 정확도, 검색의 MRR/Recall, 응답의 인간 평가(정확성·유용성)
+
+추천 시연 요소:
+- 간단한 분류기와 검색 인덱스를 연결한 데모 플로우
+- 몇 가지 실제 시나리오(복합 문의, 버그 리포트, 밸런스 피드백)에서의 처리 방식 시연
+

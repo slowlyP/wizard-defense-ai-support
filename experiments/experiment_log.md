@@ -1,9 +1,11 @@
-# Experiment Log
+﻿# Experiment Log
 
-记录实验配置、超参数、结果摘要以及可复现步骤。
+개요:
+실험 구성, 하이퍼파라미터, 결과 요약 및 재현 가능한 실행 절차를 기록하는 템플릿입니다. 모델 학습/평가 시에는 실험별로 이 파일 또는 별도 마크다운을 생성해 상세 기록을 남기세요.
 
-Example entry format:
-- Date: YYYY-MM-DD
-- Goal: short description
-- Config: dataset, model, key params
-- Results: metrics and notes
+예시 항목 형식:
+- 날짜: YYYY-MM-DD
+- 목적: 실험의 짧은 설명
+- 설정: 사용한 데이터셋, 모델, 주요 파라미터
+- 결과: 주요 지표(예: accuracy, recall, MRR) 및 관찰 내용
+

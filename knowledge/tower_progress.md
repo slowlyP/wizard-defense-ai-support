@@ -1,6 +1,13 @@
-# Tower Progress
+﻿# Tower Progress
 
-Details on tower upgrades, upgrade costs, and impact on gameplay balance.
+개요:
+타워(층) 진행 시스템, 층별 난이도, 업그레이드 비용 및 진행 보상에 대한 세부 정보를 정리합니다. 실험용 밸런스 조정 로그와 연계하기 쉽도록 표 형태의 데이터를 포함할 예정입니다.
 
-TODOs:
-- Add numeric tables and upgrade paths.
+포함 예정 항목:
+- 층별 적 난이도와 스폰 패턴
+- 업그레이드 비용 및 보상 표
+- 보상/리셋 규칙과 관련된 예외 처리
+
+TODO:
+- 숫자 표 및 업그레이드 경로 추가
+

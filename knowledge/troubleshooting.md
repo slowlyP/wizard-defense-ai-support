@@ -1,6 +1,13 @@
-# Troubleshooting
+﻿# Troubleshooting
 
-Common player issues and suggested fixes: performance tips, known bugs, and workarounds.
+개요:
+플레이어가 자주 겪는 문제와 그에 대한 임시 해결 방법(워크어라운드)을 정리합니다. 향후 버그 리포트와 매칭하여 재현 단계 및 우선 순위를 관리할 수 있도록 합니다.
 
-TODOs:
-- Keep an evolving list of reproducible issues and steps to resolve.
+포함 항목 예시:
+- 성능 개선 팁(그래픽 옵션, 낮은 해상도 모드 등)
+- 임시 해결 방법(예: 인벤토리 문제 시 재접속 권장)
+- 재현 단계와 로그 수집 방법 안내
+
+TODO:
+- 재현 가능한 이슈 목록과 해결 절차 문서화
+

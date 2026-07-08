@@ -1,8 +1,14 @@
-# Gameplay Guide
+﻿# Gameplay Guide
 
-Overview:
-High-level walkthrough of core gameplay systems in Random Wizard Defense: waves, towers, wizard classes, and resource management.
+개요:
+이 문서는 "Random Wizard Defense"의 핵심 게임플레이 요소(웨이브 흐름, 타워/마법사 배치 규칙, 위저드 클래스, 자원 관리 등)에 대한 요약을 제공합니다. 검색 기반 응답 시스템을 위해 각 섹션별로 자주 묻는 질문과 표준화된 답변을 정리할 예정입니다.
 
-TODOs:
-- Add example strategies for early, mid, and late game.
-- Provide common questions and canonical answers for the retrieval system.
+주요 내용:
+- 배치 규칙: 길(path) 타일과 배치 가능한 타일의 구분, 금지 규칙
+- 상성 및 시너지: 속성별 상성(불/물/바람/돌/번개)과 조합 가이드
+- 라운드별 전략: 초중후반 권장 빌드와 우선 업그레이드 항목
+
+TODO:
+- 초/중/후반용 예시 전략 추가
+- 검색 시스템용 FAQ 및 표준 답변 정리
+
