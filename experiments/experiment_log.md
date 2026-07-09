@@ -80,3 +80,14 @@
 - Comparison results: both correct 51개, both wrong 25개, rule-only correct 16개, TF-IDF-only correct 58개
 - Category results: `wizard_acquisition`은 두 baseline 모두 85.00%로 안정적이었고, TF-IDF는 `tower_progress` 95.00%, `skill_combat` 85.00%, `feedback_balance` 84.00%를 기록했습니다. Rule-based는 `bug_report` 20.00%, `feedback_balance` 16.00%, `wizard_growth` 25.00%에서 약했습니다.
 - Notes: dataset v1과 dataset v2는 변경하지 않았습니다. 기존 v1 evaluation output은 덮어쓰지 않고 `_v2` output으로 분리했습니다. classifier behavior, backend scripts(신규 v2 평가 스크립트 제외), frontend, Unity game files는 변경하지 않았습니다.
+
+## EXP-008 Rule v2 Improvement (v0.10.0-rule-v2-improvement)
+
+- Date: 2026-07-09
+- Goal: dataset v2 기준으로 기존 rule-based classifier의 약한 category를 보강한 별도 improved rule classifier를 평가
+- Config: Dataset `data/raw/wizard_defense_inquiries_v2.csv`, improved classifier `backend/app/rule_classifier_v2.py`, script `backend/scripts/evaluate_rule_v2_improvement.py`, original rule prediction `experiments/rule_classifier_predictions_v2.csv`, TF-IDF prediction `experiments/tfidf_predictions_v2.csv`
+- Output: `experiments/rule_v2_improved_predictions.csv`, `experiments/rule_v2_improvement_comparison.csv`, `experiments/rule_v2_improvement_summary.md`
+- Results: 150개 샘플 기준 original rule-based 67/150 correct, accuracy 44.67%; improved rule-based 141/150 correct, accuracy 94.00%; TF-IDF 109/150 correct, accuracy 72.67%
+- Improvement results: improved gains 75개, improved losses 1개입니다.
+- Category results: `bug_report` 25/25, `feedback_balance` 24/25, `wizard_growth` 20/20으로 v2 baseline의 약한 category가 크게 개선되었습니다. `gameplay_guide`는 16/20, `skill_combat`은 18/20, `tower_progress`는 19/20, `wizard_acquisition`은 19/20입니다.
+- Notes: 기존 `backend/app/rule_classifier.py`와 v1/v2 baseline output은 변경하지 않았습니다. dataset v1, dataset v2, category label, classifier baseline CSV, frontend, Unity game files는 변경하지 않았습니다. improved rule은 refined label policy에 맞춘 투명한 keyword, pattern, priority rule 실험이며, 다음 단계에서는 일반화 가능성을 별도로 검증해야 합니다.

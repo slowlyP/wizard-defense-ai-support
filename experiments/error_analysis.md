@@ -259,3 +259,39 @@ v1 대비 해석:
 - `baseline_comparison_v2.csv`에서 both wrong 25개를 중심으로 세부 error analysis를 작성합니다.
 - rule-only correct 16개와 TF-IDF-only correct 58개를 비교해 rule 보강 후보와 feature engineering 후보를 분리합니다.
 - classifier logic 변경은 별도 실험으로 분리하고, 이번 결과는 v2 baseline으로 보존합니다.
+
+## Rule V2 Improvement Findings (v0.10.0-rule-v2-improvement)
+
+평가 기준:
+- Dataset: `data/raw/wizard_defense_inquiries_v2.csv`
+- Original rule prediction: `experiments/rule_classifier_predictions_v2.csv`
+- TF-IDF prediction: `experiments/tfidf_predictions_v2.csv`
+- Improved rule classifier: `backend/app/rule_classifier_v2.py`
+- Script: `backend/scripts/evaluate_rule_v2_improvement.py`
+- Output: `experiments/rule_v2_improved_predictions.csv`, `experiments/rule_v2_improvement_comparison.csv`
+- Summary: `experiments/rule_v2_improvement_summary.md`
+- Total samples: 150
+- Original rule-based accuracy: 44.67% (67/150)
+- Improved rule-based accuracy: 94.00% (141/150)
+- TF-IDF accuracy: 72.67% (109/150)
+- Improved gains: 75
+- Improved losses: 1
+
+Category별 관찰:
+- `bug_report`: original 5/25에서 improved 25/25로 개선되었습니다. 기능 단어보다 오류, 실패, 멈춤, 표시 이상, 보상 손실 신호를 우선하도록 한 효과가 컸습니다.
+- `feedback_balance`: original 4/25에서 improved 24/25로 개선되었습니다. 비용 대비 효율, 너무 강함/약함, 확률 불만, 조정 요청 표현을 feature category보다 먼저 판단했습니다.
+- `wizard_growth`: original 5/20에서 improved 20/20으로 개선되었습니다. 경험치, 성장 재료, 레벨 보너스, 강화 비용 문맥을 `wizard_acquisition`과 분리했습니다.
+- `gameplay_guide`: original 12/20에서 improved 16/20으로 개선되었습니다. 추천, 빌드, 배치, 전략 질문을 스킬 공식이나 성장 문의와 분리했습니다.
+- `skill_combat`: original 11/20에서 improved 18/20으로 개선되었습니다. 스킬 피해, 쿨타임, 타격 판정, 발동 조건 질문을 우선 처리했습니다.
+- `tower_progress`: original 13/20에서 improved 19/20으로 개선되었지만, 1개 sample은 original보다 나빠졌습니다.
+- `wizard_acquisition`: original 17/20에서 improved 19/20으로 개선되었습니다. 소환, 티켓, 등장 확률, 중복 획득 문맥을 성장 재화 문맥과 분리했습니다.
+
+남은 약점:
+- 일부 `gameplay_guide` sample은 전략 질문과 시스템 수치 질문이 함께 들어 있어 rule priority만으로는 경계가 불안정합니다.
+- `tower_progress`에서 위치, 추천, 층 이동 표현이 함께 등장하면 gameplay 전략 문의와 충돌할 수 있습니다.
+- improved rule은 dataset v2의 refined label policy에 맞춘 명시적 규칙이므로, 다음 단계에서는 holdout 또는 dataset v3 후보로 일반화 가능성을 확인해야 합니다.
+
+다음 분석 후보:
+- improved rule이 틀린 9개 sample을 중심으로 규칙 추가보다 label boundary 재검토가 필요한지 먼저 확인합니다.
+- TF-IDF가 맞고 improved rule이 틀린 sample을 따로 모아, rule로 처리할 사례와 학습 기반 모델에 맡길 사례를 분리합니다.
+- rule priority를 더 늘리기 전에 category별 support phrase 목록을 문서화해 유지보수 비용을 관리합니다.
