@@ -30,6 +30,9 @@
 - 합성 데이터이므로 실제 사용자 표현의 다양성이 제한될 수 있습니다.
 - 문화적/언어적 표현 패턴이 한정되어 있으며, 실제 티켓에서는 더 다양한 방언·약어·오타가 나타날 수 있습니다.
 - 현재 버전은 한국어 문의 중심이며 다른 언어는 포함되어 있지 않습니다.
+- v0.6.0 baseline comparison 결과, dataset v1에는 일부 라벨 경계가 애매한 샘플이 포함되어 있음이 확인되었습니다.
+- 특히 `bug_report` vs feature category, `feedback_balance` vs `skill_combat`/`tower_progress`, `wizard_growth` vs `wizard_acquisition`, `gameplay_guide` vs `wizard_growth`/`skill_combat` 경계에서 혼동이 발생했습니다.
+- 이 모호성은 dataset v1의 알려진 한계로 기록하며, 현재 CSV row는 변경하지 않습니다.
 
 프라이버시 고지:
 - 이 데이터셋은 실사용자 PII(개인식별정보)를 포함하지 않으며, 모두 합성된 예시로 구성되어 있습니다.
@@ -38,3 +41,5 @@
 - 실제 플레이어 로그(익명화 및 적법한 동의 후)를 추가하여 다양성을 높임.
 - 더 많은 엣지케이스(복합 문의, 멀티턴 대화) 샘플 추가.
 - 추가 메타데이터(플랫폼, 클라이언트 버전, 재현 단계 등) 포함.
+- dataset v2에서는 v0.7.0 data quality review의 라벨 경계 규칙을 적용하여 모호한 샘플을 재검토합니다.
+- dataset v2에서는 기능 단어와 오류 표현이 함께 있는 `bug_report`, 기능 단어와 평가 표현이 함께 있는 `feedback_balance`, `얻`/`획득`/`보상` 표현이 섞인 성장·획득 경계 샘플을 보강합니다.

@@ -48,3 +48,13 @@
 - Comparison results: both correct 40개, both wrong 22개, rule-only correct 20개, TF-IDF-only correct 18개
 - Category results: `gameplay_guide`와 `tower_progress`, `wizard_acquisition`은 rule-based가 강했고, `skill_combat`, `feedback_balance`, `wizard_growth`는 TF-IDF가 더 강하거나 개선 가능성을 보였습니다. `bug_report`는 두 방식 모두 21.43%로 공통 취약 영역입니다.
 - Notes: dataset label, category label, knowledge 문서, rule-based classifier logic, TF-IDF classifier logic은 변경하지 않았습니다. 이번 실험은 v0.6.0 포트폴리오 baseline comparison으로 기록하며, 다음 data v2 단계는 아직 구현하지 않았습니다.
+
+## EXP-005 Data Quality Review (v0.7.0-data-quality-review)
+
+- Date: 2026-07-09
+- Goal: v0.6.0 baseline comparison 결과를 바탕으로 dataset v1의 라벨 경계 문제와 dataset v2 개선 방향을 문서화
+- Config: Review sources `experiments/baseline_comparison.csv`, `experiments/baseline_comparison_summary.md`, `experiments/error_analysis.md`, `data/labeling_guide.md`, `data/dataset_card.md`
+- Output: `experiments/data_quality_review.md`
+- Results: `bug_report`, `feedback_balance`, `wizard_growth`, `gameplay_guide` 경계 사례를 dataset v2 우선 검토 대상으로 정리했습니다.
+- Policy updates: `bug_report` vs feature category, `feedback_balance` vs `skill_combat`, `feedback_balance` vs `tower_progress`, `wizard_growth` vs `wizard_acquisition`, `gameplay_guide` vs `wizard_growth`, `gameplay_guide` vs `skill_combat` 경계 규칙을 `data/labeling_guide.md`에 추가했습니다.
+- Notes: dataset CSV row, category label, classifier logic, backend scripts, frontend, Unity game files는 변경하지 않았습니다. 이번 실험은 분석과 문서화만 수행하며 dataset v2는 아직 구현하지 않았습니다.

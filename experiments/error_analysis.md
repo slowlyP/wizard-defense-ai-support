@@ -193,3 +193,33 @@ Category별 비교 요약:
 - 이번 단계에서는 dataset label, category label, classifier logic을 변경하지 않고 비교 결과만 baseline으로 고정합니다.
 - 다음 실험에서는 rule-only correct와 TF-IDF-only correct 샘플을 분리해 rule 보강 후보와 feature engineering 후보를 따로 관리합니다.
 - `bug_report`와 `feedback_balance`는 기능 단서보다 의도 단서를 우선 판단할 수 있는 별도 실험 대상으로 분리합니다.
+
+## Data Quality Review Findings (v0.7.0-data-quality-review)
+
+검토 기준:
+- Source: `experiments/baseline_comparison.csv`
+- Summary: `experiments/baseline_comparison_summary.md`
+- Review document: `experiments/data_quality_review.md`
+- Rule-based accuracy: 60.00%
+- TF-IDF accuracy: 58.00%
+- Both correct: 40
+- Both wrong: 22
+- Rule-only correct: 20
+- TF-IDF-only correct: 18
+
+약한 category:
+- `bug_report`: 두 baseline 모두 3/14 correct이며, both wrong 8개가 발생했습니다. 오류 표현이 기능 단어보다 약하게 잡히는 것이 핵심 문제입니다.
+- `feedback_balance`: rule-based 1/11, TF-IDF 5/11로 낮습니다. 비용, 확률, 스킬 조합, 성장 비용 같은 기능 단어와 밸런스 평가 표현이 충돌합니다.
+- `wizard_growth`: `얻`, `획득`, `보상`, `경험치` 표현 때문에 `wizard_acquisition` 또는 `tower_progress`와 혼동됩니다.
+- `gameplay_guide` boundary: 레조넌스, 조합, 전설 마법사 같은 시스템 단어가 포함된 설명 요청이 `wizard_growth` 또는 `skill_combat`으로 이동합니다.
+
+라벨 정책 개선 요약:
+- 실제 동작 실패, 진행 불가, 보상/재료 손실, UI 멈춤, 그래픽 깨짐, 사운드 끊김은 기능 단어가 있어도 `bug_report`로 검토합니다.
+- 강함/약함, 비용 대비 효율, 확률 불만, 조정 요청, 밸런스 패치 요청은 관련 기능 단어가 있어도 `feedback_balance`로 검토합니다.
+- 경험치, 성장 재료, 성장 보너스를 얻는 방법은 `wizard_growth`이고, 신규 마법사 소환/뽑기/등장 확률 안내는 `wizard_acquisition`입니다.
+- 시스템 개념 설명, 추천 빌드, 배치 전략, 효과적인 조합 상황은 `gameplay_guide`이고, 데미지 공식, 쿨타임, 판정, 발동 조건은 `skill_combat`입니다.
+
+주의 사항:
+- 이번 단계에서는 dataset CSV row를 수정하지 않았습니다.
+- category label, classifier logic, backend scripts, knowledge 문서는 변경하지 않았습니다.
+- dataset v2에서는 이 정책을 기준으로 ambiguous sample list를 먼저 만든 뒤 row 수정과 신규 샘플 추가를 진행해야 합니다.
