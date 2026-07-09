@@ -105,3 +105,16 @@ python backend/scripts/run_support_router_demo.py
 
 - `experiments/support_router_demo_outputs.csv`
 - `experiments/support_router_summary.md`
+
+Response template demo 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 support router output 기반 response template prototype demo를 실행합니다:
+
+```powershell
+python backend/scripts/run_response_template_demo.py
+```
+
+2. 이 스크립트는 한국어 demo 문의를 support router로 라우팅한 뒤 `response_draft`와 `internal_note`를 생성합니다.
+3. 결과는 다음 파일에 저장됩니다:
+
+- `experiments/response_template_demo_outputs.csv`
+- `experiments/response_template_summary.md`
