@@ -118,3 +118,18 @@ python backend/scripts/run_response_template_demo.py
 
 - `experiments/response_template_demo_outputs.csv`
 - `experiments/response_template_summary.md`
+
+Local test suite 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 support router와 response template regression test를 실행합니다:
+
+```powershell
+python -m unittest discover backend/tests
+```
+
+2. 선택적으로 다음 wrapper script를 사용할 수 있습니다:
+
+```powershell
+python backend/scripts/run_local_tests.py
+```
+
+3. 테스트 요약은 `experiments/router_test_summary.md`에 기록되어 있습니다.
