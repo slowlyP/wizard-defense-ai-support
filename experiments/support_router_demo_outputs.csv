@@ -1,0 +1,21 @@
+﻿id,text,predicted_category,urgency,needs_human,suggested_response_type,routing_reason
+demo_001,처음 시작하면 마법사를 어디에 배치하는 게 가장 안전한가요?,gameplay_guide,low,false,guide_answer,"플레이 방법, 배치, 조합, 운영 팁 문의로 판단해 guide 답변으로 라우팅합니다."
+demo_002,불 마법사와 물 마법사를 같이 쓸 때 어떤 조합이 좋은가요?,gameplay_guide,low,false,guide_answer,"플레이 방법, 배치, 조합, 운영 팁 문의로 판단해 guide 답변으로 라우팅합니다."
+demo_003,전설 마법사는 어떤 방식으로 획득하나요?,wizard_acquisition,low,false,acquisition_answer,"마법사 소환, 획득, 등급, 등장 확률 문의로 판단해 획득 안내로 라우팅합니다."
+demo_004,소환 티켓을 쓰면 등급 확률이 어떻게 적용되나요?,wizard_acquisition,low,false,acquisition_answer,"마법사 소환, 획득, 등급, 등장 확률 문의로 판단해 획득 안내로 라우팅합니다."
+demo_005,마법사 레벨업에 필요한 경험치는 어디서 얻나요?,wizard_growth,low,false,growth_answer,"레벨업, 경험치, 성장 재료, 레조넌스 문의로 판단해 성장 안내로 라우팅합니다."
+demo_006,레조넌스로 전설 마법사를 만드는 방법을 알려주세요.,wizard_growth,low,false,growth_answer,"레벨업, 경험치, 성장 재료, 레조넌스 문의로 판단해 성장 안내로 라우팅합니다."
+demo_007,다음 층은 어떤 조건에서 열리나요?,tower_progress,low,false,tower_progress_answer,"층 진행, 잠금 해제, 보스, 층 보상 문의로 판단해 타워 진행 안내로 라우팅합니다."
+demo_008,보스가 있는 층에서는 어떤 준비를 먼저 해야 하나요?,tower_progress,low,false,tower_progress_answer,"층 진행, 잠금 해제, 보스, 층 보상 문의로 판단해 타워 진행 안내로 라우팅합니다."
+demo_009,번개 스킬이 어떤 대상에게 연쇄되는지 알려주세요.,skill_combat,low,false,skill_combat_answer,"스킬 효과, 쿨타임, 피해 계산, 타격 판정 문의로 판단해 전투/스킬 안내로 라우팅합니다."
+demo_010,스킬 피해량 계산식과 쿨타임 기준이 궁금합니다.,skill_combat,low,false,skill_combat_answer,"스킬 효과, 쿨타임, 피해 계산, 타격 판정 문의로 판단해 전투/스킬 안내로 라우팅합니다."
+demo_011,레조넌스 재료가 사라지고 전설 마법사가 생성되지 않았어요.,bug_report,high,true,bug_triage,"진행 불가, 크래시, 보상/재화 손실 가능성이 있어 high 우선순위 버그 triage로 라우팅합니다."
+demo_012,층 보상을 받았는데 골드만 사라지고 보상이 표시되지 않습니다.,tower_progress,high,true,bug_triage,"분류 category는 기능 문의이지만 실패, 미지급, 표시 오류 신호가 있어 버그 triage로 라우팅합니다."
+demo_013,전설 마법사 등장 확률이 너무 낮아서 조정이 필요합니다.,feedback_balance,medium,true,balance_feedback_ack,"비용, 확률, 효율, 강약 평가가 포함되어 밸런스 검토 대상으로 라우팅합니다."
+demo_014,특정 스킬 조합이 지나치게 강해서 다른 조합을 쓸 이유가 없습니다.,feedback_balance,medium,true,balance_feedback_ack,"비용, 확률, 효율, 강약 평가가 포함되어 밸런스 검토 대상으로 라우팅합니다."
+demo_015,초보자용 성장 가이드를 추천해 주세요.,gameplay_guide,low,false,guide_answer,"플레이 방법, 배치, 조합, 운영 팁 문의로 판단해 guide 답변으로 라우팅합니다."
+demo_016,성장 단계가 오르면 어떤 보너스를 받나요?,wizard_growth,low,false,growth_answer,"레벨업, 경험치, 성장 재료, 레조넌스 문의로 판단해 성장 안내로 라우팅합니다."
+demo_017,번개 마법사와 불 마법사 조합이 효과적인 상황을 알려주세요.,gameplay_guide,low,false,guide_answer,"플레이 방법, 배치, 조합, 운영 팁 문의로 판단해 guide 답변으로 라우팅합니다."
+demo_018,번개 스킬이 설명과 다르게 가까운 적을 우선 공격하지 않는 것 같습니다.,skill_combat,medium,true,skill_combat_answer,기능 설명과 실제 동작 차이를 언급해 사람 검토가 필요한 경계 사례로 라우팅합니다.
+demo_019,타워 업그레이드 비용 대비 보상 효율이 낮은 것 같습니다.,feedback_balance,medium,true,balance_feedback_ack,"비용, 확률, 효율, 강약 평가가 포함되어 밸런스 검토 대상으로 라우팅합니다."
+demo_020,층 선택 버튼을 눌렀는데 다른 층으로 이동합니다.,bug_report,medium,true,bug_triage,실제 동작 실패나 손실 가능성이 있어 버그 재현 확인 절차로 라우팅합니다.

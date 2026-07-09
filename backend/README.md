@@ -92,3 +92,16 @@ python backend/scripts/evaluate_rule_v2_improvement.py
 - `experiments/rule_v2_improved_predictions.csv`
 - `experiments/rule_v2_improvement_comparison.csv`
 - `experiments/rule_v2_improvement_summary.md`
+
+Support router demo 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 improved rule classifier 기반 support router prototype demo를 실행합니다:
+
+```powershell
+python backend/scripts/run_support_router_demo.py
+```
+
+2. 이 스크립트는 약 20개의 한국어 demo 문의를 `predicted_category`, `urgency`, `needs_human`, `routing_reason`, `suggested_response_type`으로 라우팅합니다.
+3. 결과는 다음 파일에 저장됩니다:
+
+- `experiments/support_router_demo_outputs.csv`
+- `experiments/support_router_summary.md`

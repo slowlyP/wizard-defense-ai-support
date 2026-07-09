@@ -91,3 +91,13 @@
 - Improvement results: improved gains 75개, improved losses 1개입니다.
 - Category results: `bug_report` 25/25, `feedback_balance` 24/25, `wizard_growth` 20/20으로 v2 baseline의 약한 category가 크게 개선되었습니다. `gameplay_guide`는 16/20, `skill_combat`은 18/20, `tower_progress`는 19/20, `wizard_acquisition`은 19/20입니다.
 - Notes: 기존 `backend/app/rule_classifier.py`와 v1/v2 baseline output은 변경하지 않았습니다. dataset v1, dataset v2, category label, classifier baseline CSV, frontend, Unity game files는 변경하지 않았습니다. improved rule은 refined label policy에 맞춘 투명한 keyword, pattern, priority rule 실험이며, 다음 단계에서는 일반화 가능성을 별도로 검증해야 합니다.
+
+## EXP-009 Support Router Prototype (v0.11.0-support-router-prototype)
+
+- Date: 2026-07-09
+- Goal: improved rule classifier 결과를 바탕으로 한국어 플레이어 문의를 지원 라우팅 필드로 변환하는 로컬 prototype을 생성
+- Config: Router `backend/app/support_router.py`, classifier `backend/app/rule_classifier_v2.py`, demo script `backend/scripts/run_support_router_demo.py`
+- Output: `experiments/support_router_demo_outputs.csv`, `experiments/support_router_summary.md`
+- Results: curated demo 20건을 실행했고, `needs_human=true` 7건, 자동 응답 가능 13건으로 라우팅했습니다.
+- Policy: `bug_report`는 `bug_triage`, `feedback_balance`는 `balance_feedback_ack`, 나머지 feature category는 각 guide/answer type으로 연결합니다. 기능 category로 예측되어도 미지급, 표시 오류, 생성 실패 같은 실패 신호가 있으면 `bug_triage`와 사람 검토로 올립니다.
+- Notes: dataset v1, dataset v2, 기존 baseline CSV, 기존 rule improvement CSV, category label, improved rule classifier behavior, frontend, Unity game files는 변경하지 않았습니다. 이번 단계에서는 web server, FastAPI, 외부 API, helpdesk 연동을 구현하지 않았습니다.
