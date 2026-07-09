@@ -120,3 +120,8 @@
 - `urgency`: `low`/`medium`/`high`
 - `needs_human`: `true`/`false`
 
+10) dataset v2 적용 메모
+- `data/raw/wizard_defense_inquiries_v2.csv`는 이 가이드의 v0.7.0 라벨 경계 규칙을 반영해 작성한 150-row dataset입니다.
+- v2에서도 category label set은 변경하지 않습니다.
+- v2는 v1을 덮어쓰지 않는 별도 파일이며, v1은 baseline 비교용으로 보존합니다.
+- v2 라벨링에서는 기능 단어보다 사용자의 핵심 의도를 우선합니다. 오류는 `bug_report`, 평가와 조정 요청은 `feedback_balance`, 정보 요청은 해당 feature category로 분리합니다.

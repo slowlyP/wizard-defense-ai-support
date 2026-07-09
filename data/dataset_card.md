@@ -43,3 +43,39 @@
 - 추가 메타데이터(플랫폼, 클라이언트 버전, 재현 단계 등) 포함.
 - dataset v2에서는 v0.7.0 data quality review의 라벨 경계 규칙을 적용하여 모호한 샘플을 재검토합니다.
 - dataset v2에서는 기능 단어와 오류 표현이 함께 있는 `bug_report`, 기능 단어와 평가 표현이 함께 있는 `feedback_balance`, `얻`/`획득`/`보상` 표현이 섞인 성장·획득 경계 샘플을 보강합니다.
+
+## Dataset v2 (v0.8.0-dataset-v2)
+
+데이터셋 파일:
+- `data/raw/wizard_defense_inquiries_v2.csv`
+
+생성 배경:
+- dataset v2는 `v0.6.0-baseline-comparison`과 `v0.7.0-data-quality-review` 이후 생성한 개선 버전입니다.
+- 기존 v1 파일인 `data/raw/wizard_defense_inquiries_raw.csv`는 비교 기준으로 보존하며 덮어쓰지 않습니다.
+- v2는 라벨 경계가 약했던 category와 ambiguous case를 보강하기 위한 별도 파일입니다.
+
+라벨 스키마:
+- v1과 동일한 컬럼을 사용합니다: `id`, `text`, `category`, `subcategory`, `urgency`, `needs_human`
+- category label set은 변경하지 않았습니다: `gameplay_guide`, `wizard_acquisition`, `wizard_growth`, `tower_progress`, `skill_combat`, `bug_report`, `feedback_balance`
+
+카테고리 분포:
+- 총 샘플 수: 150
+- `gameplay_guide`: 20
+- `wizard_acquisition`: 20
+- `wizard_growth`: 20
+- `tower_progress`: 20
+- `skill_combat`: 20
+- `bug_report`: 25
+- `feedback_balance`: 25
+
+v2 목표 개선 사항:
+- `bug_report`에 기능 단어가 포함된 오류 사례를 늘렸습니다. 예: 레조넌스 실패, 소환 UI 멈춤, 보상 중복, 층 선택 오류, 스킬 효과 미적용.
+- `feedback_balance`에 기능 단어가 포함된 평가 사례를 늘렸습니다. 예: 소환 비용, 전설 등장 확률, 스킬 조합 독주, 타워 보상 효율, 성장 비용.
+- `wizard_growth`와 `wizard_acquisition`을 구분하기 위한 최소 쌍을 보강했습니다. 예: 경험치/성장 재료 획득 vs 신규 마법사 소환/등장 확률 안내.
+- `gameplay_guide`와 `wizard_growth`, `gameplay_guide`와 `skill_combat`의 경계 사례를 보강했습니다. 예: 시스템 개념 설명과 성장 수치 질문, 조합 추천과 스킬 계산 질문.
+- Random Wizard Defense Unity repository에서 확인 가능한 마법사 소환, 배치, 속성, 합성, 전설 마법사, 아케인 연구, 타워 층, 적 이동, 상태 이상, UI/사운드 범위에 맞춰 작성했습니다.
+
+v2 제한 사항:
+- 여전히 합성 데이터이며 실제 플레이어 로그는 포함하지 않습니다.
+- v2는 dataset 생성 단계이며, 아직 rule-based 또는 TF-IDF 평가를 수행하지 않았습니다.
+- 모델 평가 결과는 추후 별도 실험으로 기록해야 합니다.

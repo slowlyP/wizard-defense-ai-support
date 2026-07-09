@@ -58,3 +58,14 @@
 - Results: `bug_report`, `feedback_balance`, `wizard_growth`, `gameplay_guide` 경계 사례를 dataset v2 우선 검토 대상으로 정리했습니다.
 - Policy updates: `bug_report` vs feature category, `feedback_balance` vs `skill_combat`, `feedback_balance` vs `tower_progress`, `wizard_growth` vs `wizard_acquisition`, `gameplay_guide` vs `wizard_growth`, `gameplay_guide` vs `skill_combat` 경계 규칙을 `data/labeling_guide.md`에 추가했습니다.
 - Notes: dataset CSV row, category label, classifier logic, backend scripts, frontend, Unity game files는 변경하지 않았습니다. 이번 실험은 분석과 문서화만 수행하며 dataset v2는 아직 구현하지 않았습니다.
+
+## EXP-006 Dataset v2 Creation (v0.8.0-dataset-v2)
+
+- Date: 2026-07-09
+- Goal: v0.7.0 data quality review와 refined labeling policy를 반영해 개선된 150-row inquiry dataset v2를 생성
+- Config: Source policy `experiments/data_quality_review.md`, `data/labeling_guide.md`, preserved v1 dataset `data/raw/wizard_defense_inquiries_raw.csv`, Unity validation reference `C:\UnityProjects\Wizard Random Defense`
+- Output: `data/raw/wizard_defense_inquiries_v2.csv`
+- Results: 총 150개 row를 생성했습니다. 분포는 `gameplay_guide` 20개, `wizard_acquisition` 20개, `wizard_growth` 20개, `tower_progress` 20개, `skill_combat` 20개, `bug_report` 25개, `feedback_balance` 25개입니다.
+- Improvements: `bug_report`와 `feedback_balance`의 feature-word boundary case를 늘리고, `wizard_growth` vs `wizard_acquisition`, `gameplay_guide` vs `wizard_growth`, `gameplay_guide` vs `skill_combat` 경계 샘플을 보강했습니다.
+- Validation: header 포함 151 lines, data rows 150개, invalid category 없음, empty required fields 없음, duplicated text 없음, unsupported system keyword 없음.
+- Notes: v1 dataset은 변경하지 않았습니다. classifier code, backend scripts, frontend, prediction CSV, baseline comparison CSV, Unity game files는 변경하지 않았습니다. 모델 평가는 아직 수행하지 않았습니다.
