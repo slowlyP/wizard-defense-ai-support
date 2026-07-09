@@ -78,3 +78,17 @@ python backend/scripts/evaluate_v2_baselines.py
 - `experiments/tfidf_predictions_v2.csv`
 - `experiments/baseline_comparison_v2.csv`
 - `experiments/v2_baseline_evaluation_summary.md`
+
+Rule v2 improvement 평가 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 improved rule-based classifier를 dataset v2에서 평가합니다:
+
+```powershell
+python backend/scripts/evaluate_rule_v2_improvement.py
+```
+
+2. 이 스크립트는 기존 v2 baseline output을 덮어쓰지 않고 original rule-based, improved rule-based, TF-IDF 결과를 비교합니다.
+3. 상세 결과는 다음 파일에 저장됩니다:
+
+- `experiments/rule_v2_improved_predictions.csv`
+- `experiments/rule_v2_improvement_comparison.csv`
+- `experiments/rule_v2_improvement_summary.md`
