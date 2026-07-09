@@ -112,3 +112,13 @@
 - Template types: `guide_answer`, `acquisition_answer`, `growth_answer`, `tower_progress_answer`, `skill_combat_answer`, `bug_triage`, `balance_feedback_ack`
 - Safety policy: 환불, 보상, 재화 복구, 정확한 patch date, guaranteed fix를 약속하지 않습니다. `needs_human=true`는 검토 또는 추가 정보 요청 문구를 포함하고, `urgency=high`는 재현 정보와 상황 정보를 더 구체적으로 요청합니다.
 - Notes: dataset v1, dataset v2, 기존 baseline CSV, 기존 rule improvement CSV, 기존 support router output, category label, support router behavior, frontend, Unity game files는 변경하지 않았습니다. 이번 단계에서는 web server, FastAPI, 외부 API, LLM API, helpdesk 연동을 구현하지 않았습니다.
+
+## EXP-011 Router Test Suite (v0.13.0-router-test-suite)
+
+- Date: 2026-07-09
+- Goal: support router와 response template prototype의 안전하고 일관된 output을 보장하는 local regression test suite를 추가
+- Config: `unittest`, tests `backend/tests/test_support_router.py`, `backend/tests/test_response_templates.py`, `backend/tests/test_router_template_integration.py`, optional runner `backend/scripts/run_local_tests.py`
+- Output: `experiments/router_test_summary.md`
+- Results: `python -m unittest discover backend/tests` 기준 13개 테스트가 통과했습니다.
+- Coverage: category별 `suggested_response_type`, `needs_human=true` 처리, `bug_triage`와 `balance_feedback_ack`의 안전 문구 제한, router -> template integration output field를 확인합니다.
+- Notes: dataset v1, dataset v2, 기존 baseline CSV, router/template demo CSV, category label, support router behavior, response template behavior, frontend, Unity game files는 변경하지 않았습니다. 외부 API와 LLM API를 사용하지 않았습니다.
