@@ -101,3 +101,14 @@
 - Results: curated demo 20건을 실행했고, `needs_human=true` 7건, 자동 응답 가능 13건으로 라우팅했습니다.
 - Policy: `bug_report`는 `bug_triage`, `feedback_balance`는 `balance_feedback_ack`, 나머지 feature category는 각 guide/answer type으로 연결합니다. 기능 category로 예측되어도 미지급, 표시 오류, 생성 실패 같은 실패 신호가 있으면 `bug_triage`와 사람 검토로 올립니다.
 - Notes: dataset v1, dataset v2, 기존 baseline CSV, 기존 rule improvement CSV, category label, improved rule classifier behavior, frontend, Unity game files는 변경하지 않았습니다. 이번 단계에서는 web server, FastAPI, 외부 API, helpdesk 연동을 구현하지 않았습니다.
+
+## EXP-010 Response Template Prototype (v0.12.0-response-template-prototype)
+
+- Date: 2026-07-09
+- Goal: support router output을 안전한 한국어 response draft template으로 변환하는 로컬 prototype을 생성
+- Config: Router `backend/app/support_router.py`, template module `backend/app/response_templates.py`, demo script `backend/scripts/run_response_template_demo.py`
+- Output: `experiments/response_template_demo_outputs.csv`, `experiments/response_template_summary.md`
+- Results: curated demo 20건을 실행했고, `needs_human=true` 7건, 자동 응답 가능 13건으로 response draft를 생성했습니다.
+- Template types: `guide_answer`, `acquisition_answer`, `growth_answer`, `tower_progress_answer`, `skill_combat_answer`, `bug_triage`, `balance_feedback_ack`
+- Safety policy: 환불, 보상, 재화 복구, 정확한 patch date, guaranteed fix를 약속하지 않습니다. `needs_human=true`는 검토 또는 추가 정보 요청 문구를 포함하고, `urgency=high`는 재현 정보와 상황 정보를 더 구체적으로 요청합니다.
+- Notes: dataset v1, dataset v2, 기존 baseline CSV, 기존 rule improvement CSV, 기존 support router output, category label, support router behavior, frontend, Unity game files는 변경하지 않았습니다. 이번 단계에서는 web server, FastAPI, 외부 API, LLM API, helpdesk 연동을 구현하지 않았습니다.
