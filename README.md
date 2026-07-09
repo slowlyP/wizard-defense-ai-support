@@ -21,6 +21,7 @@
 
 평가 결과:
 - dataset v2 baseline 평가는 `backend/scripts/evaluate_v2_baselines.py`로 실행하며, 결과는 `experiments/*_v2.csv`와 `experiments/v2_baseline_evaluation_summary.md`에 분리 저장됩니다.
+- v0.11.0에서는 improved rule classifier를 사용한 로컬 support router prototype을 추가했으며, `backend/scripts/run_support_router_demo.py`로 demo CSV와 summary를 생성할 수 있습니다.
 
 빠른 시작:
 1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.
