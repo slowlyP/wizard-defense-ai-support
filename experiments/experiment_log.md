@@ -69,3 +69,14 @@
 - Improvements: `bug_report`와 `feedback_balance`의 feature-word boundary case를 늘리고, `wizard_growth` vs `wizard_acquisition`, `gameplay_guide` vs `wizard_growth`, `gameplay_guide` vs `skill_combat` 경계 샘플을 보강했습니다.
 - Validation: header 포함 151 lines, data rows 150개, invalid category 없음, empty required fields 없음, duplicated text 없음, unsupported system keyword 없음.
 - Notes: v1 dataset은 변경하지 않았습니다. classifier code, backend scripts, frontend, prediction CSV, baseline comparison CSV, Unity game files는 변경하지 않았습니다. 모델 평가는 아직 수행하지 않았습니다.
+
+## EXP-007 V2 Baseline Evaluation (v0.9.0-v2-baseline-evaluation)
+
+- Date: 2026-07-09
+- Goal: dataset v2 기준으로 기존 rule-based classifier와 TF-IDF + LogisticRegression baseline을 평가하고 v1 baseline과 비교할 기준을 생성
+- Config: Dataset `data/raw/wizard_defense_inquiries_v2.csv`, script `backend/scripts/evaluate_v2_baselines.py`, `TfidfVectorizer(analyzer="char_wb", ngram_range=(2, 4))`, `LogisticRegression(class_weight="balanced", random_state=42)`, `StratifiedKFold(n_splits=5, random_state=42)`
+- Output: `experiments/rule_classifier_predictions_v2.csv`, `experiments/tfidf_predictions_v2.csv`, `experiments/baseline_comparison_v2.csv`, `experiments/v2_baseline_evaluation_summary.md`
+- Results: 150개 샘플 기준 rule-based 67/150 correct, accuracy 44.67%; TF-IDF 109/150 correct, accuracy 72.67%
+- Comparison results: both correct 51개, both wrong 25개, rule-only correct 16개, TF-IDF-only correct 58개
+- Category results: `wizard_acquisition`은 두 baseline 모두 85.00%로 안정적이었고, TF-IDF는 `tower_progress` 95.00%, `skill_combat` 85.00%, `feedback_balance` 84.00%를 기록했습니다. Rule-based는 `bug_report` 20.00%, `feedback_balance` 16.00%, `wizard_growth` 25.00%에서 약했습니다.
+- Notes: dataset v1과 dataset v2는 변경하지 않았습니다. 기존 v1 evaluation output은 덮어쓰지 않고 `_v2` output으로 분리했습니다. classifier behavior, backend scripts(신규 v2 평가 스크립트 제외), frontend, Unity game files는 변경하지 않았습니다.
