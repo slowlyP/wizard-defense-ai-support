@@ -38,3 +38,13 @@
 - Category results: `skill_combat` F1 0.7273, `wizard_acquisition` F1 0.7317, `wizard_growth` F1 0.6000, `tower_progress` F1 0.5385, `gameplay_guide` F1 0.5000, `feedback_balance` F1 0.5000, `bug_report` F1 0.2727
 - Notes: dataset label, rule-based classifier logic, knowledge 문서는 변경하지 않았습니다. TF-IDF baseline은 rule-based v0.4.0 accuracy 60.00%보다 낮은 58.00%를 기록했으며, 이후 feature 조정 또는 데이터 확충 실험의 비교 기준으로 사용합니다.
 
+## EXP-004 Baseline Comparison (v0.6.0-baseline-comparison)
+
+- Date: 2026-07-09
+- Goal: 동일한 100-row inquiry dataset에서 rule-based baseline과 TF-IDF baseline의 예측 결과를 id 기준으로 비교
+- Config: Python script `backend/scripts/compare_baselines.py`, rule prediction `experiments/rule_classifier_predictions.csv`, TF-IDF prediction `experiments/tfidf_predictions.csv`
+- Output: `experiments/baseline_comparison.csv`, `experiments/baseline_comparison_summary.md`
+- Results: 100개 샘플 기준 rule-based 60/100 correct, accuracy 60.00%; TF-IDF 58/100 correct, accuracy 58.00%
+- Comparison results: both correct 40개, both wrong 22개, rule-only correct 20개, TF-IDF-only correct 18개
+- Category results: `gameplay_guide`와 `tower_progress`, `wizard_acquisition`은 rule-based가 강했고, `skill_combat`, `feedback_balance`, `wizard_growth`는 TF-IDF가 더 강하거나 개선 가능성을 보였습니다. `bug_report`는 두 방식 모두 21.43%로 공통 취약 영역입니다.
+- Notes: dataset label, category label, knowledge 문서, rule-based classifier logic, TF-IDF classifier logic은 변경하지 않았습니다. 이번 실험은 v0.6.0 포트폴리오 baseline comparison으로 기록하며, 다음 data v2 단계는 아직 구현하지 않았습니다.
