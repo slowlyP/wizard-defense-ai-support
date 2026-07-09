@@ -49,3 +49,17 @@ python backend/scripts/evaluate_tfidf_classifier.py
 4. `TfidfVectorizer`와 `LogisticRegression`을 `StratifiedKFold`로 평가하며, 콘솔에 accuracy, category별 precision/recall/F1, confusion-style summary, 오분류 예시를 출력합니다.
 5. 상세 예측 결과는 `experiments/tfidf_predictions.csv`에 저장됩니다.
 
+Baseline comparison 실행 방법:
+1. rule-based 평가와 TF-IDF 평가를 먼저 실행해 다음 파일이 존재하는지 확인합니다:
+
+- `experiments/rule_classifier_predictions.csv`
+- `experiments/tfidf_predictions.csv`
+
+2. 리포지토리 루트에서 다음 명령으로 두 baseline 예측을 비교합니다:
+
+```powershell
+python backend/scripts/compare_baselines.py
+```
+
+3. 이 스크립트는 두 prediction CSV를 `id` 기준으로 비교하고, 전체 정확도, both correct, both wrong, rule-only correct, TF-IDF-only correct, category별 비교 결과를 콘솔에 출력합니다.
+4. 상세 비교 결과는 `experiments/baseline_comparison.csv`에 저장됩니다.

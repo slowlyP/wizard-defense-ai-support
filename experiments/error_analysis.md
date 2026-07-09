@@ -155,3 +155,41 @@ Category별 결과:
 - TF-IDF v0.5.0 accuracy는 58.00%로 rule-based v0.4.0 accuracy 60.00%보다 낮습니다.
 - TF-IDF는 `feedback_balance`와 `wizard_growth`에서 rule-based보다 개선 가능성을 보였지만, `gameplay_guide`와 `bug_report` recall이 낮았습니다.
 - 이 결과는 rule-based classifier를 제거하기 위한 근거가 아니라, 다음 실험에서 feature engineering 또는 데이터 확충 효과를 비교하기 위한 baseline입니다.
+
+## Baseline Comparison Findings (v0.6.0-baseline-comparison)
+
+평가 기준:
+- Dataset: `data/raw/wizard_defense_inquiries_raw.csv`
+- Rule-based prediction: `experiments/rule_classifier_predictions.csv`
+- TF-IDF prediction: `experiments/tfidf_predictions.csv`
+- Script: `backend/scripts/compare_baselines.py`
+- Output: `experiments/baseline_comparison.csv`
+- Summary: `experiments/baseline_comparison_summary.md`
+- Total samples: 100
+- Rule-based accuracy: 60.00% (60/100)
+- TF-IDF accuracy: 58.00% (58/100)
+- Both correct: 40
+- Both wrong: 22
+- Rule-only correct: 20
+- TF-IDF-only correct: 18
+
+Category별 비교 요약:
+- `bug_report`: 두 방식 모두 3/14 correct, both wrong 8개로 가장 큰 공통 취약 영역입니다.
+- `feedback_balance`: rule-based 1/11, TF-IDF 5/11로 TF-IDF가 더 강하지만 both wrong 6개가 남아 있습니다.
+- `gameplay_guide`: rule-based 13/16, TF-IDF 7/16으로 rule-based가 명확히 강합니다.
+- `skill_combat`: rule-based 10/14, TF-IDF 12/14로 TF-IDF가 가장 안정적입니다.
+- `tower_progress`: rule-based 9/12, TF-IDF 7/12로 rule-based가 더 강합니다.
+- `wizard_acquisition`: rule-based 16/18, TF-IDF 15/18로 두 방식 모두 강합니다.
+- `wizard_growth`: rule-based 8/15, TF-IDF 9/15로 TF-IDF가 약간 앞섭니다.
+
+공통 오분류 패턴:
+- `bug_report` 문의에서 그래픽 깨짐, 프레임 드랍, 사운드 끊김처럼 오류 표현이 일반 기능 단서보다 약하게 잡힙니다.
+- `feedback_balance` 문의에서 타워, 전설 마법사, 스킬 같은 기능 단어가 밸런스 평가 표현보다 강하게 작동합니다.
+- `wizard_growth`와 `wizard_acquisition` 사이에서 `얻`, `획득`, `보상`, `경험치` 표현이 중의적으로 작동합니다.
+- 설명 요청인 `gameplay_guide`가 레조넌스, 조합, 전설 마법사 같은 내부 시스템 단어 때문에 성장 또는 스킬 category로 이동합니다.
+- 일부 기능 라벨 샘플은 오류 표현을 포함해 classifier 입장에서는 `bug_report`로 보이는 경계 사례가 있습니다.
+
+개선 후보:
+- 이번 단계에서는 dataset label, category label, classifier logic을 변경하지 않고 비교 결과만 baseline으로 고정합니다.
+- 다음 실험에서는 rule-only correct와 TF-IDF-only correct 샘플을 분리해 rule 보강 후보와 feature engineering 후보를 따로 관리합니다.
+- `bug_report`와 `feedback_balance`는 기능 단서보다 의도 단서를 우선 판단할 수 있는 별도 실험 대상으로 분리합니다.
