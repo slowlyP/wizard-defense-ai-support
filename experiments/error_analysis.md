@@ -223,3 +223,39 @@ Category별 비교 요약:
 - 이번 단계에서는 dataset CSV row를 수정하지 않았습니다.
 - category label, classifier logic, backend scripts, knowledge 문서는 변경하지 않았습니다.
 - dataset v2에서는 이 정책을 기준으로 ambiguous sample list를 먼저 만든 뒤 row 수정과 신규 샘플 추가를 진행해야 합니다.
+
+## V2 Baseline Evaluation Findings (v0.9.0-v2-baseline-evaluation)
+
+평가 기준:
+- Dataset: `data/raw/wizard_defense_inquiries_v2.csv`
+- Script: `backend/scripts/evaluate_v2_baselines.py`
+- Rule-based output: `experiments/rule_classifier_predictions_v2.csv`
+- TF-IDF output: `experiments/tfidf_predictions_v2.csv`
+- Comparison output: `experiments/baseline_comparison_v2.csv`
+- Summary: `experiments/v2_baseline_evaluation_summary.md`
+- Total samples: 150
+- Rule-based accuracy: 44.67% (67/150)
+- TF-IDF accuracy: 72.67% (109/150)
+- Both correct: 51
+- Both wrong: 25
+- Rule-only correct: 16
+- TF-IDF-only correct: 58
+
+Category별 관찰:
+- `bug_report`: rule-based 5/25, TF-IDF 16/25입니다. v2에서 기능 단어가 포함된 bug case가 늘어나면서 rule-based의 한계가 더 뚜렷해졌습니다.
+- `feedback_balance`: rule-based 4/25, TF-IDF 21/25입니다. TF-IDF는 평가 표현을 비교적 잘 잡았지만, rule-based는 feature keyword에 끌리는 문제가 남았습니다.
+- `gameplay_guide`: rule-based 12/20, TF-IDF 6/20입니다. v1과 마찬가지로 rule-based가 guide category에서는 더 강합니다.
+- `skill_combat`: rule-based 11/20, TF-IDF 17/20입니다. 전투/스킬 표현이 다양해질수록 TF-IDF가 더 잘 일반화했습니다.
+- `tower_progress`: rule-based 13/20, TF-IDF 19/20입니다. v2의 tower 표현은 TF-IDF baseline에 특히 유리했습니다.
+- `wizard_acquisition`: 두 baseline 모두 17/20입니다. 소환, 전설 등장, 획득 안내 표현은 비교적 안정적입니다.
+- `wizard_growth`: rule-based 5/20, TF-IDF 13/20입니다. 성장 표현이 다양해지면서 rule-based keyword coverage 부족이 나타났습니다.
+
+v1 대비 해석:
+- v1에서는 rule-based 60.00%, TF-IDF 58.00%였지만, v2에서는 rule-based 44.67%, TF-IDF 72.67%로 방향이 크게 달라졌습니다.
+- v2는 `bug_report`와 `feedback_balance`의 feature-word boundary case를 의도적으로 늘렸기 때문에 rule-based keyword priority의 약점을 더 잘 드러냅니다.
+- TF-IDF는 v2의 반복적이고 균형 잡힌 category별 표현에서 더 좋은 성능을 보였지만, `gameplay_guide`에서는 여전히 낮은 정확도를 보였습니다.
+
+다음 분석 후보:
+- `baseline_comparison_v2.csv`에서 both wrong 25개를 중심으로 세부 error analysis를 작성합니다.
+- rule-only correct 16개와 TF-IDF-only correct 58개를 비교해 rule 보강 후보와 feature engineering 후보를 분리합니다.
+- classifier logic 변경은 별도 실험으로 분리하고, 이번 결과는 v2 baseline으로 보존합니다.

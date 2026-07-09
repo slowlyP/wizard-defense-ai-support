@@ -63,3 +63,18 @@ python backend/scripts/compare_baselines.py
 
 3. 이 스크립트는 두 prediction CSV를 `id` 기준으로 비교하고, 전체 정확도, both correct, both wrong, rule-only correct, TF-IDF-only correct, category별 비교 결과를 콘솔에 출력합니다.
 4. 상세 비교 결과는 `experiments/baseline_comparison.csv`에 저장됩니다.
+
+Dataset v2 baseline 평가 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 dataset v2 기준 rule-based와 TF-IDF baseline을 함께 평가합니다:
+
+```powershell
+python backend/scripts/evaluate_v2_baselines.py
+```
+
+2. 이 스크립트는 `data/raw/wizard_defense_inquiries_v2.csv`를 읽고 기존 rule-based classifier와 TF-IDF + `LogisticRegression` baseline을 평가합니다.
+3. v1 평가 결과를 덮어쓰지 않고 다음 v2 전용 파일을 생성합니다:
+
+- `experiments/rule_classifier_predictions_v2.csv`
+- `experiments/tfidf_predictions_v2.csv`
+- `experiments/baseline_comparison_v2.csv`
+- `experiments/v2_baseline_evaluation_summary.md`
