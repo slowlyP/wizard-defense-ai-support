@@ -15,6 +15,10 @@
 - `experiments/`: 실험 로그와 에러 분석 템플릿.
 - `docs/`: 아키텍처 다이어그램 및 포트폴리오 요약.
 
+데이터셋 버전:
+- v1 dataset은 `data/raw/wizard_defense_inquiries_raw.csv`에 보존되어 있습니다.
+- v2 dataset은 v0.7.0 data quality review 이후 생성한 `data/raw/wizard_defense_inquiries_v2.csv`이며, 150개 문의와 개선된 라벨 경계 사례를 포함합니다.
+
 빠른 시작:
 1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.
 2. 먼저 데이터셋과 라벨링 가이드를 검토한 뒤 백엔드/프론트엔드 작업을 진행하세요.
