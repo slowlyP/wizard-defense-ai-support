@@ -280,3 +280,7 @@ curl -i http://127.0.0.1/health
 - 재발 방지 작업
 - 관련 tag 또는 commit
 - 실제 IP, key, credential은 기록하지 않고 placeholder를 사용
+
+## v0.25.0 보안 점검 연결
+
+장애 대응 중 로그를 공유하거나 원인을 기록할 때는 `docs/privacy_and_logging_guidelines.md`의 masking 기준을 따른다. Security group, `/docs` 공개 범위, secret scan 확인은 `docs/production_security_checklist.md`를 함께 확인한다.

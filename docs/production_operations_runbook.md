@@ -240,3 +240,7 @@ sudo journalctl --disk-usage
 - Nginx/systemd 로그 회전과 monitoring 정리
 - 배포 전후 checklist 자동화
 - 백업 또는 rollback tag 정책 명문화
+
+## v0.25.0 보안 계획 연결
+
+v0.25.0에서는 production-ready에 가까운 운영을 위해 보안과 접근 제어 계획 문서를 추가했다. HTTPS, 접근 제어, API 노출, 개인정보와 로그 기준은 `docs/security_and_access_control_plan.md`, `docs/privacy_and_logging_guidelines.md`, `docs/production_security_checklist.md`를 기준으로 검토한다.

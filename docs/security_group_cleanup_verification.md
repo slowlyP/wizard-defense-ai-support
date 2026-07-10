@@ -83,3 +83,7 @@ curl http://127.0.0.1/health
 - Nginx/systemd logging 점검
 - least privilege security group 재검토
 - `/docs`와 `/openapi.json` 공개 범위 검토
+
+## v0.25.0 Security Group Policy Note
+
+v0.25.0 보안 계획에서는 기존 기준을 유지한다. SSH `22`는 `My IP`로 제한하고, HTTP `80`은 controlled test range 또는 public demo 정책에 맞게 열며, `5173`과 `8000`은 계속 public inbound에서 닫아 둔다. HTTPS를 적용하는 단계에서는 `443` inbound rule을 별도로 검토한다.
