@@ -36,3 +36,6 @@ The example files use placeholders only. Replace `EC2_PUBLIC_IP`, `/home/ubuntu/
 ## v0.23.0 Verification Note
 
 Actual EC2 verification results are recorded in `docs/production_deployment_verification.md` and `docs/security_group_cleanup_verification.md`. The verified structure keeps Nginx as the only browser-facing service on port 80 and keeps FastAPI private on `127.0.0.1:8000`.
+## v0.24.0 Operations Note
+
+운영 중 상태 확인, 재시작, frontend 재배포, backend tag update, rollback, 장애 대응 절차는 `docs/production_operations_runbook.md`, `docs/deployment_update_and_rollback.md`, `docs/incident_troubleshooting_checklist.md`에 정리되어 있다.

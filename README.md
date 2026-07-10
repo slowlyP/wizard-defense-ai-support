@@ -91,3 +91,15 @@ Verified result summary:
 - Public inbound ports `5173` and `8000` were removed; port `80` remains the browser entry point.
 
 See `docs/production_deployment_verification.md`, `docs/security_group_cleanup_verification.md`, and `experiments/production_deployment_verification_summary.md`.
+## v0.24.0 Production Operations Runbook
+
+v0.24.0 adds Korean operations documentation for the verified EC2 production-style deployment.
+
+Added operations coverage:
+
+- Routine status checks for Nginx, FastAPI systemd service, `/health`, and `/support/preview`.
+- React production build redeploy steps.
+- Backend update, tag deployment, and rollback steps.
+- Incident troubleshooting checklist for 502, CORS, service failure, Nginx failure, blocked port 80, SSH failure, and disk pressure.
+
+See `docs/production_operations_runbook.md`, `docs/deployment_update_and_rollback.md`, `docs/incident_troubleshooting_checklist.md`, and `experiments/production_operations_runbook_summary.md`.
