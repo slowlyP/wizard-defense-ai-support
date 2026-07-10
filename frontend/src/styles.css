@@ -57,6 +57,37 @@ button { color: inherit; }
 
 .hero, .workspace, .portfolio-note { position: relative; z-index: 1; }
 
+.language-switcher {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  width: fit-content;
+  margin: 0 auto 24px;
+  padding: 4px;
+  border: 1px solid rgba(211, 178, 92, 0.26);
+  border-radius: 999px;
+  background: rgba(12, 10, 30, 0.78);
+  box-shadow: 0 8px 28px rgba(3, 2, 12, 0.36);
+}
+.language-switcher button {
+  min-width: 92px;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #8f839f;
+  background: transparent;
+  font-size: 0.8rem;
+  font-weight: 800;
+  transition: color 150ms ease, background 150ms ease, box-shadow 150ms ease;
+}
+.language-switcher button:hover { color: #f7e7b8; }
+.language-switcher button.is-active {
+  color: #211531;
+  background: linear-gradient(135deg, #f0d184, #b77e2b);
+  box-shadow: 0 5px 18px rgba(190, 132, 44, 0.25);
+}
+
 .hero { max-width: 940px; margin: 0 auto 40px; text-align: center; }
 .eyebrow {
   display: inline-flex;

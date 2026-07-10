@@ -31,6 +31,7 @@
 - v0.18.0에서는 FastAPI prototype의 AWS EC2 수동 배포와 browser verification 절차를 한국어 문서로 정리했습니다.
 - v0.19.0에서는 support response wording을 PC mouse play, Windows build, Steam demo 방향에 맞게 정렬했습니다.
 - v0.20.0에서는 한국어 Vite + React 고객지원 미리보기 화면과 local development CORS allowlist를 추가했습니다.
+- v0.21.0에서는 React UI와 backend response draft/internal note에 Korean/English language toggle을 추가했습니다.
 
 React frontend 로컬 실행:
 

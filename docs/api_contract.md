@@ -58,6 +58,7 @@ Content-Type은 `application/json`입니다.
 | Field | Type | Required | 제약 | 설명 |
 | --- | --- | --- | --- | --- |
 | `text` | `string` | yes | 최소 1자이며 공백만으로 구성될 수 없음 | 분류하고 응답 초안을 만들 플레이어 문의입니다. |
+| `language` | `string` | no | `ko` 또는 `en` | Response draft와 internal note 언어입니다. 생략하면 `ko`입니다. |
 
 ### Response body schema
 
@@ -78,7 +79,8 @@ Content-Type은 `application/json`입니다.
 
 ```json
 {
-  "text": "층 선택 버튼을 눌렀는데 다른 층으로 이동합니다."
+  "text": "층 선택 버튼을 눌렀는데 다른 층으로 이동합니다.",
+  "language": "ko"
 }
 ```
 
@@ -104,6 +106,8 @@ Content-Type은 `application/json`입니다.
 ### Invalid input behavior
 
 `text`가 공백만 포함하면 API가 앞뒤 공백을 제거한 뒤 HTTP 422와 `text must not be blank` detail을 반환합니다. 필수 field 누락, 잘못된 JSON type, 유효하지 않은 JSON body도 request validation 단계에서 HTTP 422로 처리됩니다.
+
+`language`를 생략하면 `ko`가 적용됩니다. `ko`와 `en` 이외의 값은 HTTP 422 validation error로 처리됩니다. Language 선택은 `response_draft`와 `internal_note`에만 적용하며 category, urgency, `needs_human`, response type, routing rule은 변경하지 않습니다.
 
 ## 6. Response field 설명
 
@@ -151,6 +155,7 @@ Content-Type은 `application/json`입니다.
 | `text` field 누락 | 422 | required field validation error를 반환합니다. |
 | `text`가 `number`, `boolean`, `object`, `array`, `null` 등 잘못된 type | 422 | string type validation error를 반환합니다. |
 | JSON 형식 오류 | 422 | JSON decode 또는 request validation error를 반환합니다. |
+| `language`가 `ko`, `en` 이외의 값 | 422 | 허용된 literal value validation error를 반환합니다. |
 
 Validation error의 세부 JSON 구조는 FastAPI와 Pydantic version에 따라 표현이 달라질 수 있으므로 client는 HTTP 422와 `detail` 존재 여부를 기준으로 처리하는 것이 안전합니다.
 

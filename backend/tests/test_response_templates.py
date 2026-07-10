@@ -81,6 +81,65 @@ class ResponseTemplateTests(unittest.TestCase):
                 )
                 self.assertRegex(result["response_draft"], phrase_pattern)
 
+    def test_english_templates_return_english_draft_and_note(self):
+        for response_type in ALL_RESPONSE_TYPES:
+            with self.subTest(response_type=response_type):
+                result = generate_response_template(
+                    make_route(
+                        response_type,
+                        needs_human=response_type in {"bug_triage", "balance_feedback_ack"},
+                        urgency="medium",
+                    ),
+                    language="en",
+                )
+                self.assertEqual(set(result), {"response_draft", "internal_note"})
+                self.assertRegex(result["response_draft"], r"Thank you")
+                self.assertNotRegex(result["response_draft"], r"[가-힣]")
+                self.assertNotRegex(result["internal_note"], r"[가-힣]")
+
+    def test_english_bug_triage_is_safe_and_requests_pc_context(self):
+        result = generate_response_template(
+            make_route("bug_triage", needs_human=True, urgency="high"),
+            language="en",
+        )
+        draft = result["response_draft"].lower()
+        forbidden_terms = [
+            "refund",
+            "compensation",
+            "restore",
+            "restoration",
+            "guaranteed fix",
+            "patch date",
+        ]
+        for term in forbidden_terms:
+            with self.subTest(term=term):
+                self.assertNotIn(term, draft)
+        for required_term in [
+            "reproduction",
+            "floor",
+            "wizard composition",
+            "screenshot",
+            "windows",
+            "steam demo",
+            "resolution",
+            "fullscreen",
+            "windowed",
+        ]:
+            with self.subTest(required_term=required_term):
+                self.assertIn(required_term, draft)
+
+    def test_english_balance_feedback_does_not_guarantee_changes(self):
+        result = generate_response_template(
+            make_route("balance_feedback_ack", needs_human=True, urgency="medium"),
+            language="en",
+        )
+        draft = result["response_draft"].lower()
+        for term in ["guaranteed", "will be changed", "patch date", "confirmed patch"]:
+            with self.subTest(term=term):
+                self.assertNotIn(term, draft)
+        self.assertIn("steam demo", draft)
+        self.assertIn("pc playtest", draft)
+
     def test_needs_human_true_includes_review_or_additional_info_wording(self):
         for response_type in ["bug_triage", "balance_feedback_ack", "skill_combat_answer"]:
             with self.subTest(response_type=response_type):

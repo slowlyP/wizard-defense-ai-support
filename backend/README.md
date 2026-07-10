@@ -229,3 +229,10 @@ React frontend local integration:
 - 실행 문서: [React 고객지원 미리보기](../frontend/README.md)
 
 Vite local development를 위해 `backend/app/api.py`는 `http://localhost:5173`과 `http://127.0.0.1:5173`만 CORS origin으로 허용합니다. 기존 endpoint path와 response schema는 변경하지 않습니다.
+
+Support preview language option:
+
+- `POST /support/preview` request에 optional `language` field를 사용할 수 있습니다.
+- Allowed value: `ko`, `en`
+- Default: `ko`
+- `language`는 `response_draft`와 `internal_note` 언어만 선택하며 router category, urgency, `needs_human` behavior를 변경하지 않습니다.

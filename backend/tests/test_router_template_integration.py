@@ -55,6 +55,20 @@ class RouterTemplateIntegrationTests(unittest.TestCase):
         self.assertEqual(route["suggested_response_type"], "bug_triage")
         self.assertRegex(template["response_draft"], r"Windows|Steam demo|PC")
 
+    def test_router_result_can_generate_english_without_changing_route(self):
+        route = route_inquiry("게임이 전투 중 멈춰서 진행이 안 됩니다.")
+        category_before = route["predicted_category"]
+        urgency_before = route["urgency"]
+        needs_human_before = route["needs_human"]
+
+        template = generate_response_template(route, language="en")
+
+        self.assertEqual(route["predicted_category"], category_before)
+        self.assertEqual(route["urgency"], urgency_before)
+        self.assertEqual(route["needs_human"], needs_human_before)
+        self.assertNotRegex(template["response_draft"], r"[가-힣]")
+        self.assertNotRegex(template["internal_note"], r"[가-힣]")
+
 
 if __name__ == "__main__":
     unittest.main()

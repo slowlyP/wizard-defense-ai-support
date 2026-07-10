@@ -183,3 +183,12 @@
 - 결과: Korean inquiry form, 4개 example chip, loading/error state, Korean-labeled result card와 original enum display를 구현했습니다. CSS-only dark purple/navy, gold, rune, magic book, tower motif를 적용했습니다.
 - Backend 변경: Vite local dev를 위해 `backend/app/api.py`에 `http://localhost:5173`, `http://127.0.0.1:5173`만 허용하는 minimal CORS middleware를 추가했습니다. Endpoint와 response schema는 변경하지 않았습니다.
 - 참고: Router, response template, API schema, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 외부 API, LLM API, Steamworks, authentication, payment, account recovery, helpdesk integration을 추가하지 않았습니다.
+
+## EXP-019 Frontend I18n Language Toggle (v0.21.0-frontend-i18n-language-toggle)
+
+- 날짜: 2026-07-10
+- 목적: React support preview UI와 deterministic response draft/internal note에 Korean/English 선택 기능 제공
+- 구성: Frontend copy dictionary와 `localStorage`, optional API request field `language`, Korean/English response template
+- API 호환성: `POST /support/preview`와 response field 8개를 유지하며 `language` 생략 시 `ko`를 적용합니다. Allowed value는 `ko`, `en`입니다.
+- 결과: Title, form, example, loading/error, result label, enum friendly label, portfolio note를 선택 언어로 전환하고 English bug/balance safety response를 추가했습니다.
+- 참고: Support router category/urgency/`needs_human` behavior, dataset v1/v2, 기존 experiment CSV, Unity game files를 변경하지 않았습니다. 외부 translation API, LLM API, Steamworks, account/payment/ticket integration을 사용하지 않았습니다.

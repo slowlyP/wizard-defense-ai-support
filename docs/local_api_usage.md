@@ -54,6 +54,7 @@ Invoke-RestMethod -Method Get -Uri "http://127.0.0.1:8000/health"
 ```powershell
 $body = @{
     text = "층 선택 버튼을 눌렀는데 다른 층으로 이동합니다."
+    language = "ko"
 } | ConvertTo-Json
 
 Invoke-RestMethod `
@@ -73,6 +74,21 @@ Invoke-RestMethod `
 - `routing_reason`
 - `response_draft`
 - `internal_note`
+
+`language`는 optional이며 `ko` 또는 `en`을 사용합니다. 생략하면 `ko`가 적용됩니다. English response draft가 필요하면 다음처럼 보냅니다.
+
+```powershell
+$body = @{
+    text = "게임이 전투 중 멈춰서 진행이 안 됩니다."
+    language = "en"
+} | ConvertTo-Json
+
+Invoke-RestMethod `
+    -Method Post `
+    -Uri "http://127.0.0.1:8000/support/preview" `
+    -ContentType "application/json; charset=utf-8" `
+    -Body $body
+```
 
 ## 8. Troubleshooting
 
