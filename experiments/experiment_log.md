@@ -230,3 +230,10 @@ Notes:
 - Browser 결과: `http://EC2_PUBLIC_IP`에서 React UI가 `:5173` 없이 열렸고, Korean / English toggle과 inquiry submission이 동작했습니다. 이전 `5173 -> 8000` CORS preflight issue는 발생하지 않았습니다.
 - Security Group 결과: local PowerShell port verification 기준 `80`은 true, `5173`과 `8000`은 false로 확인되어 개발용 public port가 제거되었습니다.
 - 참고: 실제 EC2 public IP, AWS account ID, `.pem` path, private key, AWS credential은 기록하지 않았습니다. API endpoint path, response field name, support router behavior, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다.
+## EXP-022 Production Operations Runbook (v0.24.0-production-operations-runbook)
+
+- 날짜: 2026-07-10
+- 목적: v0.23.0에서 검증된 EC2 production-style 배포를 운영자가 상태 확인, 업데이트, rollback, 장애 대응할 수 있도록 한국어 운영 runbook으로 정리
+- 구성: `docs/production_operations_runbook.md`, `docs/deployment_update_and_rollback.md`, `docs/incident_troubleshooting_checklist.md`, `experiments/production_operations_runbook_summary.md`
+- 결과: Nginx port 80, React production build, FastAPI systemd service, `127.0.0.1:8000`, same-origin `/support/preview` 구조를 기준으로 운영 명령, 로그 확인, 재배포, rollback, 장애 checklist를 추가했습니다.
+- 참고: API endpoint path, response field name, support router behavior, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 실제 EC2 public IP, AWS account ID, SSH 개인키 경로, private key, AWS credential은 기록하지 않았습니다.

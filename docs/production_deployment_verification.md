@@ -185,3 +185,6 @@ Test-NetConnection EC2_PUBLIC_IP -Port 8000
 - 인증 또는 제한된 access control을 도입할지 검토한다.
 - Nginx access/error log와 systemd journal 기반 운영 로그 확인 절차를 정리한다.
 - Security group least privilege 정책을 public demo 여부에 맞게 다시 점검한다.
+## v0.24.0 운영 문서 연결
+
+v0.24.0에서는 검증된 EC2 production-style 구조를 운영하기 위한 runbook을 추가했다. 일상 상태 확인, 재배포, rollback, 장애 대응은 `docs/production_operations_runbook.md`, `docs/deployment_update_and_rollback.md`, `docs/incident_troubleshooting_checklist.md`를 기준으로 수행한다.
