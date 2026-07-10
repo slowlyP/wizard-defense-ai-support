@@ -131,3 +131,11 @@
 - 출력: `experiments/api_local_smoke_test_outputs.csv`, `experiments/api_local_summary.md`
 - 결과: `GET /health`와 `POST /support/preview`를 구현하고 7개 category 대표 한국어 문의를 local in-process client로 검증했습니다. Bug 및 balance 사례는 기존 router 정책에 따라 `needs_human=true`를 유지합니다.
 - 참고: support router와 response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 외부 API, LLM API, 실제 helpdesk integration을 사용하지 않습니다.
+
+## EXP-013 API Contract Documentation (v0.15.0-api-contract-docs)
+
+- 날짜: 2026-07-10
+- 목적: FastAPI local prototype의 endpoint, request/response schema, enum value, error behavior, 안전 제한사항과 재현 가능한 사용 방법을 문서화
+- 구성: Contract `docs/api_contract.md`, usage guide `docs/local_api_usage.md`, summary `experiments/api_contract_summary.md`
+- 결과: `GET /health`와 `POST /support/preview`의 실제 구현 기준 계약, PowerShell 호출 예시, HTTP 422 입력 오류, local 실행 및 troubleshooting 절차를 한국어로 정리했습니다.
+- 참고: API, router, response template, test behavior와 dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 외부 API와 LLM API를 사용하지 않았습니다.
