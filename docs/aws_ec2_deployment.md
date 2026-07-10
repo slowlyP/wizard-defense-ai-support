@@ -155,3 +155,17 @@ Ctrl + C
 - Authentication과 authorization이 없습니다.
 - 자동 restart, monitoring, centralized logging, backup, CI/CD가 없습니다.
 - Public production customer support system으로 사용하면 안 됩니다.
+
+## 18. v0.22.0 Production-style Deployment Hardening
+
+The earlier EC2 notes are still useful for manual API checks and temporary browser verification. For production-style review, use the hardened Nginx + systemd path:
+
+- Build React with `VITE_API_BASE_URL=`.
+- Copy `frontend/dist` into `/var/www/wizard-defense-support`.
+- Run FastAPI with systemd on `127.0.0.1:8000`.
+- Serve static files and reverse proxy API paths through Nginx on port 80.
+- Keep SSH on port 22 limited to My IP.
+- Keep port 80 limited to My IP during review or to the intended public range for a public demo.
+- Close ports 5173 and 8000 after the Nginx reverse proxy is verified.
+
+See `docs/production_deployment_hardening.md`, `docs/nginx_systemd_deployment.md`, `deploy/nginx/wizard-defense-support.conf.example`, and `deploy/systemd/wizard-defense-support-api.service.example`.

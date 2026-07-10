@@ -151,3 +151,11 @@ React dev server는 `http://127.0.0.1:5173`에서 실행하며 `POST /support/pr
 - `http://127.0.0.1:5173`
 
 실행 방법은 [React 고객지원 미리보기 문서](../frontend/README.md)를 확인합니다. `/docs`는 developer API documentation으로 유지되며 한국어 user-facing 경험은 React frontend가 담당합니다.
+
+## 11. Production-style Same-origin 참고
+
+Local development may continue to use the Vite dev server on `5173` and FastAPI on `8000`. That split is useful for development, but it creates a browser cross-origin request.
+
+For v0.22.0 production-style EC2 deployment, build the frontend with `VITE_API_BASE_URL=` and serve `frontend/dist` through Nginx. The browser then calls `/support/preview` on the same origin, and Nginx proxies the request to FastAPI on `127.0.0.1:8000`.
+
+This keeps the existing local CORS allowlist narrow and avoids opening wildcard CORS for the portfolio preview.
