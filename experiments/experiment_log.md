@@ -220,3 +220,13 @@ Notes:
 - No Unity repository files are modified.
 - No support router behavior, response template behavior, endpoint path, response field name, or dataset file is intentionally changed.
 - No HTTPS, domain, auth, real data, Steamworks, payment, account recovery, or external helpdesk integration is added.
+
+## EXP-021 Production Deployment Verification (v0.23.0-production-deployment-verification)
+
+- 날짜: 2026-07-10
+- 목적: v0.22.0 production deployment hardening 절차를 실제 EC2에 적용한 뒤 Nginx, systemd, React production build, Security Group cleanup 결과를 문서화
+- 구성: `docs/production_deployment_verification.md`, `docs/security_group_cleanup_verification.md`, `experiments/production_deployment_verification_summary.md`
+- 검증 결과: Nginx는 port 80에서 React production build를 serving했고, FastAPI는 systemd service로 `127.0.0.1:8000`에서 active/running 상태였습니다. `/support/preview`, `/health`, `/docs`, `/openapi.json` reverse proxy 구조가 확인되었습니다.
+- Browser 결과: `http://EC2_PUBLIC_IP`에서 React UI가 `:5173` 없이 열렸고, Korean / English toggle과 inquiry submission이 동작했습니다. 이전 `5173 -> 8000` CORS preflight issue는 발생하지 않았습니다.
+- Security Group 결과: local PowerShell port verification 기준 `80`은 true, `5173`과 `8000`은 false로 확인되어 개발용 public port가 제거되었습니다.
+- 참고: 실제 EC2 public IP, AWS account ID, `.pem` path, private key, AWS credential은 기록하지 않았습니다. API endpoint path, response field name, support router behavior, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다.

@@ -32,3 +32,7 @@ The FastAPI endpoint paths and response schema are unchanged.
 ## Placeholder Policy
 
 The example files use placeholders only. Replace `EC2_PUBLIC_IP`, `/home/ubuntu/wizard-defense-ai-support`, and `ubuntu` for the actual server environment. Do not commit `.pem` files, AWS credentials, private keys, or real server-only secrets.
+
+## v0.23.0 Verification Note
+
+Actual EC2 verification results are recorded in `docs/production_deployment_verification.md` and `docs/security_group_cleanup_verification.md`. The verified structure keeps Nginx as the only browser-facing service on port 80 and keeps FastAPI private on `127.0.0.1:8000`.

@@ -140,3 +140,7 @@ Service fails because venv path is wrong:
 ## Limitations
 
 This hardening pass does not add HTTPS, a custom domain, authentication, real customer data handling, Steamworks integration, payment features, account recovery, or an external helpdesk. It is a production-style portfolio deployment path for the existing local support preview API.
+
+## v0.23.0 Verification Note
+
+The production-style path documented here was later verified on EC2 and recorded in `docs/production_deployment_verification.md`. The verified access pattern uses `http://EC2_PUBLIC_IP` on port 80, keeps FastAPI on `127.0.0.1:8000`, and closes public inbound access to `5173` and `8000` after Nginx reverse proxy verification.
