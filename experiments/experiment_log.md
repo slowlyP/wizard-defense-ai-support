@@ -165,3 +165,12 @@
 - 구성: Deployment guide `docs/aws_ec2_deployment.md`, browser verification `docs/aws_ec2_browser_verification.md`, summary `experiments/aws_ec2_deployment_summary.md`
 - 결과: `Ubuntu Server 24.04 LTS`, `t3.micro`, `My IP` 제한 Security group에서 repository clone, venv, test, Uvicorn 실행과 `GET /health`, `GET /docs`, `POST /support/preview` 검증 절차를 기록했습니다.
 - 참고: 실제 EC2 public IP, AWS account ID, credential, secret, private key, `.pem` file은 기록하지 않았습니다. API, router, response template, dataset, 기존 experiment output, Unity game files는 변경하지 않았고 외부 API와 LLM API를 호출하지 않았습니다.
+
+## EXP-017 Steam Support Response Alignment (v0.19.0-steam-support-response-alignment)
+
+- 날짜: 2026-07-10
+- 목적: 한국어 support response template을 PC mouse play, Windows build, Steam demo 방향과 fantasy tower defense 문맥에 맞게 정렬
+- 구성: Template `backend/app/response_templates.py`, demo `backend/scripts/run_response_template_demo.py`, tests `backend/tests/test_response_templates.py`, `backend/tests/test_router_template_integration.py`
+- 출력: `experiments/steam_response_template_demo_outputs.csv`, `experiments/steam_response_alignment_summary.md`
+- 결과: 7개 category별 response를 생성했고 `gameplay_guide`의 mouse drag 안내, bug triage의 Windows/Steam demo build와 PC resolution 확인, balance feedback의 Steam demo/PC playtest 검토 문구를 반영했습니다.
+- 참고: Router category/urgency/`needs_human` behavior와 FastAPI endpoint/field contract는 변경하지 않았습니다. Dataset v1/v2, 기존 experiment CSV, Unity game files를 변경하지 않았고 외부 API와 LLM API를 사용하지 않았습니다.

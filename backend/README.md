@@ -106,18 +106,26 @@ python backend/scripts/run_support_router_demo.py
 - `experiments/support_router_demo_outputs.csv`
 - `experiments/support_router_summary.md`
 
-Response template demo 실행 방법:
-1. 리포지토리 루트에서 다음 명령으로 support router output 기반 response template prototype demo를 실행합니다:
+Steam / PC response template demo 실행 방법:
+1. 리포지토리 루트에서 다음 명령으로 support router output 기반 Steam / PC 정렬 demo를 실행합니다:
 
 ```powershell
 python backend/scripts/run_response_template_demo.py
 ```
 
-2. 이 스크립트는 한국어 demo 문의를 support router로 라우팅한 뒤 `response_draft`와 `internal_note`를 생성합니다.
+2. 이 스크립트는 7개 category의 한국어 demo 문의를 support router로 라우팅한 뒤 PC mouse play, Windows build, Steam demo 문맥을 반영한 `response_draft`와 `internal_note`를 생성합니다.
 3. 결과는 다음 파일에 저장됩니다:
 
-- `experiments/response_template_demo_outputs.csv`
-- `experiments/response_template_summary.md`
+- `experiments/steam_response_template_demo_outputs.csv`
+- `experiments/steam_response_alignment_summary.md`
+
+기존 `experiments/response_template_demo_outputs.csv`와 `experiments/response_template_summary.md`는 v0.12.0 결과로 보존하며 덮어쓰지 않습니다.
+
+Response template test 실행 방법:
+
+```powershell
+python -m unittest backend.tests.test_response_templates backend.tests.test_router_template_integration
+```
 
 Local test suite 실행 방법:
 1. 리포지토리 루트에서 다음 명령으로 support router와 response template regression test를 실행합니다:
