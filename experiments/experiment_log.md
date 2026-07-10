@@ -1,4 +1,4 @@
-﻿# Experiment Log
+# Experiment Log
 
 개요:
 실험 구성, 하이퍼파라미터, 결과 요약 및 재현 가능한 실행 절차를 기록하는 템플릿입니다. 모델 학습/평가 시에는 실험별로 이 파일 또는 별도 마크다운을 생성해 상세 기록을 남기세요.
@@ -237,3 +237,11 @@ Notes:
 - 구성: `docs/production_operations_runbook.md`, `docs/deployment_update_and_rollback.md`, `docs/incident_troubleshooting_checklist.md`, `experiments/production_operations_runbook_summary.md`
 - 결과: Nginx port 80, React production build, FastAPI systemd service, `127.0.0.1:8000`, same-origin `/support/preview` 구조를 기준으로 운영 명령, 로그 확인, 재배포, rollback, 장애 checklist를 추가했습니다.
 - 참고: API endpoint path, response field name, support router behavior, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 실제 EC2 public IP, AWS account ID, SSH 개인키 경로, private key, AWS credential은 기록하지 않았습니다.
+
+## EXP-023 Security and Access Control Plan (v0.25.0-security-and-access-control-plan)
+
+- 날짜: 2026-07-10
+- 목적: EC2 production-style 배포를 production-ready에 더 가깝게 다루기 전에 필요한 보안, 접근 제어, 개인정보, logging 계획을 한국어 문서로 정리
+- 구성: `docs/security_and_access_control_plan.md`, `docs/privacy_and_logging_guidelines.md`, `docs/production_security_checklist.md`, `experiments/security_access_control_plan_summary.md`
+- 결과: HTTPS/domain/auth/database/ticket storage/Steamworks 미구현 상태를 명확히 기록하고, public demo mode와 future admin/internal mode, `/support/preview` abuse prevention, `/docs` 공개 범위, secret management, privacy/logging checklist를 정리했습니다.
+- 참고: HTTPS, authentication, authorization, database, user account, Steamworks, payment, account recovery, helpdesk integration은 구현하지 않았습니다. API endpoint path, response field name, support router behavior, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files도 변경하지 않았습니다. 실제 EC2 public IP, AWS account ID, `.pem` path, private key, AWS credential은 기록하지 않았습니다.

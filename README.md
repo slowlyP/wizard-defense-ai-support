@@ -1,4 +1,4 @@
-﻿# Wizard Defense AI Support
+# Wizard Defense AI Support
 
 설명:
 이 저장소는 Unity 게임 "Random Wizard Defense"를 위한 AI 지원 시스템의 초기 구조입니다. 이 프로젝트는 인턴십용 포트폴리오로 활용하기 적합하도록 의도 분류, 문서 검색, 근거 기반 응답 설계를 중심으로 한 스캐폴딩을 제공합니다.
@@ -103,3 +103,16 @@ Added operations coverage:
 - Incident troubleshooting checklist for 502, CORS, service failure, Nginx failure, blocked port 80, SSH failure, and disk pressure.
 
 See `docs/production_operations_runbook.md`, `docs/deployment_update_and_rollback.md`, `docs/incident_troubleshooting_checklist.md`, and `experiments/production_operations_runbook_summary.md`.
+
+## v0.25.0 Security and Access Control Plan
+
+v0.25.0 documents the next security and access-control planning step for the verified EC2 production-style deployment.
+
+Added planning coverage:
+
+- HTTPS/domain/auth/database items that are still not implemented.
+- Public demo mode versus future admin/internal access mode.
+- API exposure policy for `/support/preview`, `/health`, `/docs`, and `/openapi.json`.
+- Secret management, privacy, logging, and release security checklist.
+
+See `docs/security_and_access_control_plan.md`, `docs/privacy_and_logging_guidelines.md`, `docs/production_security_checklist.md`, and `experiments/security_access_control_plan_summary.md`.
