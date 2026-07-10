@@ -44,6 +44,16 @@ class RouterTemplateIntegrationTests(unittest.TestCase):
         self.assertFalse(route["needs_human"])
         self.assertIn("response_draft", template)
         self.assertIn("internal_note", template)
+        self.assertRegex(template["response_draft"], r"PC|마우스")
+
+    def test_bug_flow_requests_windows_or_steam_context(self):
+        route = route_inquiry("게임이 전투 중 멈춰서 진행이 안 됩니다.")
+        template = generate_response_template(route)
+
+        self.assertEqual(route["predicted_category"], "bug_report")
+        self.assertTrue(route["needs_human"])
+        self.assertEqual(route["suggested_response_type"], "bug_triage")
+        self.assertRegex(template["response_draft"], r"Windows|Steam demo|PC")
 
 
 if __name__ == "__main__":

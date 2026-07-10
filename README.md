@@ -29,6 +29,7 @@
 - v0.16.0에서는 여러 한국어 문의를 CSV로 처리하는 local batch support preview와 회귀 테스트를 추가했습니다.
 - v0.17.0에서는 batch preview 결과의 category accuracy, human-review, urgency, response type, mismatch 분석 보고서를 추가했습니다.
 - v0.18.0에서는 FastAPI prototype의 AWS EC2 수동 배포와 browser verification 절차를 한국어 문서로 정리했습니다.
+- v0.19.0에서는 support response wording을 PC mouse play, Windows build, Steam demo 방향에 맞게 정렬했습니다.
 
 빠른 시작:
 1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.
