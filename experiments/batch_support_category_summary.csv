@@ -1,0 +1,8 @@
+﻿expected_category,total,correct,mismatch,accuracy
+bug_report,25,25,0,1.0000
+feedback_balance,25,24,1,0.9600
+gameplay_guide,20,16,4,0.8000
+skill_combat,20,18,2,0.9000
+tower_progress,20,19,1,0.9500
+wizard_acquisition,20,19,1,0.9500
+wizard_growth,20,20,0,1.0000

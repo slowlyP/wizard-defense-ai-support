@@ -148,3 +148,12 @@
 - 출력: `experiments/batch_support_preview_outputs.csv`, `experiments/batch_support_preview_summary.md`
 - 결과: Dataset v2의 150개 row를 처리했고 `needs_human=true` 57개를 기록했습니다. Predicted category 7종과 response type 7종의 분포를 console과 summary에 기록했습니다.
 - 참고: 빈 문자열과 whitespace-only `text` row는 안전하게 건너뜁니다. API, router, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았으며 외부 API와 LLM API를 사용하지 않았습니다.
+
+## EXP-015 Batch Support Analysis Report (v0.17.0-batch-analysis-report)
+
+- 날짜: 2026-07-10
+- 목적: 기존 batch support preview output을 읽기 전용으로 분석해 portfolio용 category accuracy, human-review, urgency, response type, mismatch report 생성
+- 구성: Script `backend/scripts/analyze_batch_support_preview.py`, unittest `backend/tests/test_batch_support_analysis.py`, input `experiments/batch_support_preview_outputs.csv`
+- 출력: `experiments/batch_support_analysis_report.md`, `experiments/batch_support_category_summary.csv`, `experiments/batch_support_mismatch_samples.csv`, `experiments/batch_support_analysis_summary.md`
+- 결과: 150개 중 141개 category가 일치해 accuracy 94.00%를 기록했고 mismatch 9개, `needs_human=true` 57개와 7개 predicted category 및 7개 response type 분포를 확인했습니다.
+- 참고: Accuracy는 비어 있지 않은 `expected_category` row만 대상으로 계산합니다. API, router, response template, batch preview behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았고 외부 API와 LLM API를 사용하지 않았습니다.

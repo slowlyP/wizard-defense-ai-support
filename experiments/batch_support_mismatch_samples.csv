@@ -1,0 +1,10 @@
+﻿id,text,expected_category,predicted_category,urgency,needs_human,suggested_response_type,routing_reason
+9,적이 몰려올 때 소환을 먼저 해야 하나요 아니면 연구를 먼저 해야 하나요?,gameplay_guide,wizard_acquisition,low,false,acquisition_answer,"마법사 소환, 획득, 등급, 등장 확률 문의로 판단해 획득 안내로 라우팅합니다."
+14,라운드가 빨라질 때 어떤 기준으로 마법사를 추가 소환해야 하나요?,gameplay_guide,wizard_acquisition,low,false,acquisition_answer,"마법사 소환, 획득, 등급, 등장 확률 문의로 판단해 획득 안내로 라우팅합니다."
+15,보스가 나오는 층에서는 어떤 조합을 준비하는 게 좋나요?,gameplay_guide,tower_progress,low,false,tower_progress_answer,"층 진행, 잠금 해제, 보스, 층 보상 문의로 판단해 타워 진행 안내로 라우팅합니다."
+16,공격 범위가 겹치는 마법사들을 한곳에 모아도 괜찮나요?,gameplay_guide,skill_combat,low,false,skill_combat_answer,"스킬 효과, 쿨타임, 피해 계산, 타격 판정 문의로 판단해 전투/스킬 안내로 라우팅합니다."
+34,골드를 써서 마법사를 추가하는 것과 연구하는 것 중 어떤 차이가 있나요?,wizard_acquisition,wizard_growth,low,false,growth_answer,"레벨업, 경험치, 성장 재료, 레조넌스 문의로 판단해 성장 안내로 라우팅합니다."
+71,층별 추천 전투력 같은 기준이 있나요?,tower_progress,gameplay_guide,low,false,guide_answer,"플레이 방법, 배치, 조합, 운영 팁 문의로 판단해 guide 답변으로 라우팅합니다."
+84,루미엘 축복은 다른 마법사의 공격에도 영향을 주나요?,skill_combat,wizard_growth,low,false,growth_answer,"레벨업, 경험치, 성장 재료, 레조넌스 문의로 판단해 성장 안내로 라우팅합니다."
+93,상태 이상 효과가 보스에게도 똑같이 적용되나요?,skill_combat,tower_progress,medium,true,bug_triage,"분류 category는 기능 문의이지만 실패, 미지급, 표시 오류 신호가 있어 버그 triage로 라우팅합니다."
+138,전설 마법사 없이 진행하는 빌드가 너무 불리한 것 같습니다.,feedback_balance,gameplay_guide,low,false,guide_answer,"플레이 방법, 배치, 조합, 운영 팁 문의로 판단해 guide 답변으로 라우팅합니다."
