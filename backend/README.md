@@ -187,3 +187,21 @@ python -m unittest backend.tests.test_batch_support_preview
 ```powershell
 python -m unittest discover backend/tests
 ```
+
+Batch support analysis report 실행 방법:
+
+```powershell
+python backend/scripts/analyze_batch_support_preview.py
+```
+
+기본 입력은 `experiments/batch_support_preview_outputs.csv`이며 다음 신규 output을 생성합니다.
+
+- `experiments/batch_support_analysis_report.md`
+- `experiments/batch_support_category_summary.csv`
+- `experiments/batch_support_mismatch_samples.csv`
+
+Analysis test는 다음 명령으로 실행합니다.
+
+```powershell
+python -m unittest backend.tests.test_batch_support_analysis
+```
