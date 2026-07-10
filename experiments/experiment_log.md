@@ -139,3 +139,12 @@
 - 구성: Contract `docs/api_contract.md`, usage guide `docs/local_api_usage.md`, summary `experiments/api_contract_summary.md`
 - 결과: `GET /health`와 `POST /support/preview`의 실제 구현 기준 계약, PowerShell 호출 예시, HTTP 422 입력 오류, local 실행 및 troubleshooting 절차를 한국어로 정리했습니다.
 - 참고: API, router, response template, test behavior와 dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 외부 API와 LLM API를 사용하지 않았습니다.
+
+## EXP-014 Batch Support Preview (v0.16.0-batch-support-preview)
+
+- 날짜: 2026-07-10
+- 목적: 여러 한국어 플레이어 문의를 CSV에서 읽어 기존 support router와 response template flow로 처리하는 local batch preview 제공
+- 구성: Script `backend/scripts/run_batch_support_preview.py`, unittest `backend/tests/test_batch_support_preview.py`, 기본 입력 `data/raw/wizard_defense_inquiries_v2.csv`
+- 출력: `experiments/batch_support_preview_outputs.csv`, `experiments/batch_support_preview_summary.md`
+- 결과: Dataset v2의 150개 row를 처리했고 `needs_human=true` 57개를 기록했습니다. Predicted category 7종과 response type 7종의 분포를 console과 summary에 기록했습니다.
+- 참고: 빈 문자열과 whitespace-only `text` row는 안전하게 건너뜁니다. API, router, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았으며 외부 API와 LLM API를 사용하지 않았습니다.

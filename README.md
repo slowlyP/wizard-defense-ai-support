@@ -26,6 +26,7 @@
 - v0.13.0에서는 support router와 response template의 local regression test suite를 추가했습니다.
 - v0.14.0에서는 두 모듈을 외부 서비스 없이 연결하는 FastAPI local prototype과 in-process smoke test를 추가했습니다.
 - v0.15.0에서는 local API의 request/response 계약과 실행 가이드를 한국어 문서로 정리했습니다.
+- v0.16.0에서는 여러 한국어 문의를 CSV로 처리하는 local batch support preview와 회귀 테스트를 추가했습니다.
 
 빠른 시작:
 1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.
