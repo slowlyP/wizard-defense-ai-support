@@ -39,5 +39,5 @@ def support_preview(payload: SupportPreviewRequest) -> SupportPreviewResponse:
 
     # Existing modules remain the single source of routing and template behavior.
     route = route_inquiry(text)
-    template = generate_response_template(route, language=payload.language)
+    template = generate_response_template({**route, "inquiry_text": text}, language=payload.language)
     return SupportPreviewResponse(text=text, **route, **template)

@@ -116,3 +116,21 @@ Added planning coverage:
 - Secret management, privacy, logging, and release security checklist.
 
 See `docs/security_and_access_control_plan.md`, `docs/privacy_and_logging_guidelines.md`, `docs/production_security_checklist.md`, and `experiments/security_access_control_plan_summary.md`.
+
+## v0.26.0 Support Question Coverage Expansion
+
+v0.26.0 expands deterministic support question coverage for common Wizard Random Defense player questions.
+
+This project currently does not use an external LLM API. It uses deterministic rule-based classification, topic detection, and response templates to generate support response drafts. It is designed as a baseline that can be extended toward future LLM/RAG workflows.
+
+이번 프로젝트는 현재 외부 LLM API를 사용하지 않습니다. 규칙 기반 분류, 토픽 감지, 응답 템플릿을 조합해 고객지원 응답 초안을 생성하는 deterministic support assistant입니다. 향후 LLM/RAG 확장을 위한 baseline 역할을 합니다.
+
+Added coverage:
+
+- Wizard elements: Fire, Water, Wind, Stone, Lightning
+- Legendary wizards: Arden, Orphel, Lumiel, Novarin
+- Fusion, resonance, tower/floor, boss, PC controls, fullscreen/resolution questions
+- Safe human-review wording for reward loss, payment, and refund inquiries
+- Expanded Korean/English example chips in the React UI
+
+See `backend/app/support_knowledge.py`, `experiments/support_question_coverage_demo_outputs.csv`, and `experiments/support_question_coverage_expansion_summary.md`.

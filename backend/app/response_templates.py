@@ -5,6 +5,8 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Dict
 
+from .support_knowledge import build_knowledge_response
+
 
 @dataclass
 class ResponseDraft:
@@ -143,6 +145,16 @@ def generate_response_template(route: Dict, language: str = "ko") -> Dict:
     draft = templates.get(response_type, templates["guide_answer"])
     note = notes.get(response_type, notes["guide_answer"])
 
+    inquiry_text = str(route.get("inquiry_text", "") or "").strip()
+    knowledge_response = build_knowledge_response(inquiry_text, selected_language) if inquiry_text else None
+    if knowledge_response:
+        draft = str(knowledge_response["response_draft"])
+        note = str(knowledge_response["internal_note"])
+        if bool(knowledge_response.get("needs_human_review")) and not needs_human:
+            if selected_language == "en":
+                note = f"{note} Human review tone is recommended for this subtopic."
+            else:
+                note = f"{note} 이 subtopic은 human review tone을 권장합니다."
     if needs_human:
         draft = f"{draft}{_human_review_suffix(urgency, selected_language)}"
         if selected_language == "en":

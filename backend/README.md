@@ -1,4 +1,4 @@
-﻿# Backend (플레이스홀더)
+# Backend (플레이스홀더)
 
 설명:
 이 폴더는 분류기, 검색 인덱스 연동, 응답 생성 파이프라인을 제공하는 백엔드 구성요소를 포함할 예정입니다. 초기 단계에서는 구조와 예정된 컴포넌트를 문서로 정리합니다.
@@ -247,3 +247,19 @@ For v0.22.0, production deployment hardening is documented without changing the 
 - Close direct EC2 access to ports 5173 and 8000 after the reverse proxy is verified.
 
 See `docs/production_deployment_hardening.md` and `docs/nginx_systemd_deployment.md`.
+
+## v0.26.0 Support Question Coverage Expansion
+
+`backend/app/support_knowledge.py` adds a deterministic support knowledge layer for common gameplay questions. It detects specific subtopics such as wizard elements, legendary wizards, fusion, resonance, tower floors, PC controls, fullscreen/resolution issues, reward loss, payment, and refund review cases.
+
+The current system does not call an external LLM API. It remains a rule-based AI support preview tool and LLM/RAG-ready baseline.
+
+Demo output:
+
+- `experiments/support_question_coverage_demo_outputs.csv`
+
+Focused tests:
+
+```powershell
+python -m unittest backend.tests.test_support_knowledge backend.tests.test_support_knowledge_api_integration
+```

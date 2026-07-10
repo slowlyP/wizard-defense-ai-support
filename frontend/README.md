@@ -109,3 +109,9 @@ VITE_API_BASE_URL= npm run build
 ```
 
 When `VITE_API_BASE_URL` is undefined, the frontend defaults to `http://127.0.0.1:8000` for local development. When it is defined as an empty string, API requests are relative, so `/support/preview` is served through the same host that served the frontend.
+
+## v0.26.0 Example Inquiry Chips
+
+Korean and English example chips were expanded to preview richer support coverage without cluttering the UI. The chips now include wizard types, legendary wizards, resonance, fusion, PC placement, and fullscreen/UI display issue examples.
+
+The language toggle remains unchanged. Korean examples are shown in Korean mode, and English examples are shown in English mode.

@@ -159,3 +159,22 @@ Local development may continue to use the Vite dev server on `5173` and FastAPI 
 For v0.22.0 production-style EC2 deployment, build the frontend with `VITE_API_BASE_URL=` and serve `frontend/dist` through Nginx. The browser then calls `/support/preview` on the same origin, and Nginx proxies the request to FastAPI on `127.0.0.1:8000`.
 
 This keeps the existing local CORS allowlist narrow and avoids opening wildcard CORS for the portfolio preview.
+
+## v0.26.0 Support Question Examples
+
+The local API can be used to preview richer deterministic support answers:
+
+```powershell
+$body = @{
+    text = "What wizard types are available?"
+    language = "en"
+} | ConvertTo-Json
+
+Invoke-RestMethod `
+    -Method Post `
+    -Uri "http://127.0.0.1:8000/support/preview" `
+    -ContentType "application/json; charset=utf-8" `
+    -Body $body
+```
+
+The current system does not use an external LLM API. It is a rule-based deterministic baseline for future LLM/RAG extension.
