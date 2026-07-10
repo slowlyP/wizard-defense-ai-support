@@ -76,3 +76,18 @@ See:
 - `deploy/systemd/wizard-defense-support-api.service.example`
 
 The frontend can still default to `http://127.0.0.1:8000` when `VITE_API_BASE_URL` is not defined for local development. For production same-origin builds, set `VITE_API_BASE_URL=` so browser requests use relative paths through Nginx.
+
+## v0.23.0 Production Deployment Verification
+
+v0.23.0 documents the actual EC2 production-style verification after applying the v0.22.0 Nginx + systemd hardening path.
+
+Verified result summary:
+
+- React production build is served by Nginx on `http://EC2_PUBLIC_IP`.
+- FastAPI runs through systemd on `127.0.0.1:8000`.
+- Nginx reverse proxies `/support/preview`, `/health`, `/docs`, and `/openapi.json`.
+- Browser access works without `:5173`.
+- Inquiry submission works without the previous `5173 -> 8000` CORS preflight issue.
+- Public inbound ports `5173` and `8000` were removed; port `80` remains the browser entry point.
+
+See `docs/production_deployment_verification.md`, `docs/security_group_cleanup_verification.md`, and `experiments/production_deployment_verification_summary.md`.

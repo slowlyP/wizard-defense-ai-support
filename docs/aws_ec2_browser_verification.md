@@ -124,3 +124,17 @@ Browser가 page icon을 찾기 위해 `/favicon.ico`를 자동으로 request할 
 - 운영 공개 전에는 authentication, HTTPS, reverse proxy가 필요합니다.
 - Swagger UI는 endpoint 실행 기능을 제공하므로 production에서는 공개 범위를 별도로 통제해야 합니다.
 - API key, AWS credential, private key, `.pem` file을 request나 문서에 포함하지 않습니다.
+
+## 13. v0.23.0 Production-style Browser Verification
+
+v0.23.0에서는 기존 `:8000` direct browser verification 대신 Nginx reverse proxy 기반 production-style browser verification을 완료했습니다.
+
+검증된 browser URL은 다음과 같습니다.
+
+```text
+http://EC2_PUBLIC_IP
+http://EC2_PUBLIC_IP/health
+http://EC2_PUBLIC_IP/docs
+```
+
+React UI는 `:5173` 없이 port 80에서 열렸고, inquiry submission은 same-origin `/support/preview` 요청으로 동작했습니다. 이전 `5173 -> 8000` CORS preflight issue는 production-style 구조에서 재현되지 않았습니다. 실제 public IP는 문서에 기록하지 않고 `EC2_PUBLIC_IP` placeholder만 사용합니다.
