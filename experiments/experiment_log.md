@@ -192,3 +192,31 @@
 - API 호환성: `POST /support/preview`와 response field 8개를 유지하며 `language` 생략 시 `ko`를 적용합니다. Allowed value는 `ko`, `en`입니다.
 - 결과: Title, form, example, loading/error, result label, enum friendly label, portfolio note를 선택 언어로 전환하고 English bug/balance safety response를 추가했습니다.
 - 참고: Support router category/urgency/`needs_human` behavior, dataset v1/v2, 기존 experiment CSV, Unity game files를 변경하지 않았습니다. 외부 translation API, LLM API, Steamworks, account/payment/ticket integration을 사용하지 않았습니다.
+
+## EXP-020 Production Deployment Hardening (v0.22.0-production-deployment-hardening)
+
+Purpose: Prepare a production-style EC2 deployment path for the React + FastAPI support preview tool.
+
+Changes:
+
+- Added same-origin frontend API base handling for production builds with `VITE_API_BASE_URL=`.
+- Added Nginx static hosting and reverse proxy example config.
+- Added systemd FastAPI service example.
+- Added production hardening documentation and deployment troubleshooting notes.
+
+Validation plan:
+
+- `python -m unittest discover backend/tests`
+- `python backend/scripts/run_api_smoke_test.py`
+- `python -m py_compile backend/app/api.py`
+- `python -m py_compile backend/app/api_schemas.py`
+- `python -m py_compile backend/app/response_templates.py`
+- `npm install`
+- `npm run build`
+- `git diff --check`
+
+Notes:
+
+- No Unity repository files are modified.
+- No support router behavior, response template behavior, endpoint path, response field name, or dataset file is intentionally changed.
+- No HTTPS, domain, auth, real data, Steamworks, payment, account recovery, or external helpdesk integration is added.

@@ -236,3 +236,14 @@ Support preview language option:
 - Allowed value: `ko`, `en`
 - Default: `ko`
 - `language`는 `response_draft`와 `internal_note` 언어만 선택하며 router category, urgency, `needs_human` behavior를 변경하지 않습니다.
+
+## Production-style Nginx + systemd Deployment
+
+For v0.22.0, production deployment hardening is documented without changing the FastAPI endpoint paths, response schema, support router, or response templates.
+
+- Run FastAPI behind systemd on `127.0.0.1:8000`.
+- Serve the React production build from Nginx on port 80.
+- Reverse proxy `/support/preview`, `/health`, `/docs`, and `/openapi.json` to FastAPI.
+- Close direct EC2 access to ports 5173 and 8000 after the reverse proxy is verified.
+
+See `docs/production_deployment_hardening.md` and `docs/nginx_systemd_deployment.md`.
