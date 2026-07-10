@@ -253,3 +253,11 @@ Notes:
 - 구성: `backend/app/support_knowledge.py`, `backend/tests/test_support_knowledge.py`, `backend/tests/test_support_knowledge_api_integration.py`, `experiments/support_question_coverage_demo_outputs.csv`, `experiments/support_question_coverage_expansion_summary.md`
 - 결과: wizard elements, legendary wizards, individual legendary wizard, fusion, resonance, tower, boss, PC controls, fullscreen/resolution, reward loss, payment/refund safe review 질문에 대한 한국어/영어 deterministic response draft를 보강했습니다.
 - 참고: 외부 API, LLM API, API key, authentication, database, Steamworks, payment/refund/account/helpdesk integration은 추가하지 않았습니다. Dataset v1/v2와 기존 experiment CSV는 덮어쓰지 않았고 Unity game repository는 수정하지 않았습니다.
+
+## EXP-025 LLM/RAG Readiness Plan (v0.27.0-llm-rag-readiness-plan)
+
+- 날짜: 2026-07-11
+- 목적: 외부 LLM API를 사용하지 않는 현재 rule-based deterministic baseline을 기준으로 future retrieval-only 및 optional LLM/RAG 확장 계획을 문서화
+- 구성: `docs/llm_rag_readiness_plan.md`, `docs/rag_knowledge_base_design.md`, `docs/prompt_and_guardrail_design.md`, `docs/llm_rag_evaluation_plan.md`, `docs/baseline_vs_llm_rag_comparison.md`, `docs/support_knowledge_base_seed.md`, `experiments/llm_rag_readiness_plan_summary.md`
+- 결과: proposed hybrid architecture, knowledge source/chunk/metadata, bilingual prompt, refund/compensation/PII/injection guardrail, deterministic fallback, baseline comparison metrics와 phased implementation plan을 정리했습니다.
+- 참고: 이 실험은 planning/documentation only입니다. LLM/RAG, 외부 API, API key, embedding/vector DB dependency, authentication, database, Steamworks, payment/account/helpdesk integration을 구현하지 않았습니다. API 계약, backend/frontend 동작, dataset v1/v2, 기존 experiment CSV와 Unity game repository는 변경하지 않았습니다.
