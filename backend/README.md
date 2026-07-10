@@ -220,3 +220,12 @@ AWS EC2 수동 배포 문서:
 - `/health`, `/docs`, `/support/preview` browser 확인과 오류 설명: [AWS EC2 Browser 검증 가이드](../docs/aws_ec2_browser_verification.md)
 
 Reusable document에서는 실제 public IP 대신 `EC2_PUBLIC_IP` placeholder를 사용하며 `.pem` file이나 AWS credential을 repository에 추가하지 않습니다.
+
+React frontend local integration:
+
+- Frontend: `http://127.0.0.1:5173`
+- Backend: `http://127.0.0.1:8000`
+- API: `POST /support/preview`
+- 실행 문서: [React 고객지원 미리보기](../frontend/README.md)
+
+Vite local development를 위해 `backend/app/api.py`는 `http://localhost:5173`과 `http://127.0.0.1:5173`만 CORS origin으로 허용합니다. 기존 endpoint path와 response schema는 변경하지 않습니다.

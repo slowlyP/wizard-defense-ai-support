@@ -126,3 +126,12 @@ python -m pip --version
 - 외부 service를 호출하지 않습니다.
 - API key가 필요하지 않습니다.
 - LLM API 또는 실제 helpdesk integration을 사용하지 않습니다.
+
+## 10. React frontend 연동
+
+React dev server는 `http://127.0.0.1:5173`에서 실행하며 `POST /support/preview`를 호출합니다. Backend는 local development를 위해 다음 origin만 CORS allowlist에 포함합니다.
+
+- `http://localhost:5173`
+- `http://127.0.0.1:5173`
+
+실행 방법은 [React 고객지원 미리보기 문서](../frontend/README.md)를 확인합니다. `/docs`는 developer API documentation으로 유지되며 한국어 user-facing 경험은 React frontend가 담당합니다.
