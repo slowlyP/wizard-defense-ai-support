@@ -30,6 +30,18 @@
 - v0.17.0에서는 batch preview 결과의 category accuracy, human-review, urgency, response type, mismatch 분석 보고서를 추가했습니다.
 - v0.18.0에서는 FastAPI prototype의 AWS EC2 수동 배포와 browser verification 절차를 한국어 문서로 정리했습니다.
 - v0.19.0에서는 support response wording을 PC mouse play, Windows build, Steam demo 방향에 맞게 정렬했습니다.
+- v0.20.0에서는 한국어 Vite + React 고객지원 미리보기 화면과 local development CORS allowlist를 추가했습니다.
+
+React frontend 로컬 실행:
+
+```powershell
+python -m uvicorn backend.app.api:app --reload
+Set-Location frontend
+npm install
+npm run dev
+```
+
+PowerShell execution policy가 `npm.ps1`을 차단하면 `npm.cmd`를 사용합니다. Frontend 기본 주소는 `http://127.0.0.1:5173`, backend 기본 주소는 `http://127.0.0.1:8000`입니다. 자세한 내용은 [frontend 실행 문서](frontend/README.md)를 확인하세요.
 
 빠른 시작:
 1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.

@@ -174,3 +174,12 @@
 - 출력: `experiments/steam_response_template_demo_outputs.csv`, `experiments/steam_response_alignment_summary.md`
 - 결과: 7개 category별 response를 생성했고 `gameplay_guide`의 mouse drag 안내, bug triage의 Windows/Steam demo build와 PC resolution 확인, balance feedback의 Steam demo/PC playtest 검토 문구를 반영했습니다.
 - 참고: Router category/urgency/`needs_human` behavior와 FastAPI endpoint/field contract는 변경하지 않았습니다. Dataset v1/v2, 기존 experiment CSV, Unity game files를 변경하지 않았고 외부 API와 LLM API를 사용하지 않았습니다.
+
+## EXP-018 React Support Preview Frontend (v0.20.0-react-support-preview-frontend)
+
+- 날짜: 2026-07-10
+- 목적: FastAPI Swagger `/docs`를 대신하는 한국어 user-facing support preview browser UI 제공
+- 구성: Vite + React, entry `frontend/src/main.jsx`, UI `frontend/src/App.jsx`, style `frontend/src/styles.css`, API `POST /support/preview`
+- 결과: Korean inquiry form, 4개 example chip, loading/error state, Korean-labeled result card와 original enum display를 구현했습니다. CSS-only dark purple/navy, gold, rune, magic book, tower motif를 적용했습니다.
+- Backend 변경: Vite local dev를 위해 `backend/app/api.py`에 `http://localhost:5173`, `http://127.0.0.1:5173`만 허용하는 minimal CORS middleware를 추가했습니다. Endpoint와 response schema는 변경하지 않았습니다.
+- 참고: Router, response template, API schema, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 외부 API, LLM API, Steamworks, authentication, payment, account recovery, helpdesk integration을 추가하지 않았습니다.
