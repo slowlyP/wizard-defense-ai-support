@@ -122,3 +122,12 @@
 - Results: `python -m unittest discover backend/tests` 기준 13개 테스트가 통과했습니다.
 - Coverage: category별 `suggested_response_type`, `needs_human=true` 처리, `bug_triage`와 `balance_feedback_ack`의 안전 문구 제한, router -> template integration output field를 확인합니다.
 - Notes: dataset v1, dataset v2, 기존 baseline CSV, router/template demo CSV, category label, support router behavior, response template behavior, frontend, Unity game files는 변경하지 않았습니다. 외부 API와 LLM API를 사용하지 않았습니다.
+
+## EXP-012 FastAPI Local Prototype (v0.14.0-fastapi-local-prototype)
+
+- 날짜: 2026-07-10
+- 목적: 기존 support router와 response template generator를 local FastAPI endpoint로 연결하고 portfolio에서 재현 가능한 preview flow를 제공
+- 구성: API `backend/app/api.py`, schema `backend/app/api_schemas.py`, in-process smoke test `backend/scripts/run_api_smoke_test.py`, unittest `backend/tests/test_api_local.py`
+- 출력: `experiments/api_local_smoke_test_outputs.csv`, `experiments/api_local_summary.md`
+- 결과: `GET /health`와 `POST /support/preview`를 구현하고 7개 category 대표 한국어 문의를 local in-process client로 검증했습니다. Bug 및 balance 사례는 기존 router 정책에 따라 `needs_human=true`를 유지합니다.
+- 참고: support router와 response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았습니다. 외부 API, LLM API, 실제 helpdesk integration을 사용하지 않습니다.
