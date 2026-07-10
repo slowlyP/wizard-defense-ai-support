@@ -245,3 +245,11 @@ Notes:
 - 구성: `docs/security_and_access_control_plan.md`, `docs/privacy_and_logging_guidelines.md`, `docs/production_security_checklist.md`, `experiments/security_access_control_plan_summary.md`
 - 결과: HTTPS/domain/auth/database/ticket storage/Steamworks 미구현 상태를 명확히 기록하고, public demo mode와 future admin/internal mode, `/support/preview` abuse prevention, `/docs` 공개 범위, secret management, privacy/logging checklist를 정리했습니다.
 - 참고: HTTPS, authentication, authorization, database, user account, Steamworks, payment, account recovery, helpdesk integration은 구현하지 않았습니다. API endpoint path, response field name, support router behavior, response template behavior, dataset v1/v2, 기존 experiment CSV, Unity game files도 변경하지 않았습니다. 실제 EC2 public IP, AWS account ID, `.pem` path, private key, AWS credential은 기록하지 않았습니다.
+
+## EXP-024 Support Question Coverage Expansion (v0.26.0-support-question-coverage-expansion)
+
+- 날짜: 2026-07-11
+- 목적: common player question에 대한 deterministic support response coverage를 확장하고, 현재 시스템이 외부 LLM API를 사용하지 않는 rule-based baseline임을 명확히 정리
+- 구성: `backend/app/support_knowledge.py`, `backend/tests/test_support_knowledge.py`, `backend/tests/test_support_knowledge_api_integration.py`, `experiments/support_question_coverage_demo_outputs.csv`, `experiments/support_question_coverage_expansion_summary.md`
+- 결과: wizard elements, legendary wizards, individual legendary wizard, fusion, resonance, tower, boss, PC controls, fullscreen/resolution, reward loss, payment/refund safe review 질문에 대한 한국어/영어 deterministic response draft를 보강했습니다.
+- 참고: 외부 API, LLM API, API key, authentication, database, Steamworks, payment/refund/account/helpdesk integration은 추가하지 않았습니다. Dataset v1/v2와 기존 experiment CSV는 덮어쓰지 않았고 Unity game repository는 수정하지 않았습니다.
