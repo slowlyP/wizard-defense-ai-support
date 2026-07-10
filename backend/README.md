@@ -167,3 +167,23 @@ API 문서:
 
 - Request/response 계약과 field 설명: [API 계약 문서](../docs/api_contract.md)
 - Local 실행, PowerShell 호출, troubleshooting: [로컬 API 사용 가이드](../docs/local_api_usage.md)
+
+Batch support preview 실행 방법:
+
+```powershell
+python backend/scripts/run_batch_support_preview.py
+```
+
+기본 입력은 `data/raw/wizard_defense_inquiries_v2.csv`이며 결과는 `experiments/batch_support_preview_outputs.csv`에 저장됩니다. `--input`, `--output`, `--limit` argument로 custom local CSV와 처리 수를 지정할 수 있습니다. 빈 문자열 또는 whitespace-only `text` row는 건너뜁니다.
+
+Batch preview test 실행 방법:
+
+```powershell
+python -m unittest backend.tests.test_batch_support_preview
+```
+
+전체 regression test는 다음 명령으로 실행합니다.
+
+```powershell
+python -m unittest discover backend/tests
+```
