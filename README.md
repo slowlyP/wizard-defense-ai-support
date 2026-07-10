@@ -125,6 +125,12 @@ This project currently does not use an external LLM API. It uses deterministic r
 
 이번 프로젝트는 현재 외부 LLM API를 사용하지 않습니다. 규칙 기반 분류, 토픽 감지, 응답 템플릿을 조합해 고객지원 응답 초안을 생성하는 deterministic support assistant입니다. 향후 LLM/RAG 확장을 위한 baseline 역할을 합니다.
 
+## v0.27.0 LLM/RAG Readiness Plan
+
+v0.27.0은 구현 변경 없이 미래 LLM/RAG 확장 경로를 문서화하는 planning milestone입니다. 현재 구현은 외부 LLM API를 사용하지 않는 rule-based AI support preview tool이며 LLM, RAG 또는 generative AI chatbot이 아닙니다.
+
+현재의 deterministic classifier, topic detection, response templates와 safety/human-review routing을 이후 retrieval-only 및 선택적 LLM/RAG 후보와 비교할 baseline으로 유지합니다. 제안 architecture, knowledge base, prompt/guardrail, evaluation 및 hybrid 비교 기준은 `docs/llm_rag_readiness_plan.md`와 관련 문서에 정리되어 있습니다. 실제 LLM API, embedding, vector DB 또는 새 외부 dependency는 추가하지 않았습니다.
+
 Added coverage:
 
 - Wizard elements: Fire, Water, Wind, Stone, Lightning

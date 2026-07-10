@@ -254,6 +254,12 @@ See `docs/production_deployment_hardening.md` and `docs/nginx_systemd_deployment
 
 The current system does not call an external LLM API. It remains a rule-based AI support preview tool and LLM/RAG-ready baseline.
 
+## v0.27.0 LLM/RAG Readiness Plan
+
+This milestone is documentation-only. The backend remains a deterministic classifier + topic detector + response-template pipeline and does not call an external LLM API or implement RAG. Existing endpoint paths, request compatibility, response fields, safety routing, and Korean/English support remain unchanged.
+
+Future retrieval and an optional LLM draft adapter are described in `docs/llm_rag_readiness_plan.md`. The current backend is the measurable fallback and comparison baseline; no model SDK, embedding library, vector database, API key, or external integration is added in this version.
+
 Demo output:
 
 - `experiments/support_question_coverage_demo_outputs.csv`
