@@ -162,3 +162,8 @@ python backend/scripts/run_api_smoke_test.py
 ```powershell
 python -m unittest discover backend/tests
 ```
+
+API 문서:
+
+- Request/response 계약과 field 설명: [API 계약 문서](../docs/api_contract.md)
+- Local 실행, PowerShell 호출, troubleshooting: [로컬 API 사용 가이드](../docs/local_api_usage.md)
