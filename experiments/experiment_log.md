@@ -157,3 +157,11 @@
 - 출력: `experiments/batch_support_analysis_report.md`, `experiments/batch_support_category_summary.csv`, `experiments/batch_support_mismatch_samples.csv`, `experiments/batch_support_analysis_summary.md`
 - 결과: 150개 중 141개 category가 일치해 accuracy 94.00%를 기록했고 mismatch 9개, `needs_human=true` 57개와 7개 predicted category 및 7개 response type 분포를 확인했습니다.
 - 참고: Accuracy는 비어 있지 않은 `expected_category` row만 대상으로 계산합니다. API, router, response template, batch preview behavior, dataset v1/v2, 기존 experiment CSV, Unity game files는 변경하지 않았고 외부 API와 LLM API를 사용하지 않았습니다.
+
+## EXP-016 AWS EC2 Deployment Documentation (v0.18.0-aws-ec2-deployment-docs)
+
+- 날짜: 2026-07-10
+- 목적: FastAPI support preview prototype의 AWS EC2 수동 배포와 browser verification 절차를 portfolio용 한국어 문서로 정리
+- 구성: Deployment guide `docs/aws_ec2_deployment.md`, browser verification `docs/aws_ec2_browser_verification.md`, summary `experiments/aws_ec2_deployment_summary.md`
+- 결과: `Ubuntu Server 24.04 LTS`, `t3.micro`, `My IP` 제한 Security group에서 repository clone, venv, test, Uvicorn 실행과 `GET /health`, `GET /docs`, `POST /support/preview` 검증 절차를 기록했습니다.
+- 참고: 실제 EC2 public IP, AWS account ID, credential, secret, private key, `.pem` file은 기록하지 않았습니다. API, router, response template, dataset, 기존 experiment output, Unity game files는 변경하지 않았고 외부 API와 LLM API를 호출하지 않았습니다.

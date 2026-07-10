@@ -205,3 +205,10 @@ Analysis test는 다음 명령으로 실행합니다.
 ```powershell
 python -m unittest backend.tests.test_batch_support_analysis
 ```
+
+AWS EC2 수동 배포 문서:
+
+- EC2 구성, SSH 접속, venv, test, Uvicorn 실행, 비용 관리: [AWS EC2 수동 배포 가이드](../docs/aws_ec2_deployment.md)
+- `/health`, `/docs`, `/support/preview` browser 확인과 오류 설명: [AWS EC2 Browser 검증 가이드](../docs/aws_ec2_browser_verification.md)
+
+Reusable document에서는 실제 public IP 대신 `EC2_PUBLIC_IP` placeholder를 사용하며 `.pem` file이나 AWS credential을 repository에 추가하지 않습니다.
