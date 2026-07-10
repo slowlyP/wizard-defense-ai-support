@@ -1,9 +1,5 @@
-"""
-Safe Korean response draft templates for support router results.
+"""Deterministic Korean and English response drafts for local support previews."""
 
-This module is a local prototype only. It does not call external APIs and does
-not generate final customer-service decisions such as refunds or compensation.
-"""
 from __future__ import annotations
 
 from dataclasses import asdict, dataclass
@@ -16,7 +12,7 @@ class ResponseDraft:
     internal_note: str
 
 
-BASE_TEMPLATES = {
+KOREAN_TEMPLATES = {
     "guide_answer": (
         "문의해 주셔서 감사합니다. 이 내용은 플레이 방법과 운영 팁에 가까운 문의로 확인됩니다. "
         "PC 환경에서는 마우스로 마법사를 선택해 중앙 전장 안에서 드래그 배치하고, 적 이동 경로에 공격이 자주 닿도록 위치를 조정해 보세요. "
@@ -54,8 +50,45 @@ BASE_TEMPLATES = {
     ),
 }
 
+ENGLISH_TEMPLATES = {
+    "guide_answer": (
+        "Thank you for your inquiry. This looks like a gameplay and strategy question. "
+        "On PC, select and drag wizards with the mouse inside the central battlefield, then adjust placement so attacks reach the enemy path. "
+        "Start with a stable composition and reposition it for each floor and enemy group."
+    ),
+    "acquisition_answer": (
+        "Thank you for your inquiry. This looks like a wizard acquisition, summon, grade, or appearance-rate question. "
+        "Acquisition results follow the summon rules in the current Steam demo or Windows build. "
+        "Please check the in-game guidance in the build you are running for the applicable grade and rate details."
+    ),
+    "growth_answer": (
+        "Thank you for your inquiry. This looks like a wizard growth, level, experience, material, or resonance question. "
+        "Please check the current PC build for the required growth materials, experience, and stage conditions. "
+        "Resonance and growth bonuses are progression systems separate from acquiring a new wizard."
+    ),
+    "tower_progress_answer": (
+        "Thank you for your inquiry. This looks like a floor, unlock, boss, reward, or tower progression question. "
+        "Access to the next floor or stage depends on the progress and unlock conditions in the current Steam demo or Windows build. "
+        "Please check the active floor and its completion state when reviewing boss or reward conditions."
+    ),
+    "skill_combat_answer": (
+        "Thank you for your inquiry. This looks like a skill effect, cooldown, damage, targeting, or combat interaction question. "
+        "Results can vary with the target, range, activation conditions, status effects, and current PC build. "
+        "If a skill behaves differently than expected, note the wizard, target, floor or stage, and combat situation."
+    ),
+    "bug_triage": (
+        "Thank you for the report. This may be a gameplay error or progression issue and needs review. "
+        "Please provide reproduction steps, the floor or stage, wizard composition, an error screenshot, and the Windows or Steam demo build used. "
+        "For display issues, also include the PC resolution and fullscreen or windowed state."
+    ),
+    "balance_feedback_ack": (
+        "Thank you for the feedback. This looks like a balance comment about cost, rates, efficiency, or composition strength. "
+        "We can record it as reference for Steam demo and PC playtest balance review. "
+        "No balance change or release timing is confirmed by this preview."
+    ),
+}
 
-TYPE_NOTES = {
+KOREAN_NOTES = {
     "guide_answer": "자동 안내 가능: PC 마우스 플레이와 운영 팁 중심의 문의입니다.",
     "acquisition_answer": "자동 안내 가능: 현재 PC build의 마법사 획득 규칙 문의입니다.",
     "growth_answer": "자동 안내 가능: PC build의 성장, 경험치, 레조넌스 안내 문의입니다.",
@@ -65,8 +98,29 @@ TYPE_NOTES = {
     "balance_feedback_ack": "사람 검토 필요: Steam demo/PC playtest 밸런스 참고 의견입니다.",
 }
 
+ENGLISH_NOTES = {
+    "guide_answer": "Automatic guidance is suitable: PC mouse gameplay and strategy question.",
+    "acquisition_answer": "Automatic guidance is suitable: wizard acquisition rules in the current PC build.",
+    "growth_answer": "Automatic guidance is suitable: growth, experience, or resonance in the PC build.",
+    "tower_progress_answer": "Automatic guidance is suitable: floor or stage progression in the PC build.",
+    "skill_combat_answer": "Automatic guidance is suitable: skill or combat rules in the PC build.",
+    "bug_triage": "Human review is required: Windows or Steam demo reproduction details are needed.",
+    "balance_feedback_ack": "Human review is required: reference for Steam demo and PC playtest balance review.",
+}
 
-def _human_review_suffix(urgency: str) -> str:
+# Backward-compatible names used by existing tests and local modules.
+BASE_TEMPLATES = KOREAN_TEMPLATES
+TYPE_NOTES = KOREAN_NOTES
+
+
+def _human_review_suffix(urgency: str, language: str) -> str:
+    if language == "en":
+        if urgency == "high":
+            return (
+                " This case needs priority review; detailed reproduction steps and the time of occurrence will help the investigation."
+            )
+        return " This inquiry may need staff review, and additional details may be requested."
+
     if urgency == "high":
         return (
             " 현재 문의는 우선 확인이 필요한 사례로 분류되었으므로, 재현 단계와 발생 시점을 최대한 구체적으로 남겨 주시면 검토에 도움이 됩니다."
@@ -74,26 +128,38 @@ def _human_review_suffix(urgency: str) -> str:
     return " 이 문의는 담당 검토가 필요할 수 있으며, 확인 과정에서 추가 정보 요청이 있을 수 있습니다."
 
 
-def generate_response_template(route: Dict) -> Dict:
-    """Create a safe Korean response draft from support router output fields."""
+def generate_response_template(route: Dict, language: str = "ko") -> Dict:
+    """Create a deterministic Korean or English draft from support routing fields."""
+    selected_language = "en" if language == "en" else "ko"
+    templates = ENGLISH_TEMPLATES if selected_language == "en" else KOREAN_TEMPLATES
+    notes = ENGLISH_NOTES if selected_language == "en" else KOREAN_NOTES
+
     response_type = route.get("suggested_response_type", "guide_answer")
     urgency = route.get("urgency", "low")
     needs_human = bool(route.get("needs_human", False))
     category = route.get("predicted_category", "unknown")
     routing_reason = route.get("routing_reason", "")
 
-    draft = BASE_TEMPLATES.get(response_type, BASE_TEMPLATES["guide_answer"])
-    note = TYPE_NOTES.get(response_type, TYPE_NOTES["guide_answer"])
+    draft = templates.get(response_type, templates["guide_answer"])
+    note = notes.get(response_type, notes["guide_answer"])
 
     if needs_human:
-        draft = f"{draft}{_human_review_suffix(urgency)}"
-        note = f"{note} Router reason: {routing_reason}"
+        draft = f"{draft}{_human_review_suffix(urgency, selected_language)}"
+        if selected_language == "en":
+            note = f"{note} predicted_category={category}, urgency={urgency}."
+        else:
+            note = f"{note} Router reason: {routing_reason}"
     else:
         note = f"{note} predicted_category={category}, urgency={urgency}."
 
-    if urgency == "high" and "재현" not in draft:
-        draft = (
-            f"{draft} 문제 확인을 위해 재현 순서, 발생한 층, 사용한 마법사, 발생 시점을 함께 알려주세요."
-        )
+    if urgency == "high":
+        if selected_language == "en" and "reproduction" not in draft.lower():
+            draft = (
+                f"{draft} Please include the reproduction sequence, floor, wizard composition, and occurrence time."
+            )
+        elif selected_language == "ko" and "재현" not in draft:
+            draft = (
+                f"{draft} 문제 확인을 위해 재현 순서, 발생한 층, 사용한 마법사, 발생 시점을 함께 알려주세요."
+            )
 
     return asdict(ResponseDraft(response_draft=draft, internal_note=note))

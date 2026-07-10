@@ -1,12 +1,18 @@
 """Pydantic schemas for the local support preview API."""
 
+from typing import Literal
+
 from pydantic import BaseModel, Field
 
 
 class SupportPreviewRequest(BaseModel):
     """One player inquiry submitted for a deterministic local preview."""
 
-    text: str = Field(..., min_length=1, description="Korean player inquiry text")
+    text: str = Field(..., min_length=1, description="Player inquiry text")
+    language: Literal["ko", "en"] = Field(
+        default="ko",
+        description="Response draft language",
+    )
 
 
 class SupportPreviewResponse(BaseModel):

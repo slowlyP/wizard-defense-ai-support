@@ -6,6 +6,16 @@ FastAPI의 `POST /support/preview`를 한국어 browser UI에서 사용하는 Vi
 
 이 화면은 portfolio preview이며 실제 고객지원, Steam login, 인증, 결제, 계정 복구 또는 support ticket 접수 기능이 아닙니다.
 
+## 언어 선택
+
+- 화면 상단에서 `한국어` 또는 `English`를 선택합니다.
+- Default는 `한국어`입니다.
+- 선택 언어는 browser `localStorage`에 저장되어 다음 방문에도 유지됩니다.
+- UI 전체와 `response_draft`, `internal_note`가 선택 언어로 표시됩니다.
+- Frontend는 request body에 `language: "ko"` 또는 `language: "en"`을 포함합니다.
+- Original category, urgency, response type enum은 localized label 아래에 그대로 표시합니다.
+- 현재 classifier는 Korean-first rule이므로 English inquiry category coverage에는 제한이 있습니다.
+
 ## 사전 조건
 
 - Repository root: `C:\UnityProjects\wizard-defense-ai-support`

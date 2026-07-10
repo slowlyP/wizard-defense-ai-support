@@ -61,6 +61,57 @@ class LocalApiTests(unittest.TestCase):
         self.assertTrue(result["needs_human"])
         self.assertEqual(result["suggested_response_type"], "balance_feedback_ack")
 
+    def test_omitted_language_keeps_korean_default(self):
+        response = self.client.post(
+            "/support/preview",
+            json={"text": "게임이 전투 중 멈춰서 진행이 안 됩니다."},
+        )
+        self.assertEqual(response.status_code, 200)
+        result = response.json()
+        self.assertRegex(result["response_draft"], r"[가-힣]")
+        self.assertRegex(result["internal_note"], r"[가-힣]")
+        self.assertEqual(set(result), REQUIRED_FIELDS)
+
+    def test_explicit_korean_language_returns_korean(self):
+        response = self.client.post(
+            "/support/preview",
+            json={"text": "게임이 전투 중 멈춰서 진행이 안 됩니다.", "language": "ko"},
+        )
+        self.assertEqual(response.status_code, 200)
+        self.assertRegex(response.json()["response_draft"], r"[가-힣]")
+
+    def test_english_language_returns_english_with_same_route(self):
+        text = "게임이 전투 중 멈춰서 진행이 안 됩니다."
+        korean = self.client.post(
+            "/support/preview",
+            json={"text": text, "language": "ko"},
+        ).json()
+        response = self.client.post(
+            "/support/preview",
+            json={"text": text, "language": "en"},
+        )
+        self.assertEqual(response.status_code, 200)
+        english = response.json()
+        self.assertNotRegex(english["response_draft"], r"[가-힣]")
+        self.assertNotRegex(english["internal_note"], r"[가-힣]")
+        self.assertEqual(set(english), REQUIRED_FIELDS)
+        for field in [
+            "predicted_category",
+            "urgency",
+            "needs_human",
+            "suggested_response_type",
+            "routing_reason",
+        ]:
+            with self.subTest(field=field):
+                self.assertEqual(english[field], korean[field])
+
+    def test_invalid_language_returns_validation_error(self):
+        response = self.client.post(
+            "/support/preview",
+            json={"text": "다음 층은 언제 열리나요?", "language": "jp"},
+        )
+        self.assertEqual(response.status_code, 422)
+
 
 if __name__ == "__main__":
     unittest.main()
