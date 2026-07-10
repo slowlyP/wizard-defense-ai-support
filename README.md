@@ -24,6 +24,7 @@
 - v0.11.0에서는 improved rule classifier를 사용한 로컬 support router prototype을 추가했으며, `backend/scripts/run_support_router_demo.py`로 demo CSV와 summary를 생성할 수 있습니다.
 - v0.12.0에서는 support router output을 한국어 response draft template으로 변환하는 로컬 prototype을 추가했습니다.
 - v0.13.0에서는 support router와 response template의 local regression test suite를 추가했습니다.
+- v0.14.0에서는 두 모듈을 외부 서비스 없이 연결하는 FastAPI local prototype과 in-process smoke test를 추가했습니다.
 
 빠른 시작:
 1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.

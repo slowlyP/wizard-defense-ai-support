@@ -133,3 +133,32 @@ python backend/scripts/run_local_tests.py
 ```
 
 3. 테스트 요약은 `experiments/router_test_summary.md`에 기록되어 있습니다.
+
+FastAPI local prototype 실행 방법:
+1. 리포지토리 루트에서 dependency를 설치합니다:
+
+```powershell
+pip install -r requirements.txt
+```
+
+2. 다음 명령으로 local API server를 실행합니다:
+
+```powershell
+python -m uvicorn backend.app.api:app --reload
+```
+
+3. `GET /health`는 local API 상태를 확인하고, `POST /support/preview`는 `{"text": "문의 내용"}` 형식의 JSON을 기존 support router와 response template에 전달합니다. 이 prototype은 외부 API와 LLM API를 호출하지 않습니다.
+
+FastAPI smoke test 실행 방법:
+
+```powershell
+python backend/scripts/run_api_smoke_test.py
+```
+
+이 smoke test는 server port를 열지 않고 in-process client로 `/health`와 7개 category의 `/support/preview` 사례를 확인합니다. 결과는 `experiments/api_local_smoke_test_outputs.csv`에 저장됩니다.
+
+전체 unittest 실행 방법:
+
+```powershell
+python -m unittest discover backend/tests
+```
