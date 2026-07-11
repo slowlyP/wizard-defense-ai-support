@@ -2,7 +2,16 @@
 
 ## 1. 목적
 
-향후 RAG가 사용할 수 있는 지식의 범위, chunk, metadata와 검색 원칙을 정의한다. 현재 시스템에는 RAG, embedding 또는 vector store가 구현되어 있지 않다.
+향후 RAG가 사용할 수 있는 지식의 범위, chunk, metadata와 검색 원칙을 정의한다. v0.28.0에는 작은 in-code knowledge base와 deterministic retrieval baseline이 구현되었지만 embedding, vector store 또는 LLM generation은 구현되어 있지 않다.
+
+## v0.28.0 구현 범위
+
+- `backend/app/rag_knowledge_base.py`: 한국어/영어 chunk와 필수 metadata
+- `backend/app/rag_retriever.py`: token/keyword/topic 점수, language 우선순위, chunk ID 기반 stable ordering
+- `retrieve_support_chunks(text, language="ko", top_k=3)`: positive-score 결과만 반환하며 unrelated query는 빈 list로 안전하게 종료
+- `/support/preview`: 기존 response schema를 유지하면서 `internal_note`에 검색 chunk ID를 기록하고 sensitive metadata로 human review를 강화
+
+이 구현은 retrieval-only baseline이며 local chunk를 prompt에 넣거나 생성 모델을 호출하지 않는다.
 
 ## 2. RAG에 사용할 수 있는 지식 소스 후보
 
@@ -78,7 +87,7 @@ content: "환불 가능 여부를 확정하지 않는다. 플랫폼, 시각, 주
 
 ## 9. 향후 vector store 선택지
 
-검토 후보는 로컬 in-memory/파일 기반 index, PostgreSQL 확장, 관리형 vector store 등이다. 데이터 규모, 한국어 검색 품질, metadata filter, 삭제·갱신, 백업, 지역·보안 요구, 비용과 운영 복잡도를 비교한다. 이 버전에서는 제품이나 dependency를 선정·설치하지 않는다.
+현재 baseline은 Python tuple을 순회하는 local in-memory 검색이다. 향후 비교 후보는 파일 기반 index, PostgreSQL 확장, 관리형 vector store 등이다. 데이터 규모, 한국어 검색 품질, metadata filter, 삭제·갱신, 백업, 지역·보안 요구, 비용과 운영 복잡도를 비교한다. v0.28.0에서는 vector 제품이나 dependency를 선정·설치하지 않는다.
 
 ## 10. 한계
 

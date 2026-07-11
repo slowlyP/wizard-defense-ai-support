@@ -4,6 +4,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 
 from .api_schemas import SupportPreviewRequest, SupportPreviewResponse
+from .rag_retriever import retrieve_support_chunks
 from .response_templates import generate_response_template
 from .support_router import route_inquiry
 
@@ -39,5 +40,8 @@ def support_preview(payload: SupportPreviewRequest) -> SupportPreviewResponse:
 
     # Existing modules remain the single source of routing and template behavior.
     route = route_inquiry(text)
+    retrieval_results = retrieve_support_chunks(text, payload.language, top_k=3)
+    if any(result.chunk.requires_human_review for result in retrieval_results):
+        route["needs_human"] = True
     template = generate_response_template({**route, "inquiry_text": text}, language=payload.language)
     return SupportPreviewResponse(text=text, **route, **template)

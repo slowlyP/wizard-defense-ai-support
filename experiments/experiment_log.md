@@ -261,3 +261,12 @@ Notes:
 - 구성: `docs/llm_rag_readiness_plan.md`, `docs/rag_knowledge_base_design.md`, `docs/prompt_and_guardrail_design.md`, `docs/llm_rag_evaluation_plan.md`, `docs/baseline_vs_llm_rag_comparison.md`, `docs/support_knowledge_base_seed.md`, `experiments/llm_rag_readiness_plan_summary.md`
 - 결과: proposed hybrid architecture, knowledge source/chunk/metadata, bilingual prompt, refund/compensation/PII/injection guardrail, deterministic fallback, baseline comparison metrics와 phased implementation plan을 정리했습니다.
 - 참고: 이 실험은 planning/documentation only입니다. LLM/RAG, 외부 API, API key, embedding/vector DB dependency, authentication, database, Steamworks, payment/account/helpdesk integration을 구현하지 않았습니다. API 계약, backend/frontend 동작, dataset v1/v2, 기존 experiment CSV와 Unity game repository는 변경하지 않았습니다.
+
+## EXP-026 RAG Retrieval Baseline Prototype (v0.28.0-rag-retrieval-baseline-prototype)
+
+- 날짜: 2026-07-11
+- 목적: 향후 RAG 평가를 위해 외부 LLM API, embedding, vector DB 없이 동작하는 bilingual deterministic retrieval baseline 구현
+- 구성: `backend/app/rag_knowledge_base.py`, `backend/app/rag_retriever.py`, response-template/API integration, retrieval unittest, `backend/scripts/run_rag_retrieval_demo.py`
+- 출력: `experiments/rag_retrieval_baseline_demo_outputs.csv`, `experiments/rag_retrieval_baseline_summary.md`
+- 결과: wizard/legendary/fusion/resonance/tower/PC/display/safety topic의 local structured chunk를 token, keyword, topic 점수로 검색하고 stable `top_k` ordering을 제공합니다. Sensitive reward/payment/refund chunk는 `requires_human_review=true`로 기존 API routing을 강화합니다.
+- 참고: 외부 API, LLM API, API key, embedding/vector DB 또는 새 dependency를 추가하지 않았습니다. 기존 endpoint와 response field, dataset v1/v2, 이전 experiment CSV와 Unity repository는 변경하지 않았습니다.

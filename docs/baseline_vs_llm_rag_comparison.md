@@ -24,10 +24,10 @@
 
 | 항목 | Current deterministic baseline | Future retrieval-only | Future LLM/RAG |
 |---|---|---|---|
-| 현재 구현 | 구현됨 | 미구현 | 미구현 |
+| 현재 구현 | 구현됨 | v0.28.0 deterministic baseline 구현 | 미구현 |
 | 재현성 | 높음 | 높음 | 설정에 따라 변동 |
 | 자연스러운 표현 | 제한적 | template 수준 | 높아질 가능성 |
-| 근거 범위 | 등록 rule/topic | 검색 문서 | 검색 문서 + 생성 |
+| 근거 범위 | 등록 rule/topic | local structured chunk | 검색 문서 + 생성 |
 | 환각 위험 | 낮음 | 낮음~중간 | 중간~높음 |
 | 비용/latency | 낮음 | index에 따라 증가 | API/model에 따라 증가 |
 | 안전 통제 | 명시적 rule | filter + rule | 다층 guardrail 필요 |
@@ -36,6 +36,8 @@
 ## 7. 두 방식이 모두 유용한 이유
 
 Baseline은 안전 정책과 측정 가능한 하한을 제공한다. Retrieval/LLM은 표현과 지식 범위를 넓힐 후보이다. LLM이 항상 baseline을 대체하는 것이 아니라, 신뢰 가능한 경우에만 초안 품질을 보강하고 실패 시 baseline으로 돌아가는 구조가 운영상 유용하다.
+
+v0.28.0 retrieval baseline은 이 중 검색 단계만 독립적으로 검증한다. 검색 결과는 player-facing generation이 아니라 `internal_note`의 근거와 safety routing 보강에 사용되며, LLM을 사용하지 않는다.
 
 ## 8. 권장 hybrid architecture
 
