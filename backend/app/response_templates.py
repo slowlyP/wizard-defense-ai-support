@@ -5,6 +5,7 @@ from __future__ import annotations
 from dataclasses import asdict, dataclass
 from typing import Dict
 
+from .rag_retriever import retrieve_support_chunks
 from .support_knowledge import build_knowledge_response
 
 
@@ -155,6 +156,19 @@ def generate_response_template(route: Dict, language: str = "ko") -> Dict:
                 note = f"{note} Human review tone is recommended for this subtopic."
             else:
                 note = f"{note} 이 subtopic은 human review tone을 권장합니다."
+
+    retrieval_results = retrieve_support_chunks(inquiry_text, selected_language, top_k=3) if inquiry_text else []
+    if retrieval_results:
+        chunk_ids = ", ".join(result.chunk.id for result in retrieval_results)
+        requires_review = any(result.chunk.requires_human_review for result in retrieval_results)
+        if selected_language == "en":
+            note = f"{note} Retrieval chunks: {chunk_ids}."
+            if requires_review:
+                note = f"{note} Retrieved safety metadata recommends human review."
+        else:
+            note = f"{note} Retrieval chunks: {chunk_ids}."
+            if requires_review:
+                note = f"{note} 검색된 safety metadata는 human review를 권장합니다."
     if needs_human:
         draft = f"{draft}{_human_review_suffix(urgency, selected_language)}"
         if selected_language == "en":
