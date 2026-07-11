@@ -1,154 +1,227 @@
-# Wizard Defense AI Support
+# Wizard Defense AI Support Preview
 
-설명:
-이 저장소는 Unity 게임 "Random Wizard Defense"를 위한 AI 지원 시스템의 초기 구조입니다. 이 프로젝트는 인턴십용 포트폴리오로 활용하기 적합하도록 의도 분류, 문서 검색, 근거 기반 응답 설계를 중심으로 한 스캐폴딩을 제공합니다.
+> Random Wizard Defense의 플레이어 문의를 분류하고, 로컬 지식과 안전 정책을 바탕으로 한국어/영어 지원 응답 초안을 보여주는 rule-based AI support preview tool입니다.
 
-프로젝트 목표:
-- 플레이어 문의를 자동 분류하고 관련 게임 문서에서 근거를 찾아 응답을 생성할 수 있는 시스템을 구축하는 것.
-- 데이터셋 설계, 라벨링 가이드, 문서 기반 검색 파이프라인 설계 등 AI 엔지니어링 역량을 보여주기 위한 자료 제공.
+## 1분 포트폴리오 요약
 
-구성 요약:
-- `frontend/`: 사용자 채팅 UI와 대시보드를 위한 공간(초기에는 README만 포함).
-- `backend/`: 분류기·검색·응답 파이프라인을 둘 예정(초기에는 README만 포함).
-- `data/`: 원시 및 처리된 데이터, 라벨링 가이드, 데이터셋 카드 포함.
-- `knowledge/`: 게임플레이 가이드, 마법사 획득·성장 가이드, 스킬 문서 등 근거 문서.
-- `experiments/`: 실험 로그와 에러 분석 템플릿.
-- `docs/`: 아키텍처 다이어그램 및 포트폴리오 요약.
+이 프로젝트는 고객지원 문의를 `category`, `urgency`, `needs_human`으로 라우팅하고, 질문별 topic knowledge와 response template을 이용해 재현 가능한 답변 초안을 만드는 포트폴리오 프로젝트입니다.
 
-데이터셋 버전:
-- v1 dataset은 `data/raw/wizard_defense_inquiries_raw.csv`에 보존되어 있습니다.
-- v2 dataset은 v0.7.0 data quality review 이후 생성한 `data/raw/wizard_defense_inquiries_v2.csv`이며, 150개 문의와 개선된 라벨 경계 사례를 포함합니다.
+처음부터 외부 LLM에 의존하지 않고 rule-based baseline을 구축한 뒤, common question coverage, deterministic retrieval, prompt/guardrail 경계와 optional mock adapter까지 단계적으로 확장했습니다. React UI와 FastAPI API를 연결했고, AWS EC2에서 Nginx + systemd production-style 구조도 검증·문서화했습니다.
 
-평가 결과:
-- dataset v2 baseline 평가는 `backend/scripts/evaluate_v2_baselines.py`로 실행하며, 결과는 `experiments/*_v2.csv`와 `experiments/v2_baseline_evaluation_summary.md`에 분리 저장됩니다.
-- v0.11.0에서는 improved rule classifier를 사용한 로컬 support router prototype을 추가했으며, `backend/scripts/run_support_router_demo.py`로 demo CSV와 summary를 생성할 수 있습니다.
-- v0.12.0에서는 support router output을 한국어 response draft template으로 변환하는 로컬 prototype을 추가했습니다.
-- v0.13.0에서는 support router와 response template의 local regression test suite를 추가했습니다.
-- v0.14.0에서는 두 모듈을 외부 서비스 없이 연결하는 FastAPI local prototype과 in-process smoke test를 추가했습니다.
-- v0.15.0에서는 local API의 request/response 계약과 실행 가이드를 한국어 문서로 정리했습니다.
-- v0.16.0에서는 여러 한국어 문의를 CSV로 처리하는 local batch support preview와 회귀 테스트를 추가했습니다.
-- v0.17.0에서는 batch preview 결과의 category accuracy, human-review, urgency, response type, mismatch 분석 보고서를 추가했습니다.
-- v0.18.0에서는 FastAPI prototype의 AWS EC2 수동 배포와 browser verification 절차를 한국어 문서로 정리했습니다.
-- v0.19.0에서는 support response wording을 PC mouse play, Windows build, Steam demo 방향에 맞게 정렬했습니다.
-- v0.20.0에서는 한국어 Vite + React 고객지원 미리보기 화면과 local development CORS allowlist를 추가했습니다.
-- v0.21.0에서는 React UI와 backend response draft/internal note에 Korean/English language toggle을 추가했습니다.
+> **중요:** 현재 구현은 실제 LLM chatbot이나 production RAG chatbot이 아닙니다. OpenAI, Claude 등 외부 LLM API를 호출하지 않으며 API key도 사용하지 않습니다. Retrieval은 embedding/vector DB가 아닌 local keyword/token/topic scoring이고, `MockLLMAdapter`는 demo-only deterministic formatter입니다.
 
-React frontend 로컬 실행:
+## 현재 구현 상태
+
+| 구현됨 | 아직 구현되지 않음 |
+|---|---|
+| Rule-based inquiry classifier와 7개 category | 실제 OpenAI/Claude/provider 연동 |
+| `urgency`, `needs_human`, response type routing | Embedding 또는 vector DB 검색 |
+| Deterministic topic detection와 support knowledge | Production RAG/LLM generation |
+| 한국어/영어 response template | HTTPS, domain, authentication/authorization |
+| Local deterministic retrieval baseline | Database, ticket storage, live player data |
+| Demo-only `MockLLMAdapter`와 prompt builder | Steamworks, account recovery, payment/refund 처리 |
+| Refund/compensation/restoration guardrail prototype | 실제 helpdesk 또는 자동 고객지원 처리 |
+| FastAPI backend + React/Vite preview UI | Production-ready 운영 보장 |
+| EC2/Nginx/systemd 배포 검증과 운영 문서 |  |
+
+## Architecture
+
+```text
+User inquiry
+  -> FastAPI POST /support/preview
+  -> rule-based router
+  -> support knowledge / topic detector
+  -> deterministic local retrieval baseline
+  -> response template
+  -> preview response
+
+Demo-only future architecture validation:
+retrieved chunks
+  -> prompt builder
+  -> MockLLMAdapter (local, deterministic, no external call)
+  -> guardrail check
+  -> comparison CSV
+```
+
+`/support/preview`의 기본 경로는 deterministic template입니다. Mock adapter는 API에 연결되어 있지 않고 별도 demo/test에서만 명시적으로 실행됩니다.
+
+## Core features
+
+- 문의 분류: `gameplay_guide`, `wizard_acquisition`, `wizard_growth`, `tower_progress`, `skill_combat`, `bug_report`, `feedback_balance`
+- 운영 routing: `urgency`, `needs_human`, `suggested_response_type`, `routing_reason`
+- 답변 초안: gameplay, legendary wizard, fusion, resonance, tower/boss, PC controls, fullscreen/resolution 안내
+- 안전 처리: reward loss, payment, refund 사례의 human-review 전환과 금지 약속 검사
+- 한국어/영어: API request의 optional `language`로 response draft 언어 선택
+- React preview UI: 문의 입력, 예시 chip, loading/error 상태, 분석 결과 card
+- Retrieval baseline: bilingual structured chunks와 deterministic `top_k` ordering
+- Mock adapter prototype: provider-neutral interface, prompt redaction, local deterministic draft
+- Guardrail prototype: refund, compensation, restoration, guaranteed fix, patch date promise 검사
+
+## Tech stack
+
+| 영역 | 기술 |
+|---|---|
+| Backend | Python, FastAPI, Pydantic |
+| Test | `unittest`, FastAPI `TestClient`, API smoke script |
+| Baseline | Rule-based classifier, TF-IDF/LogisticRegression experiments |
+| Retrieval | Pure Python keyword/token/topic scoring |
+| Frontend | React, Vite, CSS |
+| Deployment | AWS EC2, Nginx, systemd |
+| Delivery | Git, GitHub tags/releases, versioned experiment artifacts |
+
+## API example
+
+### `POST /support/preview`
+
+`language`를 생략하면 `ko`가 적용되므로 기존 `{"text": "..."}` caller도 동작합니다.
+
+```json
+{
+  "text": "What wizard types are available?",
+  "language": "en"
+}
+```
+
+Response field는 다음 8개로 유지됩니다.
+
+```text
+text
+predicted_category
+urgency
+needs_human
+suggested_response_type
+routing_reason
+response_draft
+internal_note
+```
+
+Local 실행:
 
 ```powershell
+python -m pip install -r requirements.txt
 python -m uvicorn backend.app.api:app --reload
+```
+
+자세한 계약과 호출 예시는 [API 계약](docs/api_contract.md), [로컬 API 사용법](docs/local_api_usage.md)을 참고하세요.
+
+## Frontend overview
+
+React UI는 문의를 입력하고 API의 category, urgency, human review, response type, routing reason, response draft와 internal note를 card 형태로 보여줍니다. 한국어/English toggle과 local/production same-origin API base 설정을 지원합니다.
+
+```powershell
 Set-Location frontend
 npm install
 npm run dev
 ```
 
-PowerShell execution policy가 `npm.ps1`을 차단하면 `npm.cmd`를 사용합니다. Frontend 기본 주소는 `http://127.0.0.1:5173`, backend 기본 주소는 `http://127.0.0.1:8000`입니다. 자세한 내용은 [frontend 실행 문서](frontend/README.md)를 확인하세요.
+개발 기본 주소는 frontend `http://127.0.0.1:5173`, backend `http://127.0.0.1:8000`입니다. 화면 설명은 [frontend README](frontend/README.md)를 참고하세요.
 
-빠른 시작:
-1. `.env.example`를 `.env`로 복사하고 필요한 값을 채우세요.
-2. 먼저 데이터셋과 라벨링 가이드를 검토한 뒤 백엔드/프론트엔드 작업을 진행하세요.
+## Deployment overview
 
-향후 작업 추천:
-- 소규모 백엔드 스켈레톤(FastAPI)으로 분류 및 검색 엔드포인트 제작.
-- `data/`의 샘플을 이용한 벤치마크용 간단한 파이프라인 구성.
-- 포트폴리오 문서 작성 및 데모 시나리오 정리.
+AWS EC2에서 다음 production-style 구조를 검증했습니다. 이는 production-ready 보장이 아니라 배포·운영 구조 검증입니다.
 
-주의: 프로젝트의 Codex 작업 워크플로우 및 핸드오프 문서는 `docs/codex_workflow.md`에 있고, 필수 작업 체크리스트는 `docs/codex_task_checklist.md`에 있습니다. Codex(또는 자동화 에이전트)는 두 문서를 먼저 읽고 체크리스트를 준수해야 합니다.
+```text
+Browser -> http://EC2_PUBLIC_IP (Nginx port 80)
+        -> React production build
+        -> same-origin /support/preview
+        -> Nginx reverse proxy
+        -> FastAPI systemd service on 127.0.0.1:8000
+```
 
-# wizard-defense-ai-support
-AI support system for Random Wizard Defense player inquiries
+- Public entry: Nginx port `80`
+- Backend bind: `127.0.0.1:8000`
+- Service management: systemd
+- React build: Nginx static serving
+- Security Group verification: public `5173`, `8000` closed
+- 실제 public IP, AWS account ID, credential 또는 private key는 저장소에 기록하지 않음
 
-## v0.22.0 Production-style EC2 Deployment
+검증과 운영 절차는 [배포 검증](docs/production_deployment_verification.md), [운영 runbook](docs/production_operations_runbook.md), [보안 계획](docs/security_and_access_control_plan.md)에 있습니다.
 
-v0.22.0 adds production deployment hardening notes for the React + FastAPI support preview tool.
+## Version history
 
-- Deployment URL pattern: `http://EC2_PUBLIC_IP/`
-- Static frontend root: `/var/www/wizard-defense-support`
-- Backend service: FastAPI on `127.0.0.1:8000` managed by systemd
-- Public entry point: Nginx on port 80
-- Same-origin API calls: `/support/preview`, `/health`, `/docs`, `/openapi.json`
+| Phase | Version | 핵심 milestone |
+|---|---|---|
+| Project structure/data | v0.1.0–v0.2.0 | Repository scaffolding, Korean docs, dataset v1 |
+| Baseline models | v0.3.0–v0.6.0 | Rule classifier, evaluation, TF-IDF, comparison |
+| Data quality/baseline improvement | v0.7.0–v0.10.0 | Dataset review/v2, v2 evaluation, improved rule baseline |
+| API/response templates | v0.11.0–v0.19.0 | Router, templates, tests, FastAPI, contract, batch analysis, Steam/PC alignment |
+| Frontend/deployment | v0.20.0–v0.23.0 | React UI, bilingual mode, EC2 hardening and deployment verification |
+| Operations/security | v0.24.0–v0.25.0 | Operations runbook, security/access/privacy plans |
+| Knowledge/readiness | v0.26.0–v0.27.0 | Common question coverage, LLM/RAG readiness plan |
+| Retrieval/mock architecture | v0.28.0–v0.29.0 | Deterministic retrieval, local mock adapter, prompt/guardrail prototype |
+| Portfolio showcase | v0.30.0 | Recruiter-first README and portfolio positioning |
 
-See:
+전체 실험 이력은 [experiment log](experiments/experiment_log.md)에서 확인할 수 있습니다.
 
-- `docs/production_deployment_hardening.md`
-- `docs/nginx_systemd_deployment.md`
-- `deploy/nginx/wizard-defense-support.conf.example`
-- `deploy/systemd/wizard-defense-support-api.service.example`
+## Demo and experiment outputs
 
-The frontend can still default to `http://127.0.0.1:8000` when `VITE_API_BASE_URL` is not defined for local development. For production same-origin builds, set `VITE_API_BASE_URL=` so browser requests use relative paths through Nginx.
+| Artifact | 보여주는 내용 |
+|---|---|
+| `experiments/batch_support_preview_outputs.csv` | Dataset v2 batch routing/response output |
+| `experiments/batch_support_analysis_report.md` | Category accuracy, mismatch, human-review 분석 |
+| `experiments/support_question_coverage_demo_outputs.csv` | Common gameplay/support question coverage |
+| `experiments/rag_retrieval_baseline_demo_outputs.csv` | Bilingual ranked retrieval chunks와 safety metadata |
+| `experiments/mock_llm_adapter_demo_outputs.csv` | Template vs retrieval vs mock draft vs guardrail 비교 |
 
-## v0.23.0 Production Deployment Verification
+## Testing summary
 
-v0.23.0 documents the actual EC2 production-style verification after applying the v0.22.0 Nginx + systemd hardening path.
+- Backend regression: **86 tests passed**
+- API smoke: **7/7 preview cases passed**
+- Mock adapter demo: Korean 7 + English 7 examples
+- Frontend: Vite production build passed
+- Python compile, `git diff --check`, protected dataset/CSV 및 secret/IP scan 수행
 
-Verified result summary:
+```powershell
+python -m unittest discover backend/tests
+python backend/scripts/run_api_smoke_test.py
+python backend/scripts/run_mock_llm_adapter_demo.py
+Set-Location frontend
+npm run build
+```
 
-- React production build is served by Nginx on `http://EC2_PUBLIC_IP`.
-- FastAPI runs through systemd on `127.0.0.1:8000`.
-- Nginx reverse proxies `/support/preview`, `/health`, `/docs`, and `/openapi.json`.
-- Browser access works without `:5173`.
-- Inquiry submission works without the previous `5173 -> 8000` CORS preflight issue.
-- Public inbound ports `5173` and `8000` were removed; port `80` remains the browser entry point.
+## 면접에서 이렇게 설명할 수 있습니다
 
-See `docs/production_deployment_verification.md`, `docs/security_group_cleanup_verification.md`, and `experiments/production_deployment_verification_summary.md`.
-## v0.24.0 Production Operations Runbook
+> “저는 LLM을 바로 붙이지 않고 먼저 rule-based baseline부터 만들었습니다. 문의 분류, 긴급도와 human review routing을 테스트 가능한 기준으로 고정한 뒤, 실제 게임 질문에 대한 deterministic knowledge coverage와 keyword/topic retrieval baseline을 구축했습니다.”
 
-v0.24.0 adds Korean operations documentation for the verified EC2 production-style deployment.
+> “그다음 향후 LLM/RAG 확장을 위해 retrieval context, prompt redaction, provider-neutral mock adapter와 output guardrail 구조를 설계했습니다. 현재 mock adapter는 실제 LLM이 아니라 architecture 검증용 local formatter입니다.”
 
-Added operations coverage:
+> “환불, 결제, 보상, 복구처럼 민감한 문의는 자동 확정하지 않고 `needs_human=true`로 보내며, 금지 약속 guardrail과 deterministic fallback으로 안전하게 처리하도록 설계했습니다.”
 
-- Routine status checks for Nginx, FastAPI systemd service, `/health`, and `/support/preview`.
-- React production build redeploy steps.
-- Backend update, tag deployment, and rollback steps.
-- Incident troubleshooting checklist for 502, CORS, service failure, Nginx failure, blocked port 80, SSH failure, and disk pressure.
+> “기능 구현뿐 아니라 React/FastAPI 연결, EC2의 Nginx·systemd 배포, rollback·incident·security 문서까지 포함해 개발과 운영 관점을 함께 보여주려고 했습니다.”
 
-See `docs/production_operations_runbook.md`, `docs/deployment_update_and_rollback.md`, `docs/incident_troubleshooting_checklist.md`, and `experiments/production_operations_runbook_summary.md`.
+더 자세한 표현 가이드는 [portfolio showcase notes](docs/portfolio_showcase_notes.md)에 있습니다.
 
-## v0.25.0 Security and Access Control Plan
+## Screenshot placeholder
 
-v0.25.0 documents the next security and access-control planning step for the verified EC2 production-style deployment.
+추후 다음 이미지를 추가할 수 있습니다. 현재 README에는 실제 image asset을 새로 추가하지 않았습니다.
 
-Added planning coverage:
+- React bilingual inquiry/response preview
+- Sensitive refund inquiry의 human-review 결과
+- Retrieval/mock adapter comparison artifact
+- EC2 Nginx same-origin deployment 화면
 
-- HTTPS/domain/auth/database items that are still not implemented.
-- Public demo mode versus future admin/internal access mode.
-- API exposure policy for `/support/preview`, `/health`, `/docs`, and `/openapi.json`.
-- Secret management, privacy, logging, and release security checklist.
+## Limitations
 
-See `docs/security_and_access_control_plan.md`, `docs/privacy_and_logging_guidelines.md`, `docs/production_security_checklist.md`, and `experiments/security_access_control_plan_summary.md`.
+- 실제 LLM provider 연동이 없으며 OpenAI/Claude-powered assistant가 아님
+- Embedding/vector DB와 semantic search가 없음
+- Retrieval은 작은 in-code knowledge base의 keyword/token/topic baseline
+- Mock adapter는 model quality, hallucination, cost 또는 provider outage를 재현하지 않음
+- HTTPS, domain, authentication, database, ticket storage가 아직 없음
+- Steamworks, account recovery, payment/refund 처리와 live game DB 연동이 없음
+- 실제 production 고객지원이나 fully automated support system이 아님
 
-## v0.26.0 Support Question Coverage Expansion
+## Next steps
 
-v0.26.0 expands deterministic support question coverage for common Wizard Random Defense player questions.
+1. 별도 승인 후 real provider adapter readiness와 deterministic fallback 검토
+2. 저장소 밖 environment variable/secret 관리 및 cost/latency monitoring 설계
+3. Versioned retrieval evaluation과 optional vector search offline 비교
+4. Portfolio UI/deployment screenshot 추가
 
-This project currently does not use an external LLM API. It uses deterministic rule-based classification, topic detection, and response templates to generate support response drafts. It is designed as a baseline that can be extended toward future LLM/RAG workflows.
+## Repository guide
 
-이번 프로젝트는 현재 외부 LLM API를 사용하지 않습니다. 규칙 기반 분류, 토픽 감지, 응답 템플릿을 조합해 고객지원 응답 초안을 생성하는 deterministic support assistant입니다. 향후 LLM/RAG 확장을 위한 baseline 역할을 합니다.
-
-## v0.27.0 LLM/RAG Readiness Plan
-
-v0.27.0은 구현 변경 없이 미래 LLM/RAG 확장 경로를 문서화하는 planning milestone입니다. 현재 구현은 외부 LLM API를 사용하지 않는 rule-based AI support preview tool이며 LLM, RAG 또는 generative AI chatbot이 아닙니다.
-
-현재의 deterministic classifier, topic detection, response templates와 safety/human-review routing을 이후 retrieval-only 및 선택적 LLM/RAG 후보와 비교할 baseline으로 유지합니다. 제안 architecture, knowledge base, prompt/guardrail, evaluation 및 hybrid 비교 기준은 `docs/llm_rag_readiness_plan.md`와 관련 문서에 정리되어 있습니다. 실제 LLM API, embedding, vector DB 또는 새 외부 dependency는 추가하지 않았습니다.
-
-Added coverage:
-
-- Wizard elements: Fire, Water, Wind, Stone, Lightning
-- Legendary wizards: Arden, Orphel, Lumiel, Novarin
-- Fusion, resonance, tower/floor, boss, PC controls, fullscreen/resolution questions
-- Safe human-review wording for reward loss, payment, and refund inquiries
-- Expanded Korean/English example chips in the React UI
-
-See `backend/app/support_knowledge.py`, `experiments/support_question_coverage_demo_outputs.csv`, and `experiments/support_question_coverage_expansion_summary.md`.
-
-## v0.28.0 RAG Retrieval Baseline Prototype
-
-v0.28.0은 작은 로컬 knowledge chunk 집합을 token, keyword, topic scoring으로 검색하는 deterministic retrieval-only baseline입니다. 한국어/영어 query에 대해 안정적인 `top_k` 순서와 safety metadata를 제공하며 `/support/preview`의 기존 field 계약을 유지합니다.
-
-현재도 외부 LLM API를 사용하지 않으며 LLM chatbot이 아닙니다. Embedding, vector DB, LangChain 또는 외부 RAG dependency도 사용하지 않습니다. 이 baseline은 future RAG/LLM의 검색 품질, prompt grounding 및 guardrail을 비교하기 위한 groundwork입니다. 구현과 demo는 `backend/app/rag_knowledge_base.py`, `backend/app/rag_retriever.py`, `experiments/rag_retrieval_baseline_demo_outputs.csv`에서 확인할 수 있습니다.
-
-## v0.29.0 Optional Mock LLM Adapter Prototype
-
-v0.29.0은 retrieval 이후 future draft adapter, prompt redaction과 output guardrail 연결을 검증하는 demo-only milestone입니다. `MockLLMAdapter`는 local deterministic formatter이며 실제 LLM이 아니고 외부 LLM API를 호출하지 않습니다.
-
-Default `/support/preview` 동작과 response field는 변경하지 않았습니다. Mock path는 별도 script/test에서만 실행되며 API key, provider credential, model SDK, embedding 또는 vector DB를 사용하지 않습니다. 이 버전은 향후 real provider adapter를 검토하기 전에 interface, no-secret boundary, safe fallback과 bilingual guardrail을 검증합니다. 자세한 내용은 `docs/optional_llm_adapter_design.md`와 `experiments/mock_llm_adapter_prototype_summary.md`를 참고하세요.
+- `backend/`: classifier, router, knowledge, retrieval, mock adapter, API, tests
+- `frontend/`: React/Vite support preview UI
+- `data/`: versioned synthetic inquiry datasets와 labeling docs
+- `experiments/`: reproducible outputs, evaluation reports, experiment log
+- `docs/`: API, deployment, security, LLM/RAG readiness와 portfolio documentation
+- `knowledge/`: gameplay/support source documents
