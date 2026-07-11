@@ -270,3 +270,12 @@ Notes:
 - 출력: `experiments/rag_retrieval_baseline_demo_outputs.csv`, `experiments/rag_retrieval_baseline_summary.md`
 - 결과: wizard/legendary/fusion/resonance/tower/PC/display/safety topic의 local structured chunk를 token, keyword, topic 점수로 검색하고 stable `top_k` ordering을 제공합니다. Sensitive reward/payment/refund chunk는 `requires_human_review=true`로 기존 API routing을 강화합니다.
 - 참고: 외부 API, LLM API, API key, embedding/vector DB 또는 새 dependency를 추가하지 않았습니다. 기존 endpoint와 response field, dataset v1/v2, 이전 experiment CSV와 Unity repository는 변경하지 않았습니다.
+
+## EXP-027 Optional Mock LLM Adapter Prototype (v0.29.0-optional-llm-adapter-prototype)
+
+- 날짜: 2026-07-11
+- 목적: 실제 provider/API를 연결하지 않고 retrieval 이후 prompt builder, optional adapter와 guardrail architecture를 deterministic local demo로 검증
+- 구성: `backend/app/llm_adapter.py`, `backend/app/llm_prompt_builder.py`, `backend/app/llm_guardrails.py`, focused tests, `backend/scripts/run_mock_llm_adapter_demo.py`
+- 출력: `experiments/mock_llm_adapter_demo_outputs.csv`, `docs/optional_llm_adapter_design.md`, `experiments/mock_llm_adapter_prototype_summary.md`
+- 결과: 14개 Korean/English example에서 template, retrieved context, local mock draft와 final guardrail result를 비교했습니다. Sensitive refund/payment 4개는 human review safe fallback을 유지합니다.
+- 참고: `MockLLMAdapter`는 실제 LLM이 아니라 local deterministic formatter입니다. 외부 API, API key, model/vector/embedding dependency, API schema/path/field 변경, dataset/기존 CSV/Unity 수정은 없습니다.

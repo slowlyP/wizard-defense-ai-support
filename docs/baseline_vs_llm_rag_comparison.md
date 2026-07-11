@@ -39,6 +39,8 @@ Baseline은 안전 정책과 측정 가능한 하한을 제공한다. Retrieval/
 
 v0.28.0 retrieval baseline은 이 중 검색 단계만 독립적으로 검증한다. 검색 결과는 player-facing generation이 아니라 `internal_note`의 근거와 safety routing 보강에 사용되며, LLM을 사용하지 않는다.
 
+v0.29.0 optional mock adapter는 generation boundary와 guardrail flow를 demo-only로 검증한다. 이는 local deterministic formatter이므로 LLM/RAG 성능 개선 증거가 아니며, default support preview는 계속 deterministic template을 사용한다.
+
 ## 8. 권장 hybrid architecture
 
 - Deterministic routing and safety guardrails로 category, topic, 민감도와 금지 약속을 통제한다.

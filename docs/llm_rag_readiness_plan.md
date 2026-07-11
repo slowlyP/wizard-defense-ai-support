@@ -39,6 +39,8 @@ user inquiry
 
 현재 구현 영역은 문의 분류, topic detection, response template, `needs_human`, 한국어/영어 deterministic draft, 기존 `/health` 및 `/support/preview` 계약이다. 향후 영역은 문서 ingestion, retrieval index, embedding/vector store, LLM adapter, prompt 실행, citation, 모델 비용 관리이다. 향후 영역은 이 버전에서 설치·호출·구현하지 않는다.
 
+v0.28.0에는 local deterministic retrieval baseline이 추가되었고, v0.29.0에는 demo-only `MockLLMAdapter`, prompt builder와 guardrail boundary가 추가되었다. Mock adapter는 실제 model을 실행하지 않으므로 optional real provider, embedding/vector store, production prompt 실행, 비용 관리는 여전히 향후 영역이다. Default `/support/preview`는 deterministic template 경로를 유지한다.
+
 ## 7. 향후 구현 단계
 
 1. Phase 1: knowledge base cleanup — 출처, 소유자, 언어, 안전 등급, 최신성 및 승인 상태를 정리한다.
