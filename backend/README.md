@@ -273,6 +273,19 @@ python -m unittest backend.tests.test_rag_retriever backend.tests.test_rag_retri
 python backend/scripts/run_rag_retrieval_demo.py
 ```
 
+## v0.29.0 Optional Mock LLM Adapter
+
+이 버전은 `llm_adapter.py`, `llm_prompt_builder.py`, `llm_guardrails.py`를 이용해 future provider boundary를 local demo로 검증합니다. `MockLLMAdapter`는 retrieved chunk를 고정 형식으로 조합할 뿐 실제 LLM 또는 외부 API를 호출하지 않습니다.
+
+Mock mode는 `/support/preview` request schema에 추가되지 않았으며 default API/template path도 변경하지 않았습니다. 다음 명령은 별도 comparison CSV만 생성합니다.
+
+```powershell
+python backend/scripts/run_mock_llm_adapter_demo.py
+python -m unittest backend.tests.test_llm_prompt_builder backend.tests.test_llm_guardrails backend.tests.test_mock_llm_adapter backend.tests.test_mock_llm_adapter_demo
+```
+
+출력은 `experiments/mock_llm_adapter_demo_outputs.csv`이며 API key, model SDK, embedding/vector DB dependency가 필요하지 않습니다.
+
 Demo output:
 
 - `experiments/support_question_coverage_demo_outputs.csv`

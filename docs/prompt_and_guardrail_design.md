@@ -83,3 +83,7 @@ LLM adapter 비활성, retrieval 결과 없음, timeout, provider 오류, inject
 ## 12. 한계
 
 Prompt만으로 환각이나 injection을 완전히 방지할 수 없다. Provider별 동작 차이와 다국어 의미 손실이 있으며 human review가 실제 처리 권한을 대신하지 않는다. 실행 전 자동 검사와 적대적 수동 평가가 필요하다.
+
+## v0.29.0 Mock 구현 상태
+
+`llm_prompt_builder.py`는 inquiry, route와 retrieved chunks를 bilingual stable structure로 만들며 key/private-data-looking pattern을 redaction한다. `llm_guardrails.py`는 금지 약속을 concept별로 검사하고 sensitive topic을 fixed human-review fallback으로 보낸다. `MockLLMAdapter`는 이 경계를 검증하는 local deterministic formatter이며 prompt를 외부로 전송하거나 실제 LLM을 호출하지 않는다. 실제 provider의 prompt injection, hallucination과 cost/latency는 아직 평가하지 않았다.

@@ -146,3 +146,9 @@ See `backend/app/support_knowledge.py`, `experiments/support_question_coverage_d
 v0.28.0은 작은 로컬 knowledge chunk 집합을 token, keyword, topic scoring으로 검색하는 deterministic retrieval-only baseline입니다. 한국어/영어 query에 대해 안정적인 `top_k` 순서와 safety metadata를 제공하며 `/support/preview`의 기존 field 계약을 유지합니다.
 
 현재도 외부 LLM API를 사용하지 않으며 LLM chatbot이 아닙니다. Embedding, vector DB, LangChain 또는 외부 RAG dependency도 사용하지 않습니다. 이 baseline은 future RAG/LLM의 검색 품질, prompt grounding 및 guardrail을 비교하기 위한 groundwork입니다. 구현과 demo는 `backend/app/rag_knowledge_base.py`, `backend/app/rag_retriever.py`, `experiments/rag_retrieval_baseline_demo_outputs.csv`에서 확인할 수 있습니다.
+
+## v0.29.0 Optional Mock LLM Adapter Prototype
+
+v0.29.0은 retrieval 이후 future draft adapter, prompt redaction과 output guardrail 연결을 검증하는 demo-only milestone입니다. `MockLLMAdapter`는 local deterministic formatter이며 실제 LLM이 아니고 외부 LLM API를 호출하지 않습니다.
+
+Default `/support/preview` 동작과 response field는 변경하지 않았습니다. Mock path는 별도 script/test에서만 실행되며 API key, provider credential, model SDK, embedding 또는 vector DB를 사용하지 않습니다. 이 버전은 향후 real provider adapter를 검토하기 전에 interface, no-secret boundary, safe fallback과 bilingual guardrail을 검증합니다. 자세한 내용은 `docs/optional_llm_adapter_design.md`와 `experiments/mock_llm_adapter_prototype_summary.md`를 참고하세요.
