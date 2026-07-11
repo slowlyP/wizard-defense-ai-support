@@ -1,0 +1,37 @@
+﻿id,language,text,rank,chunk_id,topic,score,safety_level,requires_human_review,title,content
+ko_wizard_types,ko,마법사의 종류가 뭐야?,1,wizard_elements.ko.v1,wizard_elements,14,normal,false,마법사 원소,"기본 마법사 원소는 Fire/불, Water/물, Wind/바람, Stone/돌, Lightning/번개 다섯 가지입니다."
+ko_legendary,ko,전설 마법사는 누구 있어?,1,legendary_wizards.ko.v1,legendary_wizards,37,normal,false,전설 마법사,"전설 마법사는 Arden/아르덴, Orphel/오르펠, Lumiel/루미엘, Novarin/노바린입니다."
+ko_legendary,ko,전설 마법사는 누구 있어?,2,arden.ko.v1,arden,1,normal,false,아르덴,Arden/아르덴은 Fire 계열 전설 마법사이며 폭발형 화염 damage dealer로 안내할 수 있습니다.
+ko_legendary,ko,전설 마법사는 누구 있어?,3,lumiel.ko.v1,lumiel,1,normal,false,루미엘,Lumiel/루미엘은 Wind 계열 전설 마법사이며 support/blessing type입니다. 문서화되지 않은 회복 효과는 보장하지 않습니다.
+ko_arden,ko,아르덴은 어떤 마법사야?,1,arden.ko.v1,arden,15,normal,false,아르덴,Arden/아르덴은 Fire 계열 전설 마법사이며 폭발형 화염 damage dealer로 안내할 수 있습니다.
+ko_arden,ko,아르덴은 어떤 마법사야?,2,legendary_wizards.ko.v1,legendary_wizards,14,normal,false,전설 마법사,"전설 마법사는 Arden/아르덴, Orphel/오르펠, Lumiel/루미엘, Novarin/노바린입니다."
+ko_fusion,ko,불이랑 물을 합치면 뭐가 돼?,1,fusion.ko.v1,fusion,14,normal,false,마법사 Fusion,Fusion은 서로 다른 원소의 서로 다른 마법사 두 명을 등록된 조합으로 합치는 시스템입니다. Fire + Water는 안개 계열 예시입니다.
+ko_resonance,ko,레조넌스가 뭐야?,1,resonance.ko.v1,resonance,14,normal,false,공명과 성장,공명/resonance는 신규 획득과 구분되는 마법사 성장·강화 계열입니다. 정확한 수치와 보상은 현재 build 안내를 확인해야 합니다.
+ko_pc,ko,PC에서 마법사를 어떻게 배치해?,1,pc_controls.ko.v1,pc_controls,29,normal,false,PC 배치 조작,PC/Steam demo에서는 마우스로 한 번에 하나의 마법사를 드래그해 중앙 전장의 허용 범위 안에 배치합니다.
+ko_fullscreen,ko,전체화면에서 UI가 이상해,1,fullscreen_resolution.ko.v1,fullscreen_resolution,42,normal,true,전체화면과 해상도,"UI 표시 문제는 windowed/fullscreen 전환, 해상도 재선택과 build 재실행을 확인하고 재현 정보와 screenshot을 남깁니다."
+ko_fullscreen,ko,전체화면에서 UI가 이상해,2,fullscreen_resolution.en.v1,fullscreen_resolution,14,normal,true,Fullscreen and resolution,"For UI display issues, switch windowed/fullscreen mode, reselect the resolution, restart the build, and provide reproduction details and a screenshot."
+ko_reward,ko,보상을 못 받았어,1,reward_loss.ko.v1,reward_loss,30,sensitive,true,보상 또는 재화 손실,"보상이나 재화 손실은 자동 지급·보상·복구를 약속하지 않고 발생 시각, build와 screenshot을 받아 human review로 보냅니다."
+ko_reward,ko,보상을 못 받았어,2,safety_policy.ko.v1,safety_policy,14,sensitive,true,고객지원 안전 정책,"환불, 보상, 복구, guaranteed fix 또는 patch date를 약속하지 않습니다. 민감 사례는 human review로 전환합니다."
+ko_refund,ko,환불받고 싶어,1,refund_request.ko.v1,refund_request,14,sensitive,true,환불 요청,환불 가능 여부를 확정하거나 약속하지 않습니다. 플랫폼 정책 확인과 human review가 필요합니다.
+ko_refund,ko,환불받고 싶어,2,safety_policy.ko.v1,safety_policy,14,sensitive,true,고객지원 안전 정책,"환불, 보상, 복구, guaranteed fix 또는 patch date를 약속하지 않습니다. 민감 사례는 human review로 전환합니다."
+ko_payment,ko,결제했는데 아이템이 안 들어왔어,1,payment_issue.ko.v1,payment_issue,14,sensitive,true,결제 문제,결제 또는 아이템 미지급은 환불·지급을 약속하지 않고 민감 결제정보를 요청하지 않으며 human review로 보냅니다.
+en_wizard_types,en,What wizard types are available?,1,wizard_elements.en.v1,wizard_elements,27,normal,false,Wizard elements,"The five basic wizard elements are Fire, Water, Wind, Stone, and Lightning."
+en_wizard_types,en,What wizard types are available?,2,fusion.en.v1,fusion,5,normal,false,Wizard fusion,Fusion combines two different wizards of different elements when their pair is registered. Fire + Water is a mist-style example.
+en_wizard_types,en,What wizard types are available?,3,wizard_elements.ko.v1,wizard_elements,4,normal,false,마법사 원소,"기본 마법사 원소는 Fire/불, Water/물, Wind/바람, Stone/돌, Lightning/번개 다섯 가지입니다."
+en_legendary,en,Who are the legendary wizards?,1,legendary_wizards.en.v1,legendary_wizards,68,normal,false,Legendary wizards,"The legendary wizards are Arden, Orphel, Lumiel, and Novarin."
+en_legendary,en,Who are the legendary wizards?,2,legendary_wizards.ko.v1,legendary_wizards,8,normal,false,전설 마법사,"전설 마법사는 Arden/아르덴, Orphel/오르펠, Lumiel/루미엘, Novarin/노바린입니다."
+en_legendary,en,Who are the legendary wizards?,3,wizard_elements.en.v1,wizard_elements,2,normal,false,Wizard elements,"The five basic wizard elements are Fire, Water, Wind, Stone, and Lightning."
+en_resonance,en,What is resonance?,1,resonance.en.v1,resonance,25,normal,false,Resonance and growth,Resonance is a wizard growth and enhancement system separate from acquiring a new wizard. Check the current build for exact values.
+en_resonance,en,What is resonance?,2,resonance.ko.v1,resonance,18,normal,false,공명과 성장,공명/resonance는 신규 획득과 구분되는 마법사 성장·강화 계열입니다. 정확한 수치와 보상은 현재 build 안내를 확인해야 합니다.
+en_resonance,en,What is resonance?,3,arden.en.v1,arden,1,normal,false,Arden,Arden is a Fire legendary wizard and an explosive fire damage dealer.
+en_fusion,en,How does fusion work?,1,fusion.en.v1,fusion,24,normal,false,Wizard fusion,Fusion combines two different wizards of different elements when their pair is registered. Fire + Water is a mist-style example.
+en_fusion,en,How does fusion work?,2,fusion.ko.v1,fusion,23,normal,false,마법사 Fusion,Fusion은 서로 다른 원소의 서로 다른 마법사 두 명을 등록된 조합으로 합치는 시스템입니다. Fire + Water는 안개 계열 예시입니다.
+en_pc,en,How do I place wizards on PC?,1,pc_controls.en.v1,pc_controls,27,normal,false,PC placement controls,"On PC and in the Steam demo, drag one wizard at a time with the mouse inside the allowed central battlefield area."
+en_pc,en,How do I place wizards on PC?,2,pc_controls.ko.v1,pc_controls,24,normal,false,PC 배치 조작,PC/Steam demo에서는 마우스로 한 번에 하나의 마법사를 드래그해 중앙 전장의 허용 범위 안에 배치합니다.
+en_pc,en,How do I place wizards on PC?,3,legendary_wizards.en.v1,legendary_wizards,10,normal,false,Legendary wizards,"The legendary wizards are Arden, Orphel, Lumiel, and Novarin."
+en_refund,en,I want a refund.,1,refund_request.en.v1,refund_request,43,sensitive,true,Refund request,Do not promise or guarantee a refund. The platform policy must be checked and the request requires human review.
+en_refund,en,I want a refund.,2,refund_request.ko.v1,refund_request,18,sensitive,true,환불 요청,환불 가능 여부를 확정하거나 약속하지 않습니다. 플랫폼 정책 확인과 human review가 필요합니다.
+en_refund,en,I want a refund.,3,safety_policy.en.v1,safety_policy,14,sensitive,true,Support safety policy,"Never promise refunds, compensation, restoration, guaranteed fixes, or patch dates. Route sensitive cases to human review."
+en_payment,en,I paid but did not receive the item.,1,payment_issue.en.v1,payment_issue,39,sensitive,true,Payment issue,Do not promise a refund or item grant for payment issues and do not request sensitive payment data. Route the case to human review.
+en_payment,en,I paid but did not receive the item.,2,reward_loss.en.v1,reward_loss,20,sensitive,true,Reward or currency loss,"Do not promise grants, compensation, or restoration for missing rewards. Collect the time, build, and screenshot for human review."
+en_payment,en,I paid but did not receive the item.,3,boss.en.v1,boss,2,normal,false,Boss progression,Check boss timing against tower and floor progression in the current build. Do not guarantee unverified schedules or boss floors.

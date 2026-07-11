@@ -260,6 +260,19 @@ This milestone is documentation-only. The backend remains a deterministic classi
 
 Future retrieval and an optional LLM draft adapter are described in `docs/llm_rag_readiness_plan.md`. The current backend is the measurable fallback and comparison baseline; no model SDK, embedding library, vector database, API key, or external integration is added in this version.
 
+## v0.28.0 Deterministic Retrieval Baseline
+
+`backend/app/rag_knowledge_base.py`는 한국어/영어 structured chunk와 `topic`, `source_type`, `safety_level`, `requires_human_review` metadata를 정의합니다. `backend/app/rag_retriever.py`의 `retrieve_support_chunks(text, language="ko", top_k=3)`는 외부 dependency 없이 keyword, token, topic 점수와 chunk ID tie-break로 결과를 결정합니다.
+
+`/support/preview`는 기존 8개 response field를 그대로 유지합니다. 검색 chunk ID와 safety metadata는 `internal_note`에 기록되며 sensitive retrieval은 기존 `needs_human` 값을 낮추지 않고 필요할 때 `true`로 올립니다. Player-facing draft는 기존 deterministic support knowledge와 response template이 담당합니다. 이 버전은 retrieval-only이며 외부 LLM API, embedding 또는 vector DB를 사용하지 않습니다.
+
+Retrieval test와 demo 실행:
+
+```powershell
+python -m unittest backend.tests.test_rag_retriever backend.tests.test_rag_retriever_api_integration
+python backend/scripts/run_rag_retrieval_demo.py
+```
+
 Demo output:
 
 - `experiments/support_question_coverage_demo_outputs.csv`

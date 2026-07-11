@@ -140,3 +140,9 @@ Added coverage:
 - Expanded Korean/English example chips in the React UI
 
 See `backend/app/support_knowledge.py`, `experiments/support_question_coverage_demo_outputs.csv`, and `experiments/support_question_coverage_expansion_summary.md`.
+
+## v0.28.0 RAG Retrieval Baseline Prototype
+
+v0.28.0은 작은 로컬 knowledge chunk 집합을 token, keyword, topic scoring으로 검색하는 deterministic retrieval-only baseline입니다. 한국어/영어 query에 대해 안정적인 `top_k` 순서와 safety metadata를 제공하며 `/support/preview`의 기존 field 계약을 유지합니다.
+
+현재도 외부 LLM API를 사용하지 않으며 LLM chatbot이 아닙니다. Embedding, vector DB, LangChain 또는 외부 RAG dependency도 사용하지 않습니다. 이 baseline은 future RAG/LLM의 검색 품질, prompt grounding 및 guardrail을 비교하기 위한 groundwork입니다. 구현과 demo는 `backend/app/rag_knowledge_base.py`, `backend/app/rag_retriever.py`, `experiments/rag_retrieval_baseline_demo_outputs.csv`에서 확인할 수 있습니다.
