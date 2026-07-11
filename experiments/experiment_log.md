@@ -279,3 +279,11 @@ Notes:
 - 출력: `experiments/mock_llm_adapter_demo_outputs.csv`, `docs/optional_llm_adapter_design.md`, `experiments/mock_llm_adapter_prototype_summary.md`
 - 결과: 14개 Korean/English example에서 template, retrieved context, local mock draft와 final guardrail result를 비교했습니다. Sensitive refund/payment 4개는 human review safe fallback을 유지합니다.
 - 참고: `MockLLMAdapter`는 실제 LLM이 아니라 local deterministic formatter입니다. 외부 API, API key, model/vector/embedding dependency, API schema/path/field 변경, dataset/기존 CSV/Unity 수정은 없습니다.
+
+## EXP-028 Portfolio README Showcase (v0.30.0-portfolio-readme-showcase)
+
+- 날짜: 2026-07-11
+- 목적: Recruiter/interviewer가 1분 안에 current implementation, limitation, architecture, deployment와 future LLM/RAG direction을 파악하도록 repository README 재구성
+- 구성: `README.md`, `docs/portfolio_showcase_notes.md`, `experiments/portfolio_readme_showcase_summary.md`
+- 결과: Implemented/not implemented boundary, deterministic API/retrieval과 demo-only mock flow, tech stack, API/UI/deployment, v0.1~v0.30 phase history, experiment/test evidence와 interview wording을 portfolio-first 구조로 정리했습니다.
+- 참고: Documentation-only milestone입니다. 외부 LLM API, embedding/vector DB, dependency/key를 추가하지 않았고 source/API/dataset/기존 CSV/Unity files를 변경하지 않았습니다.
