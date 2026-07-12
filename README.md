@@ -225,3 +225,26 @@ npm run build
 - `experiments/`: reproducible outputs, evaluation reports, experiment log
 - `docs/`: API, deployment, security, LLM/RAG readiness와 portfolio documentation
 - `knowledge/`: gameplay/support source documents
+
+## Production Demo
+
+The deployed production preview is available at:
+
+```text
+https://support.slowlyp.dev
+```
+
+Related production checks:
+
+```text
+https://support.slowlyp.dev/health
+https://support.slowlyp.dev/docs
+```
+
+The production deployment uses Nginx as the public entry point, serves the React frontend, and proxies API requests to the FastAPI backend running internally on `127.0.0.1:8000`.
+
+For the full production domain and HTTPS checklist, see:
+
+```text
+docs/production-domain-https-release.md
+```
